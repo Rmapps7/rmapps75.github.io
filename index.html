@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RM Apps - QR Scanner & Radios</title>
+    <title>RM Apps - QR Scanner & Réseau Radio</title>
     <style>
         /* DESIGN GENERAL */
         :root {
@@ -45,7 +45,7 @@
             margin: 0 auto;
         }
         
-        .app-icon {
+        .app-icon-hero {
             width: 120px;
             height: 120px;
             border-radius: 24px;
@@ -115,36 +115,42 @@
         .feature h3 { font-size: 20px; margin-bottom: 10px; }
         .feature p { font-size: 16px; color: var(--gray-text); }
 
-        /* NOUVELLE SECTION : AUTRES APPS (RADIO) */
+        /* SECTION RADIO (GRILLE) */
         .other-apps {
             padding: 80px 20px;
-            max-width: 980px;
+            max-width: 1100px; /* Plus large pour la grille */
             margin: 0 auto;
             text-align: center;
         }
         .section-title {
             font-size: 32px;
             font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .section-desc {
+            color: var(--gray-text);
             margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* GRILLE POUR LES APPS */
+        /* GRILLE CIGOGNE */
         .apps-grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
             justify-content: center;
         }
 
         .radio-card {
             display: flex;
-            flex-direction: column; /* Empilement vertical */
+            flex-direction: column;
             align-items: center;
-            justify-content: space-between;
             background: #fff;
             border: 1px solid #e1e1e5;
             border-radius: 24px;
-            padding: 30px;
+            padding: 25px;
             text-align: center;
             transition: transform 0.2s, box-shadow 0.3s;
             height: 100%;
@@ -152,45 +158,43 @@
         }
         .radio-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
 
         .radio-icon {
-            width: 90px;
-            height: 90px;
-            border-radius: 20px;
+            width: 80px;
+            height: 80px;
+            border-radius: 18px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-
-        .radio-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            margin-bottom: 15px;
+            object-fit: cover;
         }
 
         .radio-content h3 {
             margin: 0 0 10px 0;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 600;
+            min-height: 44px; /* Pour aligner les titres sur 2 lignes */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .radio-content p {
             color: var(--gray-text);
             margin-bottom: 20px;
-            font-size: 15px;
+            font-size: 14px;
+            line-height: 1.4;
         }
 
-        /* BOUTON OUTLINE (Radio Suisse) */
         .btn-outline {
             background-color: transparent;
-            border: 2px solid #0071e3;
+            border: 1px solid #0071e3;
             color: #0071e3;
-            padding: 10px 25px;
-            border-radius: 25px;
+            padding: 8px 20px;
+            border-radius: 20px;
             text-decoration: none;
             font-weight: 600;
+            font-size: 14px;
             display: inline-block;
             transition: all 0.2s;
             margin-top: auto;
@@ -200,15 +204,20 @@
             color: #fff;
         }
 
-        /* BOUTON NOIR PETIT (Pour les cartes) */
-        .download-btn.small-btn {
-            padding: 10px 20px;
-            font-size: 14px;
-            margin-top: auto; /* Pousse le bouton vers le bas */
+        /* LIEN VOIR TOUT */
+        .see-all-container {
+            margin-top: 50px;
         }
-        .download-btn.small-btn svg {
-            width: 14px;
+        .see-all-link {
+            color: #0071e3;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
         }
+        .see-all-link:hover { text-decoration: underline; }
+        .see-all-link span { font-size: 20px; margin-left: 5px; }
 
         /* FOOTER */
         footer {
@@ -217,7 +226,7 @@
             font-size: 12px;
             color: var(--gray-text);
             border-top: 1px solid #d2d2d7;
-            margin-top: 40px;
+            margin-top: 80px;
         }
         footer a { color: var(--gray-text); text-decoration: none; margin: 0 10px; }
 
@@ -233,19 +242,20 @@
     <nav>
         <div class="nav-logo">RM Apps</div>
         <div>
+            <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" class="nav-link" target="_blank">Toutes nos apps</a>
             <a href="mailto:contact@rmapps.com" class="nav-link">Contact</a>
         </div>
     </nav>
 
     <section class="hero">
-        <img src="https://via.placeholder.com/120" alt="QR Scanner Logo" class="app-icon">
+        <img src="https://via.placeholder.com/120" alt="QR Scanner Logo" class="app-icon-hero">
         
         <h1>Scannez. Créez.<br>Partagez.</h1>
         <p class="subtitle">Le lecteur de QR Code le plus rapide et le plus complet sur iOS. Intuitif, puissant et respectueux de votre vie privée.</p>
 
-        <a href="https://apps.apple.com/app/idTON_ID_APP" class="download-btn">
+        <a href="https://apps.apple.com/app/idTON_ID_QR" class="download-btn">
             <svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 46.9 126.7 91.6 126.7 36.8 0 50.7-24.3 84.3-24.3 33.2 0 47.8 24.3 83.6 24.3 46.9 0 79.9-87.3 90.8-127.7-41.2-19.7-69.6-63.1-70-125.1zM175 141.2c33-35.8 30.8-76.7 27.7-109.1-33.3 2.9-74.7 21.9-97.9 63.3-20.7 37.1-23.7 75.3-2.1 108.9 36.9 3.8 54.3-27.2 72.3-63.1z"/></svg>
-            Télécharger sur l'App Store
+            Télécharger
         </a>
 
         <img src="screenshot.png" alt="App Screenshot" class="iphone-mockup">
@@ -269,43 +279,81 @@
     </div>
 
     <section class="other-apps">
-        <h2 class="section-title">Nos applications Radio</h2>
+        <h2 class="section-title">Notre Réseau Radio Mondial</h2>
+        <p class="section-desc">Voyagez à travers le monde grâce à nos applications dédiées. Musique locale, actualités et podcasts en haute qualité.</p>
         
         <div class="apps-grid-container">
 
             <div class="radio-card">
-                <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/66/1f/c0/661fc003-c003-8550-9343-6d09177a4933/AppIcon-0-0-1x_U007emarketing-0-10-0-85-220.png/512x512bb.jpg" alt="Radio Switzerland Icon" class="radio-icon">
+                <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/66/1f/c0/661fc003-c003-8550-9343-6d09177a4933/AppIcon-0-0-1x_U007emarketing-0-10-0-85-220.png/512x512bb.jpg" alt="Radio Suisse" class="radio-icon">
                 <div class="radio-content">
-                    <h3>Radio Switzerland - Swiss FM</h3>
-                    <p>La référence pour les stations suisses. Musique, actualités et sport en haute qualité.</p>
-                    <a href="https://apps.apple.com/us/app/radio-switzerland-swiss-fm/id1119092555" target="_blank" class="btn-outline">
-                        Voir sur l'App Store
-                    </a>
+                    <h3>Radio Suisse</h3>
+                    <p>Swiss FM & Web Radios</p>
+                    <a href="https://apps.apple.com/us/app/radio-switzerland-swiss-fm/id1119092555" target="_blank" class="btn-outline">Obtenir</a>
                 </div>
             </div>
 
             <div class="radio-card">
-                <img src="https://via.placeholder.com/150/000000/FFFFFF/?text=World" alt="World Radio Icon" class="radio-icon">
+                <img src="https://via.placeholder.com/150/FF0000/FFFFFF/?text=Canada" alt="Radio Canada" class="radio-icon">
                 <div class="radio-content">
-                    <h3>Écouter toutes les radios du monde</h3>
-                    <p>Voyagez sans bouger. Accédez à plus de 50 000 stations internationales en direct.</p>
-                    
-                    <a href="https://apps.apple.com/app/idVOTRE_ID_ICI" target="_blank" class="download-btn small-btn">
-                        <svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 46.9 126.7 91.6 126.7 36.8 0 50.7-24.3 84.3-24.3 33.2 0 47.8 24.3 83.6 24.3 46.9 0 79.9-87.3 90.8-127.7-41.2-19.7-69.6-63.1-70-125.1zM175 141.2c33-35.8 30.8-76.7 27.7-109.1-33.3 2.9-74.7 21.9-97.9 63.3-20.7 37.1-23.7 75.3-2.1 108.9 36.9 3.8 54.3-27.2 72.3-63.1z"/></svg>
-                        Télécharger
-                    </a>
+                    <h3>Radio Canada</h3>
+                    <p>Canadian Radios</p>
+                    <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" target="_blank" class="btn-outline">Obtenir</a>
+                </div>
+            </div>
+
+            <div class="radio-card">
+                <img src="https://via.placeholder.com/150/C1272D/FFFFFF/?text=Maroc" alt="Radio Maroc" class="radio-icon">
+                <div class="radio-content">
+                    <h3>Radio Maroc</h3>
+                    <p>راديو المغرب</p>
+                    <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" target="_blank" class="btn-outline">Obtenir</a>
+                </div>
+            </div>
+
+            <div class="radio-card">
+                <img src="https://via.placeholder.com/150/006233/FFFFFF/?text=Algerie" alt="Radio Algérie" class="radio-icon">
+                <div class="radio-content">
+                    <h3>Radio Algérie</h3>
+                    <p>Algerian Radios FM</p>
+                    <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" target="_blank" class="btn-outline">Obtenir</a>
+                </div>
+            </div>
+
+            <div class="radio-card">
+                <img src="https://via.placeholder.com/150/DD0000/FFFFFF/?text=Germany" alt="Radio Germany" class="radio-icon">
+                <div class="radio-content">
+                    <h3>Radio Germany</h3>
+                    <p>German Radios</p>
+                    <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" target="_blank" class="btn-outline">Obtenir</a>
+                </div>
+            </div>
+
+            <div class="radio-card">
+                <img src="https://via.placeholder.com/150/000000/FFFFFF/?text=World" alt="World Radio" class="radio-icon">
+                <div class="radio-content">
+                    <h3>World Radio</h3>
+                    <p>Toutes les radios du monde</p>
+                    <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" target="_blank" class="btn-outline">Obtenir</a>
                 </div>
             </div>
 
         </div>
+
+        <div class="see-all-container">
+            <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" target="_blank" class="see-all-link">
+                Voir toutes les autres applications sur l'App Store <span>&rsaquo;</span>
+            </a>
+        </div>
+
     </section>
 
     <footer>
         <p>&copy; 2025 RM Apps. All rights reserved.</p>
         <p>
             <a href="mailto:contact@rmapps.com">Support</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Use</a>
+            <a href="#">Politique de Confidentialité</a>
+            <a href="#">Conditions d'utilisation</a>
         </p>
     </footer>
 
