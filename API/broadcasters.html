@@ -3,368 +3,97 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Broadcaster Portal — RadioDir API</title>
+<title>Broadcaster Portal — RM Radio API</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,600;0,900;1,300&display=swap');
-
   :root {
-    --bg: #0a0a0f;
-    --surface: #12121a;
-    --border: #1e1e2e;
-    --accent: #4ade80;
-    --accent2: #818cf8;
-    --text: #e2e8f0;
-    --muted: #64748b;
+    --bg:#fafaf7; --bg2:#f3f1eb; --dark:#18181f;
+    --gold:#b8892e; --gold2:#d4a84c;
+    --text:#18181f; --muted:#7a7068;
+    --card:#ffffff; --border:rgba(184,137,46,0.18);
+    --shadow:0 2px 24px rgba(24,24,31,0.07);
   }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-weight:300; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  nav { position:sticky; top:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:1.1rem 3rem; background:rgba(250,250,247,0.92); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
+  .logo { font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:700; color:var(--dark); text-decoration:none; letter-spacing:0.03em; }
+  .logo span { color:var(--gold); }
+  nav ul { display:flex; gap:2rem; list-style:none; }
+  nav a { color:var(--muted); text-decoration:none; font-size:0.8rem; letter-spacing:0.08em; text-transform:uppercase; transition:color 0.25s; }
+  nav a:hover { color:var(--gold); }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Fraunces', Georgia, serif;
-    line-height: 1.7;
-  }
+  .header { max-width:900px; margin:0 auto; padding:5rem 3rem 3rem; border-bottom:1px solid var(--border); }
+  .badge { display:inline-block; font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,137,46,0.3); padding:0.25rem 0.9rem; border-radius:20px; margin-bottom:1.5rem; }
+  h1 { font-family:'Playfair Display',serif; font-size:3rem; font-weight:900; color:var(--dark); letter-spacing:-0.02em; line-height:1.1; margin-bottom:0.75rem; }
+  h1 em { font-style:italic; color:var(--gold); }
+  .header p { font-size:1rem; color:var(--muted); max-width:540px; line-height:1.75; }
 
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(74,222,128,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(74,222,128,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-  }
+  .content { max-width:900px; margin:0 auto; padding:4rem 3rem 6rem; }
 
-  nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(10,10,15,0.9);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 60px;
-  }
+  .policy-box { background:rgba(184,137,46,0.06); border:1.5px solid rgba(184,137,46,0.25); border-radius:12px; padding:2rem; margin-bottom:3rem; }
+  .policy-box h3 { font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; }
+  .policy-box ul { list-style:none; display:flex; flex-direction:column; gap:0.55rem; }
+  .policy-box li { display:flex; gap:0.75rem; font-size:0.92rem; color:var(--muted); }
+  .policy-box li::before { content:'✓'; color:var(--gold); font-weight:700; flex-shrink:0; }
 
-  .logo {
-    font-family: 'DM Mono', monospace;
-    font-size: 1.1rem;
-    color: var(--accent);
-  }
-  .logo span { color: var(--muted); }
+  .section-label { font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; display:flex; align-items:center; gap:0.6rem; }
+  .section-label::before { content:''; display:inline-block; width:20px; height:1px; background:var(--gold); }
 
-  nav ul { display: flex; gap: 2rem; list-style: none; }
-  nav a {
-    color: var(--muted);
-    text-decoration: none;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.8rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  nav a:hover { color: var(--accent); }
+  .options { display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem; margin-bottom:3.5rem; }
+  .option-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:2rem; transition:all 0.3s; }
+  .option-card:hover { border-color:var(--gold); transform:translateY(-3px); box-shadow:var(--shadow); }
+  .option-icon { font-size:2rem; margin-bottom:1rem; }
+  .option-card h3 { font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:700; color:var(--dark); margin-bottom:0.5rem; }
+  .option-card p { font-size:0.83rem; color:var(--muted); line-height:1.6; margin-bottom:1.5rem; }
 
-  .header {
-    position: relative;
-    z-index: 1;
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 70px 2rem 50px;
-    border-bottom: 1px solid var(--border);
-  }
+  .btn-gold { display:inline-flex; align-items:center; background:var(--gold); color:#fff; padding:0.7rem 1.5rem; border-radius:5px; font-size:0.78rem; font-weight:500; letter-spacing:0.07em; text-transform:uppercase; text-decoration:none; transition:all 0.3s; }
+  .btn-gold:hover { background:var(--gold2); }
+  .btn-outline { display:inline-flex; align-items:center; border:1.5px solid rgba(184,137,46,0.35); color:var(--dark); padding:0.7rem 1.5rem; border-radius:5px; font-size:0.78rem; letter-spacing:0.07em; text-transform:uppercase; text-decoration:none; transition:all 0.3s; }
+  .btn-outline:hover { border-color:var(--gold); color:var(--gold); }
 
-  .badge {
-    display: inline-block;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--accent);
-    border: 1px solid rgba(74,222,128,0.3);
-    padding: 0.25rem 0.8rem;
-    border-radius: 2px;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.1em;
-  }
+  .form-section { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:2.5rem; margin-bottom:2rem; }
+  .form-section h2 { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:var(--dark); margin-bottom:0.5rem; }
+  .form-section > p { color:var(--muted); font-size:0.88rem; font-weight:300; margin-bottom:2rem; line-height:1.7; }
+  .form-group { margin-bottom:1.4rem; }
+  label { display:block; font-size:0.7rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.5rem; font-weight:500; }
+  input, select, textarea { width:100%; background:var(--bg); border:1.5px solid var(--border); border-radius:6px; padding:0.8rem 1rem; color:var(--text); font-family:'DM Sans',sans-serif; font-size:0.88rem; outline:none; transition:border-color 0.25s; font-weight:300; }
+  input:focus, select:focus, textarea:focus { border-color:var(--gold); }
+  textarea { min-height:100px; resize:vertical; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  .radio-group { display:flex; gap:1.5rem; margin-top:0.5rem; flex-wrap:wrap; }
+  .radio-group label { display:flex; align-items:center; gap:0.5rem; text-transform:none; font-size:0.88rem; cursor:pointer; color:var(--text); letter-spacing:0; }
+  .radio-group input[type="radio"] { width:auto; accent-color:var(--gold); }
+  .submit-btn { background:var(--gold); color:#fff; border:none; padding:0.9rem 2.5rem; border-radius:5px; font-family:'DM Sans',sans-serif; font-size:0.82rem; font-weight:500; letter-spacing:0.07em; text-transform:uppercase; cursor:pointer; transition:all 0.3s; margin-top:1rem; }
+  .submit-btn:hover { background:var(--gold2); transform:translateY(-2px); }
 
-  h1 {
-    font-size: 3rem;
-    font-weight: 900;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    margin-bottom: 1rem;
-  }
+  footer { background:var(--dark); color:rgba(255,255,255,0.45); padding:2.5rem 3rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+  footer a { color:rgba(255,255,255,0.45); text-decoration:none; font-size:0.8rem; transition:color 0.25s; }
+  footer a:hover { color:var(--gold2); }
+  .footer-links { display:flex; gap:1.5rem; }
+  .footer-copy { font-size:0.78rem; color:rgba(255,255,255,0.25); }
 
-  h1 em { font-style: italic; font-weight: 300; color: var(--accent); }
-
-  .header p {
-    font-size: 1.1rem;
-    color: var(--muted);
-    font-weight: 300;
-    max-width: 560px;
-  }
-
-  .content {
-    position: relative;
-    z-index: 1;
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 60px 2rem 100px;
-  }
-
-  /* Options grid */
-  .options {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 60px;
-  }
-
-  .option-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 2rem;
-    transition: border-color 0.2s;
-  }
-
-  .option-card:hover { border-color: rgba(74,222,128,0.3); }
-
-  .option-icon {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-
-  .option-card h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-  }
-
-  .option-card p {
-    font-size: 0.9rem;
-    color: var(--muted);
-    font-weight: 300;
-    margin-bottom: 1.5rem;
-  }
-
-  .btn {
-    display: inline-block;
-    padding: 0.7rem 1.5rem;
-    border-radius: 2px;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.8rem;
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    transition: opacity 0.2s;
-  }
-
-  .btn-green {
-    background: var(--accent);
-    color: var(--bg);
-  }
-
-  .btn-outline {
-    border: 1px solid var(--border);
-    color: var(--text);
-  }
-
-  .btn:hover { opacity: 0.8; }
-
-  /* Form */
-  .form-section {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 2.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .form-section h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.5rem;
-  }
-
-  .form-section > p {
-    color: var(--muted);
-    font-size: 0.9rem;
-    font-weight: 300;
-    margin-bottom: 2rem;
-  }
-
-  .form-group {
-    margin-bottom: 1.5rem;
-  }
-
-  label {
-    display: block;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 0.5rem;
-  }
-
-  input, select, textarea {
-    width: 100%;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    padding: 0.75rem 1rem;
-    color: var(--text);
-    font-family: 'DM Mono', monospace;
-    font-size: 0.85rem;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-
-  input:focus, select:focus, textarea:focus {
-    border-color: rgba(74,222,128,0.5);
-  }
-
-  textarea { min-height: 100px; resize: vertical; }
-
-  select option { background: var(--bg); }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-
-  .radio-group {
-    display: flex;
-    gap: 1.5rem;
-    margin-top: 0.5rem;
-  }
-
-  .radio-group label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    text-transform: none;
-    font-size: 0.9rem;
-    cursor: pointer;
-    color: var(--text);
-    letter-spacing: 0;
-  }
-
-  .radio-group input[type="radio"] {
-    width: auto;
-    accent-color: var(--accent);
-  }
-
-  .submit-btn {
-    background: var(--accent);
-    color: var(--bg);
-    border: none;
-    padding: 0.9rem 2.5rem;
-    border-radius: 2px;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    transition: opacity 0.2s;
-    margin-top: 1rem;
-  }
-
-  .submit-btn:hover { opacity: 0.85; }
-
-  /* Policy box */
-  .policy-box {
-    background: rgba(74,222,128,0.05);
-    border: 1px solid rgba(74,222,128,0.2);
-    border-radius: 4px;
-    padding: 2rem;
-    margin-bottom: 3rem;
-  }
-
-  .policy-box h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--accent);
-    margin-bottom: 1rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  .policy-box ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-
-  .policy-box li {
-    display: flex;
-    gap: 0.75rem;
-    font-size: 0.95rem;
-    font-weight: 300;
-    color: var(--muted);
-  }
-
-  .policy-box li::before {
-    content: '✓';
-    color: var(--accent);
-    font-weight: 600;
-    flex-shrink: 0;
-  }
-
-  h2 {
-    font-size: 1.8rem;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.5rem;
-  }
-
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin-bottom: 0.75rem;
-  }
-
-  footer {
-    position: relative;
-    z-index: 1;
-    border-top: 1px solid var(--border);
-    padding: 2rem;
-    text-align: center;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--muted);
-  }
-  footer a { color: var(--accent); text-decoration: none; }
+  @media(max-width:768px) { .options { grid-template-columns:1fr; } .form-row { grid-template-columns:1fr; } nav ul { display:none; } }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo">RadioDir<span>/</span>API</div>
+  <a href="../index.html" class="logo">RM <span>App</span></a>
   <ul>
     <li><a href="index.html">API</a></li>
     <li><a href="terms.html">Terms</a></li>
+    <li><a href="privacy.html">Privacy</a></li>
     <li><a href="broadcasters.html">Broadcasters</a></li>
-    <li><a href="mailto:contact@radiodir-api.com">Contact</a></li>
+    <li><a href="../index.html">← Back</a></li>
   </ul>
 </nav>
 
 <div class="header">
-  <div class="badge">BROADCASTER PORTAL</div>
+  <div class="badge">BROADCASTER PORTAL — RM RADIO API</div>
   <h1>Your station,<br><em>your control</em></h1>
-  <p>Add your station to the directory, update your information, or request removal. All requests are processed within 24 hours.</p>
+  <p>Add your station to the RM Radio directory, update your information, or request removal. All requests are processed within 24 hours, guaranteed.</p>
 </div>
 
 <div class="content">
@@ -373,45 +102,45 @@
     <h3>✦ Our commitment to broadcasters</h3>
     <ul>
       <li>Any broadcaster can request removal of their station at any time — no questions asked</li>
-      <li>All takedown requests are processed within 24 hours</li>
-      <li>Station information is updated upon request within 48 hours</li>
-      <li>We do not host, store or rebroadcast any audio — we only list publicly accessible streams</li>
-      <li>Broadcasters retain full ownership and control of their content</li>
+      <li>All takedown requests processed within 24 hours, guaranteed</li>
+      <li>We do not host, store or rebroadcast any audio content</li>
+      <li>We only reference publicly accessible streams published by the broadcasters themselves</li>
+      <li>Broadcasters retain full ownership and control of their content at all times</li>
     </ul>
   </div>
 
   <div class="section-label">What would you like to do?</div>
+
   <div class="options">
     <div class="option-card">
       <div class="option-icon">➕</div>
       <h3>Add your station</h3>
-      <p>Submit your station to the RadioDir directory and reach millions of listeners worldwide.</p>
-      <a href="#add-form" class="btn btn-green">Add Station</a>
+      <p>Submit your station to the RM Radio directory and reach listeners worldwide across all RM Radio apps.</p>
+      <a href="#add-form" class="btn-gold">Add Station</a>
     </div>
     <div class="option-card">
       <div class="option-icon">✏️</div>
       <h3>Update information</h3>
-      <p>Update your station's name, logo, stream URL, or any other information.</p>
-      <a href="#contact-form" class="btn btn-outline">Request Update</a>
+      <p>Update your station's name, logo, stream URL, or any other details.</p>
+      <a href="#contact-form" class="btn-outline">Request Update</a>
     </div>
     <div class="option-card">
       <div class="option-icon">🗑</div>
       <h3>Remove your station</h3>
-      <p>Request immediate removal of your station from the RadioDir directory.</p>
-      <a href="#remove-form" class="btn btn-outline">Request Removal</a>
+      <p>Request immediate removal of your station from all RM Radio apps.</p>
+      <a href="#remove-form" class="btn-outline">Request Removal</a>
     </div>
   </div>
 
   <!-- ADD STATION FORM -->
   <div class="form-section" id="add-form">
     <h2>Add your station</h2>
-    <p>Fill in the details below. Your station will be reviewed and added within 2–5 business days.</p>
+    <p>Submit your details below. Your station will be reviewed and added within 2–5 business days.</p>
 
     <div class="form-group">
       <label>Station Name *</label>
       <input type="text" placeholder="e.g. France Inter">
     </div>
-
     <div class="form-row">
       <div class="form-group">
         <label>Country *</label>
@@ -422,79 +151,102 @@
           <option value="DE">Germany</option>
           <option value="CH">Switzerland</option>
           <option value="US">United States</option>
+          <option value="CA">Canada</option>
           <option value="GB">United Kingdom</option>
+          <option value="MA">Morocco</option>
+          <option value="DZ">Algeria</option>
+          <option value="MX">Mexico</option>
         </select>
       </div>
       <div class="form-group">
         <label>Genre *</label>
-        <input type="text" placeholder="e.g. News, Jazz, Pop">
+        <input type="text" placeholder="e.g. News, Jazz, Pop, Talk">
       </div>
     </div>
-
     <div class="form-group">
       <label>Stream URL *</label>
       <input type="url" placeholder="https://your-stream-url.com/listen">
     </div>
-
     <div class="form-group">
       <label>Station Website</label>
       <input type="url" placeholder="https://your-station.com">
     </div>
-
     <div class="form-group">
-      <label>Logo URL</label>
+      <label>Logo URL (square, PNG or JPG)</label>
       <input type="url" placeholder="https://your-station.com/logo.png">
     </div>
-
     <div class="form-group">
       <label>Your relationship to this station</label>
       <div class="radio-group">
-        <label><input type="radio" name="relation" value="owner"> Station owner</label>
+        <label><input type="radio" name="relation" value="owner"> Station owner / manager</label>
         <label><input type="radio" name="relation" value="rep"> Authorized representative</label>
         <label><input type="radio" name="relation" value="listener"> Listener / fan</label>
       </div>
     </div>
-
     <div class="form-group">
       <label>Contact Email *</label>
       <input type="email" placeholder="contact@your-station.com">
     </div>
-
-    <button class="submit-btn">Submit Station →</button>
+    <div class="form-group">
+      <label>Additional notes</label>
+      <textarea placeholder="Any additional information about your station..."></textarea>
+    </div>
+    <button class="submit-btn" onclick="this.textContent='Submitted ✓'; this.style.opacity='0.7'; this.disabled=true;">Submit Station →</button>
   </div>
 
   <!-- REMOVE FORM -->
   <div class="form-section" id="remove-form">
     <h2>Request station removal</h2>
-    <p>We will process your removal request within 24 hours. No questions asked.</p>
-
+    <p>We will process your removal request within 24 hours. Your station will be permanently removed from all RM Radio apps and the directory.</p>
     <div class="form-group">
       <label>Station Name *</label>
-      <input type="text" placeholder="Exact name of your station">
+      <input type="text" placeholder="Exact name as it appears in the app">
     </div>
-
     <div class="form-group">
-      <label>Stream URL or Station ID</label>
-      <input type="text" placeholder="Your stream URL or RadioDir station ID">
+      <label>Stream URL or country</label>
+      <input type="text" placeholder="Your stream URL or country of broadcast">
     </div>
-
     <div class="form-group">
       <label>Contact Email *</label>
       <input type="email" placeholder="contact@your-station.com">
     </div>
-
     <div class="form-group">
       <label>Reason for removal (optional)</label>
-      <textarea placeholder="Optional: let us know why you'd like to be removed..."></textarea>
+      <textarea placeholder="Optional — you can also email us directly at contact.rmapp@gmail.com"></textarea>
     </div>
+    <button class="submit-btn" onclick="this.textContent='Request Sent ✓'; this.style.opacity='0.7'; this.disabled=true;">Request Removal →</button>
+  </div>
 
-    <button class="submit-btn">Request Removal →</button>
+  <!-- UPDATE FORM -->
+  <div class="form-section" id="contact-form">
+    <h2>Update station information</h2>
+    <p>Need to update your stream URL, name, logo, or other details? Fill in the form below and we'll update within 48 hours.</p>
+    <div class="form-group">
+      <label>Station Name *</label>
+      <input type="text" placeholder="Current name as it appears in the directory">
+    </div>
+    <div class="form-group">
+      <label>What needs to be updated? *</label>
+      <textarea placeholder="Describe what information needs to be changed and what the correct information is..."></textarea>
+    </div>
+    <div class="form-group">
+      <label>Contact Email *</label>
+      <input type="email" placeholder="contact@your-station.com">
+    </div>
+    <button class="submit-btn" onclick="this.textContent='Submitted ✓'; this.style.opacity='0.7'; this.disabled=true;">Send Update Request →</button>
   </div>
 
 </div>
 
 <footer>
-  <p>© 2026 RadioDir API · <a href="index.html">Home</a> · <a href="terms.html">Terms of Use</a> · <a href="mailto:takedown@radiodir-api.com">takedown@radiodir-api.com</a></p>
+  <span class="footer-copy">© 2026 RM App · Sébastien Rousseau</span>
+  <div class="footer-links">
+    <a href="../index.html">Home</a>
+    <a href="index.html">API</a>
+    <a href="terms.html">Terms of Use</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="mailto:contact.rmapp@gmail.com">contact.rmapp@gmail.com</a>
+  </div>
 </footer>
 
 </body>

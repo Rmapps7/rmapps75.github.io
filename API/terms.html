@@ -3,388 +3,217 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terms of Use — RadioDir API</title>
+<title>Terms of Use — RM Radio API</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,300;0,600;0,900;1,300&display=swap');
-
   :root {
-    --bg: #0a0a0f;
-    --surface: #12121a;
-    --border: #1e1e2e;
-    --accent: #4ade80;
-    --text: #e2e8f0;
-    --muted: #64748b;
+    --bg:#fafaf7; --bg2:#f3f1eb; --dark:#18181f;
+    --gold:#b8892e; --gold2:#d4a84c;
+    --text:#18181f; --muted:#7a7068;
+    --card:#ffffff; --border:rgba(184,137,46,0.18);
+    --shadow:0 2px 24px rgba(24,24,31,0.07);
   }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-weight:300; line-height:1.8; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  nav { position:sticky; top:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:1.1rem 3rem; background:rgba(250,250,247,0.92); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
+  .logo { font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:700; color:var(--dark); text-decoration:none; letter-spacing:0.03em; }
+  .logo span { color:var(--gold); }
+  nav ul { display:flex; gap:2rem; list-style:none; }
+  nav a { color:var(--muted); text-decoration:none; font-size:0.8rem; letter-spacing:0.08em; text-transform:uppercase; transition:color 0.25s; }
+  nav a:hover { color:var(--gold); }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Fraunces', Georgia, serif;
-    line-height: 1.8;
-  }
+  .header { max-width:800px; margin:0 auto; padding:5rem 3rem 3rem; border-bottom:1px solid var(--border); }
+  .badge { display:inline-block; font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,137,46,0.3); padding:0.25rem 0.9rem; border-radius:20px; margin-bottom:1.5rem; }
+  h1 { font-family:'Playfair Display',serif; font-size:3rem; font-weight:900; color:var(--dark); letter-spacing:-0.02em; margin-bottom:0.75rem; }
+  .meta { font-size:0.78rem; color:var(--muted); letter-spacing:0.06em; }
 
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(74,222,128,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(74,222,128,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-  }
+  .content { max-width:800px; margin:0 auto; padding:4rem 3rem 6rem; }
 
-  nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(10,10,15,0.9);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 60px;
-  }
-
-  .logo {
-    font-family: 'DM Mono', monospace;
-    font-size: 1.1rem;
-    color: var(--accent);
-  }
-
-  .logo span { color: var(--muted); }
-
-  nav ul { display: flex; gap: 2rem; list-style: none; }
-
-  nav a {
-    color: var(--muted);
-    text-decoration: none;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.8rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-
-  nav a:hover { color: var(--accent); }
-
-  .header {
-    position: relative;
-    z-index: 1;
-    border-bottom: 1px solid var(--border);
-    padding: 60px 2rem 50px;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .badge {
-    display: inline-block;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--accent);
-    border: 1px solid rgba(74,222,128,0.3);
-    padding: 0.25rem 0.8rem;
-    border-radius: 2px;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.1em;
-  }
-
-  h1 {
-    font-size: 3rem;
-    font-weight: 900;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    margin-bottom: 1rem;
-  }
-
-  .meta {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-  }
-
-  .content {
-    position: relative;
-    z-index: 1;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 60px 2rem 100px;
-  }
-
-  /* KEY BOX — the most important element */
+  /* KEY LICENSE BOX */
   .key-box {
-    background: rgba(74,222,128,0.07);
-    border: 2px solid rgba(74,222,128,0.4);
-    border-radius: 4px;
-    padding: 2rem 2.5rem;
-    margin-bottom: 3rem;
+    background:rgba(184,137,46,0.07);
+    border:2px solid rgba(184,137,46,0.3);
+    border-radius:12px;
+    padding:2rem 2.5rem;
+    margin-bottom:3rem;
   }
+  .key-box .kl { font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+  .key-box h2 { font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:700; color:var(--dark); margin-bottom:1rem; }
+  .key-box ul { list-style:none; display:flex; flex-direction:column; gap:0.55rem; }
+  .key-box li { display:flex; gap:0.75rem; font-size:0.95rem; color:var(--muted); }
+  .key-box li::before { content:'✓'; color:var(--gold); font-weight:700; flex-shrink:0; }
 
-  .key-box .kl {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin-bottom: 1rem;
-  }
+  .section { margin-bottom:3rem; padding-bottom:3rem; border-bottom:1px solid var(--border); }
+  .section:last-child { border-bottom:none; }
+  .section-num { font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:0.6rem; }
+  h2 { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:var(--dark); margin-bottom:1rem; line-height:1.2; }
+  h3 { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; color:var(--dark); margin:1.5rem 0 0.5rem; }
+  p { color:var(--muted); font-size:0.92rem; margin-bottom:0.9rem; font-weight:300; }
+  p strong { color:var(--text); font-weight:500; }
+  p em { color:var(--gold); }
+  a { color:var(--gold); }
+  ul.list { list-style:none; margin:0.75rem 0 1rem; display:flex; flex-direction:column; gap:0.45rem; }
+  ul.list li { display:flex; gap:0.75rem; color:var(--muted); font-size:0.92rem; font-weight:300; }
+  ul.list li::before { content:'—'; color:var(--border); flex-shrink:0; }
 
-  .key-box h2 {
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 1rem;
-    letter-spacing: -0.01em;
-  }
+  .highlight { background:var(--bg2); border-left:3px solid var(--gold); padding:1.2rem 1.5rem; margin:1.25rem 0; border-radius:0 8px 8px 0; }
+  .highlight p { color:var(--text); margin:0; }
 
-  .key-box ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-
-  .key-box li {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    font-size: 1rem;
-    font-weight: 300;
-  }
-
-  .key-box li::before {
-    content: '✓';
-    color: var(--accent);
-    font-weight: 600;
-    flex-shrink: 0;
-    margin-top: 0.1rem;
-  }
-
-  /* Section styling */
-  .section {
-    margin-bottom: 3rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .section:last-child { border-bottom: none; }
-
-  .section-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin-bottom: 0.75rem;
-  }
-
-  h2 {
-    font-size: 1.6rem;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.25rem;
-    line-height: 1.2;
-  }
-
-  p {
-    color: var(--muted);
-    font-weight: 300;
-    font-size: 0.95rem;
-    margin-bottom: 1rem;
-  }
-
-  p strong {
-    color: var(--text);
-    font-weight: 600;
-  }
-
-  p em {
-    color: var(--accent);
-    font-style: italic;
-  }
-
-  ul.list {
-    list-style: none;
-    margin: 1rem 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  ul.list li {
-    display: flex;
-    gap: 0.75rem;
-    color: var(--muted);
-    font-size: 0.95rem;
-    font-weight: 300;
-  }
-
-  ul.list li::before {
-    content: '—';
-    color: var(--border);
-    flex-shrink: 0;
-  }
-
-  .highlight {
-    background: var(--surface);
-    border-left: 3px solid var(--accent);
-    padding: 1.25rem 1.5rem;
-    margin: 1.5rem 0;
-    border-radius: 0 4px 4px 0;
-  }
-
-  .highlight p {
-    color: var(--text);
-    margin: 0;
-    font-size: 0.95rem;
-  }
-
-  footer {
-    position: relative;
-    z-index: 1;
-    border-top: 1px solid var(--border);
-    padding: 2rem;
-    text-align: center;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--muted);
-  }
-
-  footer a { color: var(--accent); text-decoration: none; }
+  footer { background:var(--dark); color:rgba(255,255,255,0.45); padding:2.5rem 3rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+  footer a { color:rgba(255,255,255,0.45); text-decoration:none; font-size:0.8rem; transition:color 0.25s; }
+  footer a:hover { color:var(--gold2); }
+  .footer-links { display:flex; gap:1.5rem; }
+  .footer-copy { font-size:0.78rem; color:rgba(255,255,255,0.25); }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo">RadioDir<span>/</span>API</div>
+  <a href="../index.html" class="logo">RM <span>App</span></a>
   <ul>
     <li><a href="index.html">API</a></li>
     <li><a href="terms.html">Terms</a></li>
+    <li><a href="privacy.html">Privacy</a></li>
     <li><a href="broadcasters.html">Broadcasters</a></li>
-    <li><a href="mailto:contact@radiodir-api.com">Contact</a></li>
+    <li><a href="../index.html">← Back</a></li>
   </ul>
 </nav>
 
 <div class="header">
-  <div class="badge">LEGAL DOCUMENT</div>
+  <div class="badge">LEGAL DOCUMENT — RM RADIO API</div>
   <h1>Terms of Use</h1>
-  <div class="meta">LAST UPDATED: APRIL 6, 2026 · RADIODIR API · EFFECTIVE IMMEDIATELY</div>
+  <div class="meta">LAST UPDATED: APRIL 5, 2026 · RM APP · SEBASTIEN ROUSSEAU</div>
 </div>
 
 <div class="content">
 
-  <!-- THE MOST IMPORTANT BOX -->
+  <!-- THE CRITICAL BOX FOR APPLE -->
   <div class="key-box">
-    <div class="kl">✦ Core License — Summary</div>
-    <h2>Your freedoms with this API</h2>
+    <div class="kl">✦ API License — Core freedoms</div>
+    <h2>This API may be used in free and non-free (commercial) software</h2>
     <ul>
       <li>You may use this API in <strong>free and non-free (commercial) software</strong></li>
-      <li>You may install it and use it in <strong>mobile applications</strong> (iOS, Android)</li>
-      <li>You may use it in <strong>any commercial product or service</strong> without paying royalties</li>
-      <li>You may <strong>redistribute</strong> station directory data retrieved via this API</li>
-      <li>You may use it in <strong>applications that generate revenue</strong>, including paid apps and apps with advertising</li>
+      <li>You may use it in <strong>mobile applications on the Apple App Store and Google Play</strong></li>
+      <li>You may use it in <strong>any commercial product or service</strong>, including paid apps and apps with advertising</li>
+      <li>You may <strong>redistribute station directory data</strong> retrieved via this API</li>
+      <li>Broadcasters may <strong>request removal at any time</strong> via our Broadcaster Portal within 24 hours</li>
     </ul>
   </div>
 
   <div class="section">
     <div class="section-num">§ 1</div>
-    <h2>Definitions</h2>
-    <p><strong>"RadioDir API"</strong> refers to the directory service, data, and API endpoints operated at radiodir-api.com.</p>
-    <p><strong>"Station Data"</strong> means the metadata, stream URLs, names, logos, genres, and other information about radio stations available through the API.</p>
-    <p><strong>"Developer"</strong> means any individual, company, or organization accessing the RadioDir API to build applications, websites, or other products.</p>
-    <p><strong>"Broadcaster"</strong> means any radio station or streaming entity whose information appears in the RadioDir directory.</p>
+    <h2>The Service</h2>
+    <p>Radios France and all RM Radio apps are the digital equivalent of a radio receiver. The Service consists of an index of radio stations designed to simplify finding radio programming from broadcast or radio sources, whether available through any software applications made available for mobile devices or computer systems.</p>
+    <p><strong>RM App is not a broadcaster</strong> and its directory service just redirects users to specific content providers in accordance with their publicly available services. RM App is an intermediary which connects (via embedded hyperlinks) users to radios broadcasting over the Internet. RM App does not own any of the brands it lists or claim any rights in the content that listeners may access.</p>
+    <div class="highlight">
+      <p><strong>RM App does not host, store, copy, or retransmit any audio content.</strong> The App functions as a specialized technical player (User-Agent) that facilitates a direct connection between the user's device and the broadcaster's public URL.</p>
+    </div>
+    <p>The RM Radio API operates as a <strong>radio station directory and hyperlink service</strong>. All stream URLs point directly to the broadcasters' own servers or their authorized CDN infrastructure.</p>
   </div>
 
   <div class="section">
     <div class="section-num">§ 2</div>
-    <h2>License Grant — Commercial and Non-Commercial Use</h2>
-
+    <h2>API License Grant — Commercial and Non-Commercial Use</h2>
     <div class="highlight">
-      <p><strong>This API is completely free and open.</strong> The RadioDir API may be used in free and non-free software. This license explicitly covers commercial applications, mobile applications distributed through app stores (including Apple App Store and Google Play), web services, and any other platform.</p>
+      <p><strong>The RM Radio API is completely free and open.</strong> This API may be used in free and non-free software. This license explicitly covers commercial applications, mobile applications distributed through app stores including the Apple App Store and Google Play, web services, and any other platform or device.</p>
     </div>
-
-    <p>RadioDir hereby grants Developers a <strong>non-exclusive, worldwide, royalty-free, perpetual license</strong> to:</p>
+    <p>RM App hereby grants Developers a <strong>non-exclusive, worldwide, royalty-free, perpetual license</strong> to:</p>
     <ul class="list">
-      <li>Access and query the RadioDir API endpoints</li>
+      <li>Access and query the RM Radio API endpoints</li>
       <li>Retrieve, display, and redistribute Station Data within applications</li>
-      <li>Use Station Data in commercial applications and services</li>
-      <li>Integrate the RadioDir API into mobile applications distributed via any app store</li>
+      <li>Use Station Data in commercial applications and paid services</li>
+      <li>Integrate the RM Radio API into mobile applications distributed via any app store</li>
       <li>Use Station Data in applications that charge users a fee or display advertising</li>
     </ul>
-
-    <p>The phrase <em>"free and non-free software"</em> as used in this license explicitly covers all commercial applications, regardless of revenue model, pricing, or distribution method.</p>
+    <p>The phrase <em>"free and non-free software"</em> explicitly covers all commercial applications, regardless of revenue model, pricing, or distribution method.</p>
   </div>
 
   <div class="section">
     <div class="section-num">§ 3</div>
-    <h2>Nature of the Service — Directory Model</h2>
-    <p>RadioDir operates as a <strong>radio station directory and hyperlink service</strong>. RadioDir does not host, store, rebroadcast, or retransmit any audio content.</p>
-    <p>The Station Data provided by this API consists exclusively of:</p>
-    <ul class="list">
-      <li>Station names and metadata</li>
-      <li>Publicly accessible stream URLs published by broadcasters themselves</li>
-      <li>Station logos and images as provided by broadcasters</li>
-      <li>Genre, language, and geographic classification data</li>
-    </ul>
-    <div class="highlight">
-      <p>All stream URLs in the RadioDir directory point directly to the broadcasters' own servers. RadioDir and applications using this API act solely as <strong>directory and hyperlink services</strong>, redirecting users to content hosted and controlled by the broadcasters themselves.</p>
-    </div>
+    <h2>Content Ownership and Attribution</h2>
+    <p>All audio streams, logos, and related media accessible through the app are the intellectual property of their respective radio station owners, broadcasters, or licensors. All radio streams referenced in this Service are publicly available sources provided by the respective broadcasters on their own servers or authorized CDN infrastructure.</p>
+    <p>We do not claim ownership of any radio content and do not host, store, copy, or retransmit any streams. The app provides a user-friendly directory and player to access streams already made publicly available by the broadcasters themselves.</p>
+    <p>Broadcasters are responsible for ensuring they have the necessary rights to distribute their content. RM App does not verify ownership of stream rights. Stations may be removed upon request by their respective owners or in case of valid copyright concerns.</p>
+    <p>RM App does not modify, alter, or edit the audio content provided by broadcasters. We do not insert additional audio advertisements into the streams or overlay any audio content.</p>
   </div>
 
   <div class="section">
     <div class="section-num">§ 4</div>
-    <h2>Broadcaster Rights &amp; Takedown Policy</h2>
-    <p>RadioDir respects the rights of all broadcasters. Any broadcaster whose station is listed in the directory may:</p>
-    <ul class="list">
-      <li>Request removal of their station from the directory at any time</li>
-      <li>Request correction or update of their station information</li>
-      <li>Register and claim their station through the Broadcaster Portal</li>
-      <li>Opt their station into or out of specific categories</li>
-    </ul>
-    <p><strong>Takedown requests are processed within 24 hours</strong> of receipt. Broadcasters may submit requests via the <a href="broadcasters.html" style="color:var(--accent)">Broadcaster Portal</a> or by emailing <a href="mailto:takedown@radiodir-api.com" style="color:var(--accent)">takedown@radiodir-api.com</a>.</p>
-    <p>Upon a valid takedown request, the affected station will be removed from all API responses and any associated station data will be deleted from the RadioDir database.</p>
+    <h2>Content Removal Requests &amp; Broadcaster Rights</h2>
+    <p>We respect the intellectual property rights of all broadcasters and content providers. Any broadcaster whose station is listed in the directory may at any time request removal, update their information, or claim their station.</p>
+    <p>If you are a radio station or content owner and would like your station to be removed or modified, please contact us at: <a href="mailto:contact.rmapp@gmail.com">contact.rmapp@gmail.com</a> or use our <a href="broadcasters.html">Broadcaster Portal</a>.</p>
+    <p>Please include in your request: the station name, a link or reference to the content, proof of ownership, and the action you would like us to take.</p>
+    <p><strong>We will process all valid removal requests within 24 hours.</strong></p>
   </div>
 
   <div class="section">
     <div class="section-num">§ 5</div>
-    <h2>Developer Obligations</h2>
-    <p>Developers using the RadioDir API agree to:</p>
+    <h2>Using the Service</h2>
+    <p>The app and API are provided for your personal and commercial use, subject to these terms. You agree that you will not use the Service in any unlawful manner and that you will not attempt to gain unauthorized access to it.</p>
+    <p>Developers using the RM Radio API agree to:</p>
     <ul class="list">
       <li>Not use the API to host, cache, or rebroadcast audio content</li>
-      <li>Honor and implement takedown requests within 30 days of notification</li>
-      <li>Not represent their application as an official application of any broadcaster</li>
-      <li>Implement reasonable rate limiting to avoid excessive server load</li>
-      <li>Not misrepresent the RadioDir API as a broadcaster authorization</li>
+      <li>Honor and implement broadcaster takedown requests within 30 days of notification</li>
+      <li>Not represent their application as an official application of any specific broadcaster</li>
     </ul>
   </div>
 
   <div class="section">
     <div class="section-num">§ 6</div>
-    <h2>No Warranty &amp; Limitation of Liability</h2>
-    <p>The RadioDir API is provided <strong>"as is"</strong> without warranty of any kind. RadioDir makes no warranties regarding the accuracy, availability, or legality of stream URLs in any particular jurisdiction.</p>
-    <p>Developers are solely responsible for ensuring their applications comply with applicable laws and third-party terms of service in their target markets.</p>
+    <h2>Third Party Content</h2>
+    <p>"Third Party Content" contemplates any broadcast radio programs or other audio content that RM App gives you the ability to listen to, and any links or access to websites and resources on the Internet.</p>
+    <p>Third Party Content may be copyrighted and protected. You acknowledge that Third Party Content may be the copyrighted material of the third party that supplies it. The Service gives you the ability to listen to and access Third Party Content over which RM App exercises no editorial or programming control. <strong>The Service acts as a passive pass-through infrastructure.</strong></p>
+    <p>Due to copyright protection mechanisms, it is strictly forbidden to extract, remove, record, download, or otherwise change content or by any means make any attempts thereto.</p>
+    <ul class="list">
+      <li>The Service does not guarantee access to any particular Third Party Content</li>
+      <li>Third Party Content is not under RM App's control and the Service is not responsible for it</li>
+      <li>Third Party Content providers may change or delete content or schedules at any time</li>
+    </ul>
   </div>
 
   <div class="section">
     <div class="section-num">§ 7</div>
-    <h2>Contact &amp; Notices</h2>
-    <p>For questions regarding these Terms of Use:</p>
+    <h2>Disclaimer and Limitation of Liability</h2>
+    <p>The app is provided "as is" and "as available." RM App is not affiliated with, endorsed by, or sponsored by any of the radio stations or broadcasters listed within the App. We do not guarantee the accuracy, availability, or reliability of the content streamed through third-party radio stations.</p>
+    <p>RM App shall not be liable for any direct, indirect, incidental, special, or consequential damages resulting from your use of, or inability to use, the Service.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">§ 8</div>
+    <h2>Notice for Apple Users</h2>
+    <p>Since the RM Radio apps are available on the Apple App Store, you acknowledge that this Agreement is between you and Sébastien Rousseau only, not with Apple, and Apple is not responsible for the Application or the content thereof.</p>
     <ul class="list">
-      <li>Email: <a href="mailto:legal@radiodir-api.com" style="color:var(--accent)">legal@radiodir-api.com</a></li>
-      <li>Takedown requests: <a href="mailto:takedown@radiodir-api.com" style="color:var(--accent)">takedown@radiodir-api.com</a></li>
-      <li>Broadcaster portal: <a href="broadcasters.html" style="color:var(--accent)">radiodir-api.com/broadcasters</a></li>
+      <li>Apple has no obligation to furnish maintenance and support services for the Application</li>
+      <li>Apple is not responsible for addressing any product liability claims</li>
+      <li>Apple is not responsible for any claim that the Application fails to conform to any applicable legal or regulatory requirement</li>
+      <li>Apple is not responsible for any third-party intellectual property infringement claims</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-num">§ 9</div>
+    <h2>Contact</h2>
+    <p>If you have any questions about these Terms of Use, or wish to make a claim, please contact us at:</p>
+    <ul class="list">
+      <li>Email: <a href="mailto:contact.rmapp@gmail.com">contact.rmapp@gmail.com</a></li>
+      <li>Takedown requests: <a href="mailto:contact.rmapp@gmail.com">contact.rmapp@gmail.com</a></li>
+      <li>Broadcaster Portal: <a href="broadcasters.html">rmapps7.github.io/rmapps75.github.io/api/broadcasters.html</a></li>
     </ul>
   </div>
 
 </div>
 
 <footer>
-  <p>© 2026 RadioDir API · <a href="index.html">Home</a> · <a href="broadcasters.html">Broadcasters</a> · <a href="mailto:contact@radiodir-api.com">contact@radiodir-api.com</a></p>
+  <span class="footer-copy">© 2026 RM App · Sébastien Rousseau</span>
+  <div class="footer-links">
+    <a href="../index.html">Home</a>
+    <a href="index.html">API</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="broadcasters.html">Broadcasters</a>
+    <a href="mailto:contact.rmapp@gmail.com">contact.rmapp@gmail.com</a>
+  </div>
 </footer>
 
 </body>
