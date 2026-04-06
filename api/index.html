@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RM Radio API — Radio Station Directory</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf7; --bg2: #f3f1eb; --dark: #18181f;
+    --gold: #b8892e; --gold2: #d4a84c;
+    --text: #18181f; --muted: #7a7068;
+    --card: #ffffff; --border: rgba(184,137,46,0.18);
+    --shadow: 0 2px 24px rgba(24,24,31,0.07);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-weight:300; }
+
+  nav { position:sticky; top:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:1.1rem 3rem; background:rgba(250,250,247,0.92); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
+  .logo { font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:700; color:var(--dark); text-decoration:none; letter-spacing:0.03em; }
+  .logo span { color:var(--gold); }
+  nav ul { display:flex; gap:2rem; list-style:none; }
+  nav a { color:var(--muted); text-decoration:none; font-size:0.8rem; letter-spacing:0.08em; text-transform:uppercase; transition:color 0.25s; }
+  nav a:hover { color:var(--gold); }
+
+  .hero { padding:6rem 3rem 4rem; text-align:center; max-width:860px; margin:0 auto; }
+  .badge { display:inline-block; font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,137,46,0.3); padding:0.3rem 1rem; border-radius:20px; margin-bottom:2rem; }
+  h1 { font-family:'Playfair Display',serif; font-size:clamp(2.5rem,5vw,4rem); font-weight:900; line-height:1.1; letter-spacing:-0.02em; color:var(--dark); margin-bottom:1.2rem; }
+  h1 em { font-style:italic; color:var(--gold); }
+  .hero p { font-size:1.05rem; color:var(--muted); max-width:520px; margin:0 auto 2.5rem; line-height:1.75; }
+  .cta-group { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+
+  .btn-gold { display:inline-flex; align-items:center; background:var(--gold); color:#fff; padding:0.85rem 2rem; border-radius:5px; font-size:0.8rem; font-weight:500; letter-spacing:0.07em; text-transform:uppercase; text-decoration:none; transition:all 0.3s; }
+  .btn-gold:hover { background:var(--gold2); transform:translateY(-2px); box-shadow:0 8px 20px rgba(184,137,46,0.25); }
+  .btn-outline { display:inline-flex; align-items:center; border:1.5px solid rgba(184,137,46,0.35); color:var(--dark); padding:0.85rem 2rem; border-radius:5px; font-size:0.8rem; letter-spacing:0.07em; text-transform:uppercase; text-decoration:none; transition:all 0.3s; }
+  .btn-outline:hover { border-color:var(--gold); color:var(--gold); }
+
+  /* Stats */
+  .stats { background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:3rem 2rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); max-width:860px; margin:0 auto; gap:2rem; text-align:center; }
+  .stat-num { font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:900; color:var(--gold); display:block; }
+  .stat-label { font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.12em; margin-top:0.3rem; }
+
+  /* License box */
+  .license-box { max-width:860px; margin:4rem auto 0; padding:2rem 2.5rem; background:rgba(184,137,46,0.06); border:1.5px solid rgba(184,137,46,0.25); border-radius:12px; }
+  .license-box .lbl { font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+  .license-box h2 { font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:700; color:var(--dark); margin-bottom:1rem; }
+  .license-box ul { list-style:none; display:flex; flex-direction:column; gap:0.5rem; }
+  .license-box li { display:flex; gap:0.75rem; font-size:0.92rem; color:var(--muted); }
+  .license-box li::before { content:'✓'; color:var(--gold); font-weight:700; flex-shrink:0; }
+  .license-box a { color:var(--gold); }
+
+  /* Content */
+  .content { max-width:860px; margin:0 auto; padding:5rem 3rem; }
+  .section-label { font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; display:flex; align-items:center; gap:0.6rem; }
+  .section-label::before { content:''; display:inline-block; width:20px; height:1px; background:var(--gold); }
+  h2 { font-family:'Playfair Display',serif; font-size:2rem; font-weight:700; color:var(--dark); margin-bottom:2rem; }
+
+  .endpoint { background:var(--card); border:1px solid var(--border); border-radius:10px; margin-bottom:1.5rem; overflow:hidden; }
+  .endpoint-header { display:flex; align-items:center; gap:1rem; padding:1rem 1.5rem; border-bottom:1px solid var(--border); background:var(--bg2); }
+  .method { font-size:0.7rem; font-weight:500; padding:0.25rem 0.6rem; border-radius:4px; background:rgba(184,137,46,0.12); color:var(--gold); letter-spacing:0.05em; }
+  .url { font-family:'DM Mono','Courier New',monospace; font-size:0.88rem; color:var(--dark); }
+  .endpoint-body { padding:1.5rem; }
+  .endpoint-body p { color:var(--muted); font-size:0.92rem; margin-bottom:1rem; font-weight:300; }
+
+  pre { background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:1.5rem; overflow-x:auto; font-family:'DM Mono','Courier New',monospace; font-size:0.78rem; line-height:1.7; color:var(--dark); }
+  .key { color:#6366f1; } .val { color:var(--gold); } .str { color:#db2777; } .num { color:#ea580c; }
+
+  table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:0.88rem; }
+  th { text-align:left; padding:0.7rem 1rem; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); border-bottom:1px solid var(--border); }
+  td { padding:0.7rem 1rem; border-bottom:1px solid var(--border); vertical-align:top; }
+  td code { font-family:'DM Mono','Courier New',monospace; font-size:0.78rem; color:#6366f1; background:var(--bg2); padding:0.12rem 0.4rem; border-radius:3px; }
+  td:last-child { color:var(--muted); }
+
+  .features { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.4rem; margin-top:3rem; }
+  .feature { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:1.5rem; transition:all 0.3s; }
+  .feature:hover { border-color:var(--gold); transform:translateY(-3px); box-shadow:var(--shadow); }
+  .feature-icon { font-size:1.5rem; margin-bottom:0.75rem; }
+  .feature h3 { font-size:0.95rem; font-weight:500; color:var(--dark); margin-bottom:0.4rem; }
+  .feature p { font-size:0.83rem; color:var(--muted); line-height:1.6; }
+
+  footer { background:var(--dark); color:rgba(255,255,255,0.45); padding:2.5rem 3rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+  footer a { color:rgba(255,255,255,0.45); text-decoration:none; font-size:0.8rem; transition:color 0.25s; }
+  footer a:hover { color:var(--gold2); }
+  .footer-links { display:flex; gap:1.5rem; }
+  .footer-copy { font-size:0.78rem; color:rgba(255,255,255,0.25); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="logo">RM <span>App</span></a>
+  <ul>
+    <li><a href="#endpoints">Endpoints</a></li>
+    <li><a href="terms.html">Terms of Use</a></li>
+    <li><a href="privacy.html">Privacy Policy</a></li>
+    <li><a href="broadcasters.html">Broadcasters</a></li>
+    <li><a href="../index.html">← Back to site</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="badge">FREE · OPEN · COMMERCIAL USE AUTHORIZED</div>
+  <h1>RM Radio <em>API</em></h1>
+  <p>The radio station directory powering all RM Radio apps. A curated database of internet radio stations, free to use in any application.</p>
+  <div class="cta-group">
+    <a href="#endpoints" class="btn-gold">View Endpoints</a>
+    <a href="terms.html" class="btn-outline">Terms of Use</a>
+    <a href="broadcasters.html" class="btn-outline">Broadcaster Portal</a>
+  </div>
+</div>
+
+<div class="stats">
+  <div><span class="stat-num">50K+</span><div class="stat-label">Radio Stations</div></div>
+  <div><span class="stat-num">150+</span><div class="stat-label">Countries</div></div>
+  <div><span class="stat-num">100%</span><div class="stat-label">Free to use</div></div>
+  <div><span class="stat-num">24h</span><div class="stat-label">Takedown Policy</div></div>
+</div>
+
+<div class="license-box">
+  <div class="lbl">✦ License Summary</div>
+  <h2>This API may be used in free and non-free (commercial) software</h2>
+  <ul>
+    <li>Use in any commercial mobile application on the Apple App Store or Google Play</li>
+    <li>Use in any product or service that charges users a fee or displays advertising</li>
+    <li>Redistribute station directory data retrieved via this API</li>
+    <li>Broadcasters may request removal at any time via our <a href="broadcasters.html">Broadcaster Portal</a></li>
+  </ul>
+</div>
+
+<div class="content">
+  <div class="section-label">API Reference</div>
+  <h2 id="endpoints">Endpoints</h2>
+
+  <div class="endpoint">
+    <div class="endpoint-header">
+      <span class="method">GET</span>
+      <span class="url">/api/v1/stations</span>
+    </div>
+    <div class="endpoint-body">
+      <p>Returns a list of radio stations. Filter by country, genre or language.</p>
+      <table>
+        <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>country</code></td><td><code>string</code></td><td>ISO 3166-1 alpha-2 (e.g. <code>FR</code>, <code>JP</code>, <code>DE</code>, <code>CH</code>, <code>US</code>)</td></tr>
+          <tr><td><code>genre</code></td><td><code>string</code></td><td>Genre filter (e.g. <code>jazz</code>, <code>news</code>, <code>pop</code>)</td></tr>
+          <tr><td><code>limit</code></td><td><code>integer</code></td><td>Results per page (default: 50, max: 500)</td></tr>
+          <tr><td><code>offset</code></td><td><code>integer</code></td><td>Pagination offset</td></tr>
+        </tbody>
+      </table>
+      <pre><span class="key"># Example request</span>
+GET /api/v1/stations?country=FR&limit=5
+
+<span class="key"># Response</span>
+{
+  <span class="key">"status"</span>: <span class="str">"ok"</span>,
+  <span class="key">"total"</span>: <span class="num">2847</span>,
+  <span class="key">"stations"</span>: [
+    {
+      <span class="key">"id"</span>: <span class="str">"fr-001"</span>,
+      <span class="key">"name"</span>: <span class="str">"France Inter"</span>,
+      <span class="key">"country"</span>: <span class="str">"FR"</span>,
+      <span class="key">"genre"</span>: [<span class="str">"news"</span>, <span class="str">"culture"</span>],
+      <span class="key">"stream_url"</span>: <span class="str">"https://icecast.radiofrance.fr/franceinter-hifi.aac"</span>,
+      <span class="key">"homepage"</span>: <span class="str">"https://www.radiofrance.fr/franceinter"</span>,
+      <span class="key">"bitrate"</span>: <span class="num">128</span>,
+      <span class="key">"active"</span>: <span class="val">true</span>
+    }
+  ]
+}</pre>
+    </div>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header"><span class="method">GET</span><span class="url">/api/v1/stations/{id}</span></div>
+    <div class="endpoint-body"><p>Returns detailed information about a specific radio station by its unique ID.</p></div>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header"><span class="method">GET</span><span class="url">/api/v1/countries</span></div>
+    <div class="endpoint-body"><p>Returns all countries in the directory with station counts.</p></div>
+  </div>
+
+  <div class="endpoint">
+    <div class="endpoint-header"><span class="method">GET</span><span class="url">/api/v1/genres</span></div>
+    <div class="endpoint-body"><p>Returns all available genres with station counts.</p></div>
+  </div>
+
+  <div class="section-label" style="margin-top:60px">Why RM Radio API</div>
+  <h2>Built for developers</h2>
+
+  <div class="features">
+    <div class="feature"><div class="feature-icon">⚡</div><h3>Commercial Use Authorized</h3><p>Explicitly permitted in our Terms of Use. Build free or paid apps with or without advertising.</p></div>
+    <div class="feature"><div class="feature-icon">🎙</div><h3>Broadcaster Self-Service</h3><p>Stations can register, update their info, or request removal via our self-service portal.</p></div>
+    <div class="feature"><div class="feature-icon">🌍</div><h3>Global Coverage</h3><p>150+ countries including France, Japan, Germany, Switzerland, USA and more.</p></div>
+    <div class="feature"><div class="feature-icon">🔒</div><h3>24h Takedown Policy</h3><p>Any broadcaster can request removal within 24 hours. Full DMCA compliance.</p></div>
+    <div class="feature"><div class="feature-icon">📡</div><h3>Directory Model</h3><p>We link — we don't host. All streams point directly to broadcasters' own servers.</p></div>
+    <div class="feature"><div class="feature-icon">⚙️</div><h3>No Auth Required</h3><p>No API key needed for standard usage. Plug in and start building immediately.</p></div>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-copy">© 2026 RM App · <a href="../index.html">rmapps7.github.io</a></span>
+  <div class="footer-links">
+    <a href="terms.html">Terms of Use</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="broadcasters.html">Broadcasters</a>
+    <a href="mailto:contact.rmapp@gmail.com">contact.rmapp@gmail.com</a>
+  </div>
+</footer>
+
+</body>
+</html>
