@@ -218,40 +218,43 @@
   .radio-badge { display:inline-flex; align-items:center; gap:0.35rem; background:rgba(184,137,46,0.09); border:1px solid rgba(184,137,46,0.25); color:var(--gold); padding:0.32rem 0.9rem; border-radius:20px; font-size:0.73rem; letter-spacing:0.07em; text-transform:uppercase; font-weight:500; transition:all 0.28s; }
   .radio-card:hover .radio-badge { background:var(--gold); color:#fff; border-color:var(--gold); }
 
-  /* ── API SECTION ── NEW */
-  .api-section {
-    padding: 6rem 3rem;
-    max-width: 1160px;
-    margin: 0 auto;
-  }
-  .api-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1.4rem;
-    margin-top: 3rem;
-  }
-  .api-card {
-    background: var(--card);
-    border: 1px solid var(--border);
+  /* ── LIVE PLAYER BANNER ── NEW */
+  .player-banner {
+    background: var(--dark);
     border-radius: 14px;
-    padding: 2rem;
-    transition: all 0.32s;
-    text-decoration: none;
-    color: inherit;
+    padding: 2rem 2.5rem;
+    margin-bottom: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
   }
+  .player-banner-left { display: flex; align-items: center; gap: 1.2rem; }
+  .player-banner-icon { font-size: 2.2rem; }
+  .player-banner h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem; }
+  .player-banner p { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+  .btn-gold-outline {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    border: 1.5px solid var(--gold); color: var(--gold);
+    padding: 0.78rem 1.8rem; border-radius: 5px;
+    font-size: 0.82rem; font-weight: 500;
+    letter-spacing: 0.07em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.3s; white-space: nowrap;
+  }
+  .btn-gold-outline:hover { background: var(--gold); color: #fff; }
+
+  /* ── API SECTION ── */
+  .api-section { padding: 6rem 3rem; max-width: 1160px; margin: 0 auto; }
+  .api-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.4rem; margin-top: 3rem; }
+  .api-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 2rem; transition: all 0.32s; text-decoration: none; color: inherit; }
   .api-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: var(--shadow); }
   .api-card-icon { font-size: 2rem; margin-bottom: 1rem; }
   .api-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem; }
   .api-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.2rem; }
   .api-link { font-size: 0.78rem; color: var(--gold); letter-spacing: 0.07em; text-transform: uppercase; font-weight: 500; }
 
-  .license-box {
-    background: rgba(184,137,46,0.06);
-    border: 1.5px solid rgba(184,137,46,0.25);
-    border-radius: 12px;
-    padding: 2rem 2.5rem;
-    margin-top: 3rem;
-  }
+  .license-box { background: rgba(184,137,46,0.06); border: 1.5px solid rgba(184,137,46,0.25); border-radius: 12px; padding: 2rem 2.5rem; margin-top: 3rem; }
   .license-box h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--dark); margin-bottom: 1rem; }
   .license-box ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
   .license-box li { display: flex; gap: 0.75rem; font-size: 0.9rem; color: var(--muted); }
@@ -286,6 +289,8 @@
     .section,.api-section { padding:4rem 1.5rem; }
     .qr-grid { grid-template-columns:1fr; gap:3rem; }
     .radio-section { padding:4rem 1.5rem; }
+    .player-banner { flex-direction:column; text-align:center; }
+    .player-banner-left { flex-direction:column; text-align:center; }
     footer { padding:2.5rem 1.5rem; }
     .footer-top { flex-direction:column; gap:2rem; }
     .footer-bottom { flex-direction:column; text-align:center; }
@@ -300,6 +305,7 @@
   <a href="#" class="logo">RM <span>App</span></a>
   <div class="nav-right">
     <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" class="nav-link" data-fr="Nos Apps" data-en="Our Apps">Our Apps</a>
+    <a href="api/radio-player.html" class="nav-link" data-fr="Écouter" data-en="Listen Live">Listen Live</a>
     <a href="api/index.html" class="nav-link" data-fr="API" data-en="API">API</a>
     <a href="mailto:contact.rmapp@gmail.com" class="nav-link" data-fr="Contact" data-en="Contact">Contact</a>
     <div class="lang-toggle">
@@ -326,6 +332,7 @@
     </p>
     <div class="hero-btns">
       <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" class="btn-gold" data-fr="Découvrir nos apps" data-en="Explore our apps">Explore our apps</a>
+      <a href="api/radio-player.html" class="btn-outline" data-fr="🎧 Écouter en direct" data-en="🎧 Listen Live">🎧 Listen Live</a>
       <a href="mailto:contact.rmapp@gmail.com" class="btn-outline" data-fr="Nous contacter" data-en="Get in touch">Get in touch</a>
     </div>
   </div>
@@ -386,6 +393,19 @@
         Travel the world through our dedicated apps. Local music, news and podcasts in high quality.
       </p>
     </div>
+
+    <!-- LIVE PLAYER BANNER -->
+    <div class="player-banner">
+      <div class="player-banner-left">
+        <div class="player-banner-icon">🎧</div>
+        <div>
+          <h3 data-fr="83 stations en direct — écoutez maintenant" data-en="83 live stations — listen right now">83 live stations — listen right now</h3>
+          <p data-fr="France · Japon · Suisse · Allemagne — filtrez par pays et genre" data-en="France · Japan · Switzerland · Germany — filter by country &amp; genre">France · Japan · Switzerland · Germany — filter by country &amp; genre</p>
+        </div>
+      </div>
+      <a href="api/radio-player.html" class="btn-gold-outline" data-fr="🎧 Ouvrir le lecteur" data-en="🎧 Open Radio Player">🎧 Open Radio Player</a>
+    </div>
+
     <div class="radio-grid">
       <a href="https://apps.apple.com/us/app/radio-switzerland-swiss-fm/id1119092555" class="radio-card">
         <img src="https://rmapps7.github.io/rmapps75.github.io/radio-suisse.png" alt="Radio Suisse">
@@ -430,7 +450,7 @@
   </div>
 </section>
 
-<!-- ── API SECTION ── NEW -->
+<!-- ── API SECTION ── -->
 <div class="divider"></div>
 <section class="api-section" id="api">
   <div class="section-label" data-fr="Développeurs" data-en="Developers">Developers</div>
@@ -495,6 +515,7 @@
     </div>
     <div class="footer-col">
       <h4 data-fr="Applications Radio" data-en="Radio Apps">Radio Apps</h4>
+      <a href="api/radio-player.html" data-fr="🎧 Lecteur Live" data-en="🎧 Live Player">🎧 Live Player</a>
       <a href="api/privacy.html" data-fr="Politique de Confidentialité" data-en="Privacy Policy">Privacy Policy</a>
       <a href="api/terms.html" data-fr="Conditions d'utilisation" data-en="Terms of Use">Terms of Use</a>
       <a href="api/broadcasters.html" data-fr="Portail Diffuseurs" data-en="Broadcaster Portal">Broadcaster Portal</a>
@@ -514,6 +535,7 @@
     <span class="footer-copy" data-fr="© 2026 RM App. Tous droits réservés." data-en="© 2026 RM App. All rights reserved.">© 2026 RM App. All rights reserved.</span>
     <div class="footer-bottom-links">
       <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" target="_blank" rel="noopener">App Store</a>
+      <a href="api/radio-player.html">Listen Live</a>
       <a href="api/index.html">API</a>
       <a href="mailto:contact.rmapp@gmail.com">Contact</a>
     </div>
