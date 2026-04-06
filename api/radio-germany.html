@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RM Radio Germany — Listen to German Radio Live</title>
+<meta name="description" content="Listen to German public radio live. ARD, WDR, NDR, SWR, BR, Deutschlandradio and more.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#fafaf7;--bg2:#f3f1eb;--dark:#18181f;--gold:#b8892e;--gold2:#d4a84c;--text:#18181f;--muted:#7a7068;--card:#ffffff;--border:rgba(184,137,46,0.18);--shadow:0 2px 24px rgba(24,24,31,0.07);}
+  *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;min-height:100vh;}
+  nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(250,250,247,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+  .logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--dark);text-decoration:none;letter-spacing:0.03em;}.logo span{color:var(--gold);}
+  nav ul{display:flex;gap:1.5rem;list-style:none;}nav a{color:var(--muted);text-decoration:none;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.25s;}nav a:hover{color:var(--gold);}
+  .hero{padding:4rem 2.5rem 2rem;text-align:center;max-width:700px;margin:0 auto;}
+  .badge{display:inline-block;font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,137,46,0.3);padding:0.25rem 0.9rem;border-radius:20px;margin-bottom:1.5rem;}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:var(--dark);line-height:1.1;margin-bottom:1rem;letter-spacing:-0.02em;}.hero h1 em{font-style:italic;color:var(--gold);}
+  .hero p{color:var(--muted);font-size:1rem;max-width:500px;margin:0 auto 1.5rem;line-height:1.75;}
+  .api-note{background:rgba(184,137,46,0.06);border:1px solid rgba(184,137,46,0.2);border-radius:8px;padding:0.85rem 1.5rem;max-width:680px;margin:0 auto 1rem;font-size:0.82rem;color:var(--muted);text-align:center;}.api-note strong{color:var(--gold);}
+  .player-bar{position:sticky;top:60px;z-index:90;background:var(--dark);padding:1rem 2.5rem;display:flex;align-items:center;gap:1.5rem;border-bottom:3px solid var(--gold);}.player-bar.hidden{display:none;}
+  .play-btn{width:44px;height:44px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;transition:all 0.25s;color:white;}.play-btn:hover{background:var(--gold2);}
+  .player-info{flex:1;min-width:0;}.player-name{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .player-status{font-size:0.72rem;color:rgba(255,255,255,0.5);margin-top:0.2rem;display:flex;align-items:center;gap:0.4rem;}.live-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;animation:pulse 1.5s infinite;flex-shrink:0;}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+  .vol-control{display:flex;align-items:center;gap:0.5rem;}.vol-control span{font-size:0.9rem;color:rgba(255,255,255,0.5);}input[type="range"]{width:80px;accent-color:var(--gold);cursor:pointer;}
+  .app-download{display:inline-flex;align-items:center;gap:0.5rem;background:var(--gold);color:#fff;padding:0.55rem 1.2rem;border-radius:5px;font-size:0.72rem;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;flex-shrink:0;}.app-download:hover{background:var(--gold2);}
+  .filters{max-width:1100px;margin:0 auto;padding:2rem 2.5rem 1rem;display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;}
+  .filter-label{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.12em;margin-right:0.25rem;}
+  .filter-btn{padding:0.45rem 1.1rem;border-radius:20px;border:1.5px solid var(--border);background:var(--card);color:var(--muted);font-size:0.78rem;cursor:pointer;transition:all 0.25s;font-family:'DM Sans',sans-serif;}.filter-btn:hover,.filter-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(184,137,46,0.06);}
+  .grid-container{max-width:1100px;margin:0 auto;padding:1rem 2.5rem 5rem;}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.2rem;}
+  .station-card{background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:1.5rem;cursor:pointer;transition:all 0.28s;display:flex;flex-direction:column;gap:0.75rem;}.station-card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 8px 24px rgba(184,137,46,0.1);}.station-card.playing{border-color:var(--gold);background:rgba(184,137,46,0.04);}
+  .station-header{display:flex;align-items:center;gap:0.9rem;}.station-logo-fallback{width:50px;height:50px;border-radius:10px;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;border:1px solid var(--border);}
+  .station-meta{min-width:0;}.station-name{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:var(--dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}.station-genre{font-size:0.72rem;color:var(--muted);margin-top:0.15rem;}
+  .station-actions{display:flex;align-items:center;justify-content:space-between;}
+  .play-station-btn{display:flex;align-items:center;gap:0.5rem;padding:0.5rem 1.1rem;border-radius:20px;background:var(--gold);color:#fff;border:none;cursor:pointer;font-size:0.75rem;font-weight:500;font-family:'DM Sans',sans-serif;letter-spacing:0.05em;text-transform:uppercase;transition:all 0.25s;}.play-station-btn:hover{background:var(--gold2);}.station-card.playing .play-station-btn{background:var(--dark);}
+  .public-badge{font-size:0.65rem;color:#1a7a4a;border:1px solid rgba(26,122,74,0.3);padding:0.15rem 0.5rem;border-radius:10px;background:rgba(26,122,74,0.06);white-space:nowrap;}
+  footer{background:var(--dark);color:rgba(255,255,255,0.45);padding:2.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}footer a{color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.78rem;transition:color 0.25s;}footer a:hover{color:var(--gold2);}
+  .footer-links{display:flex;gap:1.5rem;flex-wrap:wrap;}.footer-copy{font-size:0.75rem;color:rgba(255,255,255,0.22);}
+  @media(max-width:768px){nav ul{display:none;}.hero,.filters,.grid-container{padding-left:1.2rem;padding-right:1.2rem;}.player-bar{padding:0.9rem 1.2rem;}.grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:0.9rem;}footer{padding:2rem 1.2rem;flex-direction:column;}}
+</style>
+</head>
+<body>
+<nav><a href="../index.html" class="logo">RM <span>Radio</span></a><ul><li><a href="#">🇩🇪 Germany</a></li><li><a href="index.html">API</a></li><li><a href="broadcasters.html">Broadcasters</a></li><li><a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" target="_blank">App Store</a></li></ul></nav>
+<div class="player-bar hidden" id="playerBar"><button class="play-btn" id="playPauseBtn" onclick="togglePlayPause()">▶</button><div class="player-info"><div class="player-name" id="playerName">—</div><div class="player-status"><div class="live-dot" id="liveDot" style="display:none"></div><span id="playerStatus">Ready</span></div></div><div class="vol-control"><span>🔈</span><input type="range" min="0" max="1" step="0.05" value="0.8" oninput="setVolume(this.value)"><span>🔊</span></div><a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" class="app-download" target="_blank">📱 iOS App</a></div>
+<div class="hero"><div class="badge">LIVE RADIO — GERMANY 🇩🇪</div><h1>German Radio<br><em>Live</em></h1><p>Listen to Germany's public broadcasters live — ARD, WDR, NDR, SWR, BR, Deutschlandradio and more. All stations from Germany's official public radio network.</p></div>
+<div class="api-note">📡 All ARD stations sourced via <strong>api.ardmediathek.de</strong> — the official ARD public broadcaster API (same API as the ARD Mediathek app)</div>
+<div class="filters"><span class="filter-label">Genre:</span><button class="filter-btn active" onclick="filterGenre('all',this)">All</button><button class="filter-btn" onclick="filterGenre('news',this)">News</button><button class="filter-btn" onclick="filterGenre('pop',this)">Pop</button><button class="filter-btn" onclick="filterGenre('classical',this)">Classical</button><button class="filter-btn" onclick="filterGenre('culture',this)">Culture</button><button class="filter-btn" onclick="filterGenre('talk',this)">Talk</button><button class="filter-btn" onclick="filterGenre('youth',this)">Youth</button></div>
+<div class="grid-container"><div class="grid" id="stationGrid"></div><div class="hidden" id="noResults" style="text-align:center;padding:4rem;color:var(--muted);"><h3 style="font-family:'Playfair Display',serif">No stations found</h3></div></div>
+<footer><span class="footer-copy">© 2026 RM App · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a></span><div class="footer-links"><a href="../index.html">Home</a><a href="index.html">API</a><a href="broadcasters.html">Broadcasters</a><a href="mailto:contact.rmapp@gmail.com">contact.rmapp@gmail.com</a></div></footer>
+<audio id="radioPlayer" preload="none"></audio>
+<script>
+const API_URL='./stations_de.json';
+const genreIcons={'news':'📰','public':'📡','talk':'💬','pop':'🎵','classical':'🎻','jazz':'🎷','culture':'🎭','rock':'🎸','youth':'🎤','science':'🔬','local':'📍','berlin':'🐻','default':'📻'};
+let stations=[],currentStation=null,isPlaying=false;
+const audio=document.getElementById('radioPlayer'),playerBar=document.getElementById('playerBar'),playerName=document.getElementById('playerName'),playerStatus=document.getElementById('playerStatus'),playPauseBtn=document.getElementById('playPauseBtn'),liveDot=document.getElementById('liveDot');
+function getIcon(g){if(!g||!g.length)return genreIcons.default;for(const x of g){if(genreIcons[x])return genreIcons[x];}return genreIcons.default;}
+async function loadStations(){try{const r=await fetch(API_URL);const d=await r.json();stations=d.stations;renderStations(stations);}catch(e){console.error(e);}}
+function renderStations(list){const grid=document.getElementById('stationGrid');const nr=document.getElementById('noResults');if(!list.length){grid.innerHTML='';nr.classList.remove('hidden');return;}nr.classList.add('hidden');grid.innerHTML=list.map(s=>{const isActive=currentStation&&currentStation.id===s.id;return`<div class="station-card${isActive&&isPlaying?' playing':''}" id="card-${s.id}" onclick="playStation('${s.id}')"><div class="station-header"><div class="station-logo-fallback">${getIcon(s.genre)}</div><div class="station-meta"><div class="station-name">${s.name}</div><div class="station-genre">${(s.genre||[]).slice(0,2).join(', ')}</div></div></div><div class="station-actions"><button class="play-station-btn" id="btn-${s.id}">${isActive&&isPlaying?'⏸ Stop':'▶ Listen'}</button>${s.public?'<span class="public-badge">🏛 ARD</span>':''}</div></div>`;}).join('');}
+function playStation(id){const s=stations.find(x=>x.id===id);if(!s)return;if(currentStation&&currentStation.id===id){togglePlayPause();return;}currentStation=s;audio.src=s.stream_url;audio.volume=0.8;playerBar.classList.remove('hidden');playerName.textContent=s.name;playerStatus.textContent='Connecting...';liveDot.style.display='none';playPauseBtn.textContent='⏸';isPlaying=true;audio.play().then(()=>{playerStatus.textContent='Live';liveDot.style.display='inline-block';}).catch(()=>{playerStatus.textContent='Connection error';});updateCards();}
+function togglePlayPause(){if(!currentStation)return;if(isPlaying){audio.pause();isPlaying=false;playPauseBtn.textContent='▶';playerStatus.textContent='Paused';liveDot.style.display='none';}else{audio.play();isPlaying=true;playPauseBtn.textContent='⏸';playerStatus.textContent='Live';liveDot.style.display='inline-block';}updateCards();}
+function setVolume(v){audio.volume=parseFloat(v);}
+function updateCards(){document.querySelectorAll('.station-card').forEach(c=>c.classList.remove('playing'));document.querySelectorAll('[id^="btn-"]').forEach(b=>{b.textContent='▶ Listen';});if(currentStation){const card=document.getElementById('card-'+currentStation.id);const btn=document.getElementById('btn-'+currentStation.id);if(card&&isPlaying)card.classList.add('playing');if(btn)btn.textContent=isPlaying?'⏸ Stop':'▶ Listen';}}
+function filterGenre(genre,btn){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(genre==='all'){renderStations(stations);}else{renderStations(stations.filter(s=>s.genre&&s.genre.includes(genre)));}}
+loadStations();
+</script>
+</body>
+</html>

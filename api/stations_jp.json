@@ -1,0 +1,28 @@
+{
+  "status": "ok",
+  "version": "1.0",
+  "country": "JP",
+  "total": 20,
+  "stations": [
+    {"id":"jp-001","name":"NHK World Radio Japan","country":"JP","genre":["news","international","public"],"stream_url":"https://b-nhkworld-radio.nhkworld.jp/hls/live/nhkworld-radio-rs1/index_rs1.m3u8","homepage":"https://www3.nhk.or.jp/nhkworld/","favicon":"https://www3.nhk.or.jp/favicon.ico","bitrate":64,"active":true,"public":true},
+    {"id":"jp-002","name":"NHK World Radio 2","country":"JP","genre":["news","international","public"],"stream_url":"https://nhkworld-radio.akamaized.net/hls/live/2115823/nhkworld-radio-rs1/index_rs1.m3u8","homepage":"https://www3.nhk.or.jp/nhkworld/","favicon":"https://www3.nhk.or.jp/favicon.ico","bitrate":64,"active":true,"public":true},
+    {"id":"jp-003","name":"Gensokyo Radio","country":"JP","genre":["anime","touhou","music"],"stream_url":"https://stream.gensokyoradio.net/3","homepage":"https://gensokyoradio.net","favicon":"https://gensokyoradio.net/favicon.ico","bitrate":128,"active":true},
+    {"id":"jp-004","name":"Listen.moe J-Pop","country":"JP","genre":["jpop","anime","music"],"stream_url":"https://listen.moe/stream","homepage":"https://listen.moe","favicon":"https://listen.moe/favicon.ico","bitrate":128,"active":true},
+    {"id":"jp-005","name":"J-Pop Powerplay","country":"JP","genre":["jpop","pop","music"],"stream_url":"https://kathy.torontocast.com:3560/","homepage":"https://asiadreamradio.torontocast.com","bitrate":128,"active":true},
+    {"id":"jp-006","name":"Jazz Sakura","country":"JP","genre":["jazz","japanese music"],"stream_url":"https://kathy.torontocast.com:3330/;","homepage":"https://asiadreamradio.torontocast.com","bitrate":128,"active":true},
+    {"id":"jp-007","name":"J-Pop Sakura","country":"JP","genre":["jpop","japanese music"],"stream_url":"https://quincy.torontocast.com:2070/stream.mp3","homepage":"https://asiadreamradio.torontocast.com","bitrate":128,"active":true},
+    {"id":"jp-008","name":"J-Rock Powerplay","country":"JP","genre":["rock","jrock","music"],"stream_url":"https://kathy.torontocast.com:3340/stream","homepage":"https://asiadreamradio.torontocast.com","bitrate":128,"active":true},
+    {"id":"jp-009","name":"Nightwave Plaza","country":"JP","genre":["vaporwave","future funk","synthwave"],"stream_url":"http://radio.plaza.one/mp3","homepage":"https://plaza.one","favicon":"https://plaza.one/favicon.ico","bitrate":192,"active":true},
+    {"id":"jp-010","name":"Big B Radio JPOP","country":"JP","genre":["jpop","pop","music"],"stream_url":"https://antares.dribbcast.com/proxy/jpop?mp=/s","homepage":"https://www.bigbradio.com","bitrate":128,"active":true},
+    {"id":"jp-011","name":"Ottava","country":"JP","genre":["classical","music"],"stream_url":"http://ottava2.out.airtime.pro:8000/ottava2_a","homepage":"http://ottava.jp","bitrate":128,"active":true},
+    {"id":"jp-012","name":"Shonan Beach FM 78.9","country":"JP","genre":["jazz","hawaiian","pop"],"stream_url":"http://shonanbeachfm.out.airtime.pro:8000/shonanbeachfm_a","homepage":"https://www.beachfm.co.jp","bitrate":128,"active":true},
+    {"id":"jp-013","name":"FM Kahoku 78.7","country":"JP","genre":["local","japanese","variety"],"stream_url":"http://radio.kahoku.net:8000/;","homepage":"http://www.fm-kahoku.co.jp","bitrate":128,"active":true},
+    {"id":"jp-014","name":"BAN-BANラジオ","country":"JP","genre":["local","community","variety"],"stream_url":"https://mtist.as.smartstream.ne.jp/30078/livestream/playlist.m3u8","homepage":"https://banban.jp","bitrate":64,"active":true},
+    {"id":"jp-015","name":"調布FM","country":"JP","genre":["local","community","variety"],"stream_url":"https://mtist.as.smartstream.ne.jp/30039/livestream/playlist.m3u8","homepage":"https://chofu-fm.com","bitrate":64,"active":true},
+    {"id":"jp-016","name":"FM世田谷","country":"JP","genre":["local","community","music"],"stream_url":"https://fmsetagaya834.out.airtime.pro/fmsetagaya834_a","homepage":"https://fmsetagaya.com","bitrate":128,"active":true},
+    {"id":"jp-017","name":"A&G+","country":"JP","genre":["anime","variety"],"stream_url":"https://www.uniqueradio.jp/agapps/hls/cdn.m3u8","homepage":"https://www.uniqueradio.jp","bitrate":64,"active":true},
+    {"id":"jp-018","name":"Retro PC Game Music","country":"JP","genre":["chiptune","retro","game music"],"stream_url":"http://gyusyabu.ddo.jp:8000/","homepage":"http://gyusyabu.ddo.jp","bitrate":64,"active":true},
+    {"id":"jp-019","name":"Friends Forever","country":"JP","genre":["jpop","jrock","anime"],"stream_url":"https://s5.radio.co/s6140c7241/listen","homepage":"https://friendsforever.radio","bitrate":128,"active":true},
+    {"id":"jp-020","name":"BOX Japan City Pop","country":"JP","genre":["city pop","japanese","retro"],"stream_url":"https://play.streamafrica.net/japancitypop","homepage":"https://streamafrica.net","bitrate":128,"active":true}
+  ]
+}

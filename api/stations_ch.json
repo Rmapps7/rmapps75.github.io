@@ -1,0 +1,27 @@
+{
+  "status": "ok",
+  "version": "1.0",
+  "country": "CH",
+  "total": 18,
+  "api_source": "SRG SSR Public API v2 — developer.srgssr.ch",
+  "stations": [
+    {"id":"ch-001","name":"RTS La Première","country":"CH","genre":["news","talk","public"],"stream_url":"https://stream.srg-ssr.ch/m/la-1ere/mp3_128","homepage":"https://www.rts.ch/la-1ere/","favicon":"https://www.rts.ch/favicon.ico","bitrate":128,"active":true,"public":true,"api":"SRG SSR"},
+    {"id":"ch-002","name":"RTS Couleur 3","country":"CH","genre":["pop","rock","youth"],"stream_url":"https://stream.srg-ssr.ch/m/couleur3/mp3_128","homepage":"https://www.rts.ch/couleur3/","favicon":"https://www.rts.ch/favicon.ico","bitrate":128,"active":true,"public":true,"api":"SRG SSR"},
+    {"id":"ch-003","name":"RTS Espace 2","country":"CH","genre":["classical","jazz","culture"],"stream_url":"https://stream.srg-ssr.ch/m/espace-2/mp3_128","homepage":"https://www.rts.ch/espace-2/","favicon":"https://www.rts.ch/favicon.ico","bitrate":128,"active":true,"public":true,"api":"SRG SSR"},
+    {"id":"ch-004","name":"RTS Option Musique","country":"CH","genre":["music","variety","french"],"stream_url":"https://stream.srg-ssr.ch/m/option-musique/mp3_128","homepage":"https://www.rts.ch/","favicon":"https://www.rts.ch/favicon.ico","bitrate":128,"active":true,"public":true,"api":"SRG SSR"},
+    {"id":"ch-005","name":"SRF 1","country":"CH","genre":["news","talk","public"],"stream_url":"https://stream.srg-ssr.ch/m/drs1/mp3_128","homepage":"https://www.srf.ch/radio-srf-1","favicon":"https://www.srf.ch/favicon.ico","bitrate":128,"active":true,"public":true,"api":"SRG SSR"},
+    {"id":"ch-006","name":"SRF 2 Kultur","country":"CH","genre":["classical","culture","public"],"stream_url":"https://stream.srg-ssr.ch/m/drs2/mp3_128","homepage":"https://www.srf.ch/radio-srf-2-kultur","favicon":"https://www.srf.ch/favicon.ico","bitrate":128,"active":true,"public":true,"api":"SRG SSR"},
+    {"id":"ch-007","name":"SRF 3","country":"CH","genre":["pop","rock","youth"],"stream_url":"https://stream.srg-ssr.ch/m/drs3/mp3_128","homepage":"https://www.srf.ch/radio-srf-3","favicon":"https://www.srf.ch/favicon.ico","bitrate":128,"active":true,"public":true,"api":"SRG SSR"},
+    {"id":"ch-008","name":"SRF Virus","country":"CH","genre":["electronic","dance","youth"],"stream_url":"https://stream.srg-ssr.ch/m/drsvirus/mp3_128","homepage":"https://www.srf.ch/virus","favicon":"https://www.srf.ch/favicon.ico","bitrate":128,"active":true,"public":true,"api":"SRG SSR"},
+    {"id":"ch-009","name":"SRF Musikwelle","country":"CH","genre":["folk","schlager","traditional"],"stream_url":"https://stream.srg-ssr.ch/m/drsmw/mp3_128","homepage":"https://www.srf.ch/radio-srf-musikwelle","favicon":"https://www.srf.ch/favicon.ico","bitrate":128,"active":true,"public":true,"api":"SRG SSR"},
+    {"id":"ch-010","name":"RSI Rete Uno","country":"CH","genre":["news","talk","italian"],"stream_url":"https://stream.srg-ssr.ch/m/reteuno/mp3_128","homepage":"https://www.rsi.ch/audio/rete-uno","favicon":"https://www.rsi.ch/favicon.ico","bitrate":128,"active":true,"public":true,"api":"SRG SSR"},
+    {"id":"ch-011","name":"RSI Rete Due","country":"CH","genre":["classical","culture","italian"],"stream_url":"https://stream.srg-ssr.ch/m/retedue/mp3_128","homepage":"https://www.rsi.ch/rete-due","favicon":"https://www.rsi.ch/favicon.ico","bitrate":128,"active":true,"public":true,"api":"SRG SSR"},
+    {"id":"ch-012","name":"RSI Rete Tre","country":"CH","genre":["pop","youth","italian"],"stream_url":"https://stream.srg-ssr.ch/m/retetre/mp3_128","homepage":"https://www.rsi.ch","favicon":"https://www.rsi.ch/favicon.ico","bitrate":128,"active":true,"public":true,"api":"SRG SSR"},
+    {"id":"ch-013","name":"RTR","country":"CH","genre":["news","romansh","public"],"stream_url":"https://stream.srg-ssr.ch/m/rr/mp3_128","homepage":"https://www.rtr.ch","favicon":"https://www.rtr.ch/favicon.ico","bitrate":128,"active":true,"public":true,"api":"SRG SSR"},
+    {"id":"ch-014","name":"Radio Swiss Pop","country":"CH","genre":["pop","music"],"stream_url":"https://stream.srg-ssr.ch/m/rsp/mp3_128","homepage":"https://www.radioswisspop.ch","favicon":"https://www.radioswisspop.ch/favicon.ico","bitrate":128,"active":true,"public":true,"api":"SRG SSR"},
+    {"id":"ch-015","name":"Radio Swiss Classic","country":"CH","genre":["classical","music"],"stream_url":"https://stream.srg-ssr.ch/m/rsc_de/mp3_128","homepage":"https://www.radioswissclassic.ch","favicon":"https://www.radioswissclassic.ch/favicon.ico","bitrate":128,"active":true,"public":true,"api":"SRG SSR"},
+    {"id":"ch-016","name":"Radio Swiss Jazz","country":"CH","genre":["jazz","music"],"stream_url":"https://stream.srg-ssr.ch/m/rsj/mp3_128","homepage":"https://www.radioswissjazz.ch","favicon":"https://www.radioswissjazz.ch/favicon.ico","bitrate":128,"active":true,"public":true,"api":"SRG SSR"},
+    {"id":"ch-017","name":"Kanal K","country":"CH","genre":["alternative","indie","local"],"stream_url":"https://kanalK.ice.infomaniak.ch/kanalK-high.mp3","homepage":"https://www.kanalk.ch","bitrate":128,"active":true},
+    {"id":"ch-018","name":"Radio 3FACH","country":"CH","genre":["alternative","youth","indie"],"stream_url":"https://radio3fach.ice.infomaniak.ch/radio3fach-high.mp3","homepage":"https://www.3fach.ch","bitrate":128,"active":true}
+  ]
+}
