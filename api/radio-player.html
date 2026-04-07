@@ -124,10 +124,11 @@
 <body>
 
 <nav>
-  <a href="../index.html" class="logo">RM <span>App</span></a>
+  <a href="https://rmapps7.github.io/rmapps75.github.io/" class="logo">RM <span>App</span></a>
   <div class="nav-right">
-    <a href="../index.html#api" class="nav-link">API</a>
-    <a href="index.html" class="nav-link">Docs</a>
+    <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" class="nav-link" target="_blank" rel="noopener">Our Apps</a>
+    <a href="https://rmapps7.github.io/rmapps75.github.io/api/radio-player.html" class="nav-link">Listen Live</a>
+    <a href="https://rmapps7.github.io/rmapps75.github.io/api/index.html" class="nav-link">API</a>
     <a href="mailto:contact.rmapp@gmail.com" class="nav-link">Contact</a>
   </div>
 </nav>
@@ -163,8 +164,7 @@
   </div>
 </div>
 
-<div class="stats-bar">
-  <div class="stat"><span class="stat-val" id="stat-total">83</span><span class="stat-lbl">Stations</span></div>
+
   <div class="stat"><span class="stat-val">4</span><span class="stat-lbl">Countries</span></div>
   <div class="stat"><span class="stat-val">2</span><span class="stat-lbl">Authorizations</span></div>
   <div class="stat"><span class="stat-val">Free</span><span class="stat-lbl">Always</span></div>
@@ -198,7 +198,7 @@
 <script>
 var STATIONS = {
   fr: {
-    flag: "FR", flagEmoji: "\u{1F1EB}\u{1F1F7}", name: "France",
+    name: "France",
     list: [
       {n:"France Inter",       g:"news",     pub:true,  url:"https://icecast.radiofrance.fr/franceinter-midfi.mp3"},
       {n:"France Info",        g:"news",     pub:true,  url:"https://icecast.radiofrance.fr/franceinfo-midfi.mp3"},
@@ -228,7 +228,7 @@ var STATIONS = {
     ]
   },
   jp: {
-    flag: "JP", flagEmoji: "\u{1F1EF}\u{1F1F5}", name: "Japan",
+    name: "Japan",
     list: [
       {n:"NHK World Radio Japan", g:"news",  pub:true, url:"https://nhkworld.cdn.nimg.jp/nhkworld/nhkworldtv/audio/nhkworld_audio_aac128.m3u8"},
       {n:"Listen.moe J-Pop",      g:"pop",             url:"https://listen.moe/stream"},
@@ -253,7 +253,7 @@ var STATIONS = {
     ]
   },
   ch: {
-    flag: "CH", flagEmoji: "\u{1F1E8}\u{1F1ED}", name: "Switzerland",
+    name: "Switzerland",
     list: [
       {n:"RTS La Premiere",    g:"news",     pub:true, url:"https://stream.srg-ssr.ch/m/la-1ere/mp3_128"},
       {n:"RTS Couleur 3",      g:"pop",      pub:true, url:"https://stream.srg-ssr.ch/m/couleur3/mp3_128"},
@@ -276,7 +276,7 @@ var STATIONS = {
     ]
   },
   de: {
-    flag: "DE", flagEmoji: "\u{1F1E9}\u{1F1EA}", name: "Germany",
+    name: "Germany",
     list: [
       {n:"Deutschlandfunk",   g:"news",     pub:true, url:"https://st01.sslstream.dlf.de/dlf/01/128/mp3/stream.mp3"},
       {n:"DLF Kultur",        g:"culture",  pub:true, url:"https://st02.sslstream.dlf.de/dlf/02/128/mp3/stream.mp3"},
@@ -427,7 +427,6 @@ function render() {
   if (!total) {
     container.innerHTML = '<div class="empty"><div class="icon">&#128251;</div><p>No stations match your filters.</p></div>';
   }
-  document.getElementById("stat-total").textContent = total;
 }
 
 document.querySelectorAll(".filter-chip").forEach(function(btn) {
