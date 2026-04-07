@@ -8,305 +8,147 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:     #fafaf7;
-    --bg2:    #f3f1eb;
-    --dark:   #18181f;
-    --gold:   #b8892e;
-    --gold2:  #d4a84c;
-    --text:   #18181f;
-    --muted:  #7a7068;
-    --card:   #ffffff;
-    --border: rgba(184,137,46,0.18);
-    --shadow: 0 2px 24px rgba(24,24,31,0.07);
+    --bg:#fafaf7; --bg2:#f3f1eb; --dark:#18181f;
+    --gold:#b8892e; --gold2:#d4a84c;
+    --text:#18181f; --muted:#7a7068;
+    --card:#ffffff; --border:rgba(184,137,46,0.18);
+    --shadow:0 2px 24px rgba(24,24,31,0.07);
   }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
-  }
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.3rem 3rem;background:rgba(250,250,247,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+  .logo{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:700;color:var(--dark);letter-spacing:0.03em;text-decoration:none;}
+  .logo span{color:var(--gold);}
+  .nav-right{display:flex;align-items:center;gap:2rem;}
+  .nav-link{color:var(--muted);text-decoration:none;font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.25s;}
+  .nav-link:hover{color:var(--gold);}
+  .lang-toggle{display:flex;background:var(--bg2);border:1px solid var(--border);border-radius:20px;overflow:hidden;}
+  .lang-btn{padding:0.38rem 0.9rem;cursor:pointer;transition:all 0.25s;color:var(--muted);text-transform:uppercase;font-family:'DM Sans',sans-serif;border:none;background:none;font-size:0.75rem;letter-spacing:0.06em;font-weight:500;}
+  .lang-btn.active{background:var(--gold);color:#fff;font-weight:600;}
 
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.3rem 3rem;
-    background: rgba(250,250,247,0.88);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-  }
-  .logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.45rem;
-    font-weight: 700;
-    color: var(--dark);
-    letter-spacing: 0.03em;
-    text-decoration: none;
-  }
-  .logo span { color: var(--gold); }
-  .nav-right { display: flex; align-items: center; gap: 2rem; }
-  .nav-link {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.82rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: color 0.25s;
-  }
-  .nav-link:hover { color: var(--gold); }
-  .lang-toggle {
-    display: flex;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    overflow: hidden;
-  }
-  .lang-btn {
-    padding: 0.38rem 0.9rem;
-    cursor: pointer;
-    transition: all 0.25s;
-    color: var(--muted);
-    text-transform: uppercase;
-    font-family: 'DM Sans', sans-serif;
-    border: none;
-    background: none;
-    font-size: 0.75rem;
-    letter-spacing: 0.06em;
-    font-weight: 500;
-  }
-  .lang-btn.active { background: var(--gold); color: #fff; font-weight: 600; }
-
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 8rem 3rem 5rem;
-    position: relative;
-    overflow: hidden;
-    background: var(--bg);
-  }
-  .hero::after {
-    content: '';
-    position: absolute;
-    width: 700px; height: 700px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(184,137,46,0.09) 0%, transparent 68%);
-    top: -120px; right: -180px;
-    pointer-events: none;
-    animation: glowPulse 7s ease-in-out infinite;
-  }
-  @keyframes glowPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.08)} }
-
-  .signal-rings {
-    position: absolute;
-    right: 7%; top: 50%;
-    transform: translateY(-50%);
-    width: 400px; height: 400px;
-    pointer-events: none;
-  }
-  .ring {
-    position: absolute;
-    border-radius: 50%;
-    border: 1px solid rgba(184,137,46,0.2);
-    top: 50%; left: 50%;
-    transform: translate(-50%,-50%) scale(0);
-    animation: ripple 4.5s ease-out infinite;
-  }
+  .hero{min-height:100vh;display:flex;align-items:center;padding:8rem 3rem 5rem;position:relative;overflow:hidden;background:var(--bg);}
+  .hero::after{content:'';position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(184,137,46,0.09) 0%,transparent 68%);top:-120px;right:-180px;pointer-events:none;animation:glowPulse 7s ease-in-out infinite;}
+  @keyframes glowPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(1.08)}}
+  .signal-rings{position:absolute;right:7%;top:50%;transform:translateY(-50%);width:400px;height:400px;pointer-events:none;}
+  .ring{position:absolute;border-radius:50%;border:1px solid rgba(184,137,46,0.2);top:50%;left:50%;transform:translate(-50%,-50%) scale(0);animation:ripple 4.5s ease-out infinite;}
   .ring:nth-child(1){width:100px;height:100px;animation-delay:0s}
   .ring:nth-child(2){width:200px;height:200px;animation-delay:1.1s}
   .ring:nth-child(3){width:310px;height:310px;animation-delay:2.2s}
   .ring:nth-child(4){width:400px;height:400px;animation-delay:3.3s}
-  @keyframes ripple {
-    0%{transform:translate(-50%,-50%) scale(0);opacity:0.7}
-    100%{transform:translate(-50%,-50%) scale(1);opacity:0}
+  @keyframes ripple{0%{transform:translate(-50%,-50%) scale(0);opacity:0.7}100%{transform:translate(-50%,-50%) scale(1);opacity:0}}
+  .hero-content{max-width:680px;width:100%;position:relative;z-index:1;animation:fadeUp 0.9s ease both;text-align:center;margin:0 auto;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+  .eyebrow{font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.6rem;display:flex;align-items:center;justify-content:center;gap:0.75rem;}
+  .eyebrow::before{content:'';display:inline-block;width:28px;height:1px;background:var(--gold);}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,6vw,5.5rem);line-height:1.05;font-weight:900;margin-bottom:1.5rem;color:var(--dark);}
+  .hero h1 em{font-style:italic;color:var(--gold);}
+  .hero p{font-size:1.08rem;color:var(--muted);line-height:1.75;max-width:520px;margin:0 auto 2.5rem;}
+  .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+  .btn-gold{display:inline-flex;align-items:center;gap:0.55rem;background:var(--gold);color:#fff;padding:0.88rem 2rem;border-radius:5px;font-size:0.82rem;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;}
+  .btn-gold:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 20px rgba(184,137,46,0.25);}
+  .btn-outline{display:inline-flex;align-items:center;gap:0.55rem;border:1.5px solid rgba(184,137,46,0.35);color:var(--dark);padding:0.88rem 2rem;border-radius:5px;font-size:0.82rem;font-weight:400;letter-spacing:0.07em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;}
+  .btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+  .divider{width:100%;height:1px;background:var(--border);max-width:1160px;margin:0 auto;}
+
+  .section{padding:6rem 3rem;max-width:1160px;margin:0 auto;}
+  .section-label{font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:0.9rem;display:flex;align-items:center;gap:0.7rem;}
+  .section-label::before{content:'';display:inline-block;width:22px;height:1px;background:var(--gold);}
+  .section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:700;margin-bottom:1rem;line-height:1.15;color:var(--dark);}
+
+  /* RADIO SECTION */
+  .radio-section{padding:6rem 3rem;background:var(--bg2);position:relative;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .radio-section::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(184,137,46,0.07) 0%,transparent 70%);top:-220px;left:50%;transform:translateX(-50%);pointer-events:none;}
+  .radio-inner{max-width:1160px;margin:0 auto;}
+  .radio-header{text-align:center;margin-bottom:3.5rem;}
+  .radio-header .section-label{justify-content:center;}
+  .radio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
+  .radio-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:2rem;display:flex;flex-direction:column;align-items:center;text-align:center;gap:0.9rem;transition:all 0.32s;text-decoration:none;color:inherit;}
+  .radio-card:hover{border-color:var(--gold);transform:translateY(-6px);box-shadow:0 16px 40px rgba(184,137,46,0.1),0 0 0 1px rgba(184,137,46,0.12);}
+  .radio-card img{width:78px;height:78px;border-radius:18px;object-fit:cover;box-shadow:0 6px 18px rgba(24,24,31,0.1);}
+  .radio-card h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--dark);}
+  .radio-card p{font-size:0.8rem;color:var(--muted);}
+  .radio-badge{display:inline-flex;align-items:center;gap:0.35rem;background:rgba(184,137,46,0.09);border:1px solid rgba(184,137,46,0.25);color:var(--gold);padding:0.32rem 0.9rem;border-radius:20px;font-size:0.73rem;letter-spacing:0.07em;text-transform:uppercase;font-weight:500;transition:all 0.28s;}
+  .radio-card:hover .radio-badge{background:var(--gold);color:#fff;border-color:var(--gold);}
+
+  /* PLAYER BANNER */
+  .player-banner{background:var(--dark);border-radius:14px;padding:2rem 2.5rem;margin-bottom:3.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
+  .player-banner-left{display:flex;align-items:center;gap:1.2rem;}
+  .player-banner-icon{font-size:2.2rem;}
+  .player-banner h3{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:0.3rem;}
+  .player-banner p{font-size:0.82rem;color:rgba(255,255,255,0.5);}
+  .btn-gold-outline{display:inline-flex;align-items:center;gap:0.55rem;border:1.5px solid var(--gold);color:var(--gold);padding:0.78rem 1.8rem;border-radius:5px;font-size:0.82rem;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;white-space:nowrap;}
+  .btn-gold-outline:hover{background:var(--gold);color:#fff;}
+
+  /* API SECTION */
+  .api-section{padding:6rem 3rem;max-width:1160px;margin:0 auto;}
+  .api-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.4rem;margin-top:3rem;}
+  .api-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:2rem;transition:all 0.32s;text-decoration:none;color:inherit;}
+  .api-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:var(--shadow);}
+  .api-card-icon{font-size:2rem;margin-bottom:1rem;}
+  .api-card h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--dark);margin-bottom:0.5rem;}
+  .api-card p{font-size:0.83rem;color:var(--muted);line-height:1.6;margin-bottom:1.2rem;}
+  .api-link{font-size:0.78rem;color:var(--gold);letter-spacing:0.07em;text-transform:uppercase;font-weight:500;}
+
+  /* QR SECTION */
+  .qr-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-top:3rem;}
+  .qr-icon{width:84px;border-radius:20px;margin-bottom:2rem;box-shadow:0 8px 28px rgba(184,137,46,0.18);}
+  .qr-screenshot{width:100%;max-width:290px;border-radius:28px;display:block;margin:0 auto;box-shadow:0 32px 64px rgba(24,24,31,0.14),0 0 0 1px var(--border);}
+  .qr-features{display:flex;flex-direction:column;gap:1.2rem;margin-top:2rem;}
+  .feature-item{display:flex;gap:1.1rem;padding:1.4rem;background:var(--card);border:1px solid var(--border);border-radius:10px;transition:all 0.3s;}
+  .feature-item:hover{border-color:var(--gold);transform:translateX(4px);box-shadow:var(--shadow);}
+  .feature-icon{font-size:1.5rem;flex-shrink:0;}
+  .feature-title{font-size:0.92rem;font-weight:500;margin-bottom:0.3rem;color:var(--dark);}
+  .feature-desc{font-size:0.83rem;color:var(--muted);line-height:1.55;}
+
+  /* CTA */
+  .cta-section{padding:6rem 3rem;text-align:center;max-width:680px;margin:0 auto;}
+  .cta-section h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,2.8rem);margin-bottom:1rem;color:var(--dark);}
+  .cta-section p{color:var(--muted);margin-bottom:2.2rem;line-height:1.7;}
+
+  /* FOOTER */
+  footer{background:var(--dark);color:rgba(255,255,255,0.55);padding:3rem 3rem 2rem;}
+  .footer-top{display:flex;justify-content:space-between;gap:3rem;flex-wrap:wrap;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:2rem;}
+  .footer-brand .logo{color:#fff;}
+  .footer-brand .logo span{color:var(--gold2);}
+  .footer-brand p{margin-top:0.8rem;font-size:0.82rem;color:rgba(255,255,255,0.35);max-width:240px;line-height:1.6;}
+  .footer-col h4{font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold2);margin-bottom:1rem;font-weight:500;}
+  .footer-col a{display:block;font-size:0.82rem;color:rgba(255,255,255,0.45);text-decoration:none;margin-bottom:0.6rem;transition:color 0.25s;line-height:1.4;}
+  .footer-col a:hover{color:var(--gold2);}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+  .footer-copy{font-size:0.78rem;color:rgba(255,255,255,0.25);}
+  .footer-bottom-links{display:flex;gap:1.5rem;}
+  .footer-bottom-links a{font-size:0.78rem;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.25s;}
+  .footer-bottom-links a:hover{color:var(--gold2);}
+
+  @media(max-width:900px){.radio-grid,.api-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:768px){
+    nav{padding:1rem 1.5rem;}
+    .nav-link{display:none;}
+    .hero{padding:7rem 1.5rem 4rem;}
+    .signal-rings{display:none;}
+    .section,.api-section{padding:4rem 1.5rem;}
+    .qr-grid{grid-template-columns:1fr;gap:3rem;}
+    .radio-section{padding:4rem 1.5rem;}
+    .player-banner{flex-direction:column;text-align:center;}
+    .player-banner-left{flex-direction:column;text-align:center;}
+    footer{padding:2.5rem 1.5rem;}
+    .footer-top{flex-direction:column;gap:2rem;}
+    .footer-bottom{flex-direction:column;text-align:center;}
   }
-
-  .hero-content { max-width: 680px; width: 100%; position: relative; z-index: 1; animation: fadeUp 0.9s ease both; text-align: center; margin: 0 auto; }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
-
-  .eyebrow {
-    font-size: 0.72rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1.6rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-  }
-  .eyebrow::before { content:''; display:inline-block; width:28px; height:1px; background:var(--gold); }
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    line-height: 1.05;
-    font-weight: 900;
-    margin-bottom: 1.5rem;
-    color: var(--dark);
-  }
-  .hero h1 em { font-style: italic; color: var(--gold); }
-  .hero p { font-size: 1.08rem; color: var(--muted); line-height: 1.75; max-width: 520px; margin: 0 auto 2.5rem; }
-  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-
-  .btn-gold {
-    display: inline-flex; align-items: center; gap: 0.55rem;
-    background: var(--gold); color: #fff;
-    padding: 0.88rem 2rem; border-radius: 5px;
-    font-size: 0.82rem; font-weight: 500;
-    letter-spacing: 0.07em; text-transform: uppercase;
-    text-decoration: none; transition: all 0.3s;
-  }
-  .btn-gold:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(184,137,46,0.25); }
-  .btn-outline {
-    display: inline-flex; align-items: center; gap: 0.55rem;
-    border: 1.5px solid rgba(184,137,46,0.35); color: var(--dark);
-    padding: 0.88rem 2rem; border-radius: 5px;
-    font-size: 0.82rem; font-weight: 400;
-    letter-spacing: 0.07em; text-transform: uppercase;
-    text-decoration: none; transition: all 0.3s;
-  }
-  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-
-  .divider { width:100%; height:1px; background:var(--border); max-width:1160px; margin:0 auto; }
-
-  /* ── QR SECTION ── */
-  .section { padding: 6rem 3rem; max-width: 1160px; margin: 0 auto; }
-  .section-label {
-    font-size: 0.7rem; letter-spacing: 0.22em;
-    text-transform: uppercase; color: var(--gold);
-    margin-bottom: 0.9rem;
-    display: flex; align-items: center; gap: 0.7rem;
-  }
-  .section-label::before { content:''; display:inline-block; width:22px; height:1px; background:var(--gold); }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    font-weight: 700; margin-bottom: 1rem;
-    line-height: 1.15; color: var(--dark);
-  }
-  .qr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 3rem; }
-  .qr-icon { width: 84px; border-radius: 20px; margin-bottom: 2rem; box-shadow: 0 8px 28px rgba(184,137,46,0.18); }
-  .qr-screenshot { width:100%; max-width:290px; border-radius:28px; display:block; margin:0 auto; box-shadow:0 32px 64px rgba(24,24,31,0.14), 0 0 0 1px var(--border); }
-  .qr-features { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
-  .feature-item { display:flex; gap:1.1rem; padding:1.4rem; background:var(--card); border:1px solid var(--border); border-radius:10px; transition:all 0.3s; }
-  .feature-item:hover { border-color:var(--gold); transform:translateX(4px); box-shadow:var(--shadow); }
-  .feature-icon { font-size:1.5rem; flex-shrink:0; }
-  .feature-title { font-size:0.92rem; font-weight:500; margin-bottom:0.3rem; color:var(--dark); }
-  .feature-desc { font-size:0.83rem; color:var(--muted); line-height:1.55; }
-
-  /* ── RADIO SECTION ── */
-  .radio-section { padding:6rem 3rem; background:var(--bg2); position:relative; overflow:hidden; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
-  .radio-section::before { content:''; position:absolute; width:600px; height:600px; border-radius:50%; background:radial-gradient(circle, rgba(184,137,46,0.07) 0%, transparent 70%); top:-220px; left:50%; transform:translateX(-50%); pointer-events:none; }
-  .radio-inner { max-width:1160px; margin:0 auto; }
-  .radio-header { text-align:center; margin-bottom:3.5rem; }
-  .radio-header .section-label { justify-content:center; }
-  .radio-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem; }
-  .radio-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:2rem; display:flex; flex-direction:column; align-items:center; text-align:center; gap:0.9rem; transition:all 0.32s; text-decoration:none; color:inherit; }
-  .radio-card:hover { border-color:var(--gold); transform:translateY(-6px); box-shadow:0 16px 40px rgba(184,137,46,0.1), 0 0 0 1px rgba(184,137,46,0.12); }
-  .radio-card img { width:78px; height:78px; border-radius:18px; object-fit:cover; box-shadow:0 6px 18px rgba(24,24,31,0.1); }
-  .radio-card h3 { font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:700; color:var(--dark); }
-  .radio-card p { font-size:0.8rem; color:var(--muted); }
-  .radio-badge { display:inline-flex; align-items:center; gap:0.35rem; background:rgba(184,137,46,0.09); border:1px solid rgba(184,137,46,0.25); color:var(--gold); padding:0.32rem 0.9rem; border-radius:20px; font-size:0.73rem; letter-spacing:0.07em; text-transform:uppercase; font-weight:500; transition:all 0.28s; }
-  .radio-card:hover .radio-badge { background:var(--gold); color:#fff; border-color:var(--gold); }
-
-  /* ── LIVE PLAYER BANNER ── NEW */
-  .player-banner {
-    background: var(--dark);
-    border-radius: 14px;
-    padding: 2rem 2.5rem;
-    margin-bottom: 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-  .player-banner-left { display: flex; align-items: center; gap: 1.2rem; }
-  .player-banner-icon { font-size: 2.2rem; }
-  .player-banner h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem; }
-  .player-banner p { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
-  .btn-gold-outline {
-    display: inline-flex; align-items: center; gap: 0.55rem;
-    border: 1.5px solid var(--gold); color: var(--gold);
-    padding: 0.78rem 1.8rem; border-radius: 5px;
-    font-size: 0.82rem; font-weight: 500;
-    letter-spacing: 0.07em; text-transform: uppercase;
-    text-decoration: none; transition: all 0.3s; white-space: nowrap;
-  }
-  .btn-gold-outline:hover { background: var(--gold); color: #fff; }
-
-  /* ── API SECTION ── */
-  .api-section { padding: 6rem 3rem; max-width: 1160px; margin: 0 auto; }
-  .api-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.4rem; margin-top: 3rem; }
-  .api-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 2rem; transition: all 0.32s; text-decoration: none; color: inherit; }
-  .api-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: var(--shadow); }
-  .api-card-icon { font-size: 2rem; margin-bottom: 1rem; }
-  .api-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem; }
-  .api-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.2rem; }
-  .api-link { font-size: 0.78rem; color: var(--gold); letter-spacing: 0.07em; text-transform: uppercase; font-weight: 500; }
-
-  .license-box { background: rgba(184,137,46,0.06); border: 1.5px solid rgba(184,137,46,0.25); border-radius: 12px; padding: 2rem 2.5rem; margin-top: 3rem; }
-  .license-box h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--dark); margin-bottom: 1rem; }
-  .license-box ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-  .license-box li { display: flex; gap: 0.75rem; font-size: 0.9rem; color: var(--muted); }
-  .license-box li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
-
-  /* ── CTA ── */
-  .cta-section { padding:6rem 3rem; text-align:center; max-width:680px; margin:0 auto; }
-  .cta-section h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,2.8rem); margin-bottom:1rem; color:var(--dark); }
-  .cta-section p { color:var(--muted); margin-bottom:2.2rem; line-height:1.7; }
-
-  /* ── FOOTER ── */
-  footer { background:var(--dark); color:rgba(255,255,255,0.55); padding:3rem 3rem 2rem; }
-  .footer-top { display:flex; justify-content:space-between; gap:3rem; flex-wrap:wrap; padding-bottom:2.5rem; border-bottom:1px solid rgba(255,255,255,0.08); margin-bottom:2rem; }
-  .footer-brand .logo { color:#fff; }
-  .footer-brand .logo span { color:var(--gold2); }
-  .footer-brand p { margin-top:0.8rem; font-size:0.82rem; color:rgba(255,255,255,0.35); max-width:240px; line-height:1.6; }
-  .footer-col h4 { font-size:0.7rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold2); margin-bottom:1rem; font-weight:500; }
-  .footer-col a { display:block; font-size:0.82rem; color:rgba(255,255,255,0.45); text-decoration:none; margin-bottom:0.6rem; transition:color 0.25s; line-height:1.4; }
-  .footer-col a:hover { color:var(--gold2); }
-  .footer-bottom { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
-  .footer-copy { font-size:0.78rem; color:rgba(255,255,255,0.25); }
-  .footer-bottom-links { display:flex; gap:1.5rem; }
-  .footer-bottom-links a { font-size:0.78rem; color:rgba(255,255,255,0.28); text-decoration:none; transition:color 0.25s; }
-  .footer-bottom-links a:hover { color:var(--gold2); }
-
-  @media(max-width:900px) { .radio-grid,.api-grid { grid-template-columns:1fr 1fr; } }
-  @media(max-width:768px) {
-    nav { padding:1rem 1.5rem; }
-    .nav-link { display:none; }
-    .hero { padding:7rem 1.5rem 4rem; }
-    .signal-rings { display:none; }
-    .section,.api-section { padding:4rem 1.5rem; }
-    .qr-grid { grid-template-columns:1fr; gap:3rem; }
-    .radio-section { padding:4rem 1.5rem; }
-    .player-banner { flex-direction:column; text-align:center; }
-    .player-banner-left { flex-direction:column; text-align:center; }
-    footer { padding:2.5rem 1.5rem; }
-    .footer-top { flex-direction:column; gap:2rem; }
-    .footer-bottom { flex-direction:column; text-align:center; }
-  }
-  @media(max-width:480px) { .radio-grid,.api-grid { grid-template-columns:1fr; } .btn-outline { display:none; } }
+  @media(max-width:480px){.radio-grid,.api-grid{grid-template-columns:1fr;}.btn-outline{display:none;}}
 </style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
+<!-- NAV -->
 <nav>
   <a href="#" class="logo">RM <span>App</span></a>
   <div class="nav-right">
-    <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" class="nav-link" data-fr="Nos Apps" data-en="Our Apps">Our Apps</a>
-    <a href="api/radio-player.html" class="nav-link" data-fr="Écouter" data-en="Listen Live">Listen Live</a>
-    <a href="api/index.html" class="nav-link" data-fr="API" data-en="API">API</a>
+    <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" class="nav-link" target="_blank" rel="noopener" data-fr="Nos Apps" data-en="Our Apps">Our Apps</a>
+    <a href="https://rmapps7.github.io/rmapps75.github.io/api/radio-player.html" class="nav-link" data-fr="Ecouter" data-en="Listen Live">Listen Live</a>
+    <a href="https://rmapps7.github.io/rmapps75.github.io/api/index.html" class="nav-link" data-fr="API" data-en="API">API</a>
     <a href="mailto:contact.rmapp@gmail.com" class="nav-link" data-fr="Contact" data-en="Contact">Contact</a>
     <div class="lang-toggle">
       <button class="lang-btn" onclick="setLang('fr')">FR</button>
@@ -315,7 +157,7 @@
   </div>
 </nav>
 
-<!-- ── HERO ── -->
+<!-- HERO -->
 <section class="hero">
   <div class="signal-rings">
     <div class="ring"></div><div class="ring"></div>
@@ -323,18 +165,118 @@
   </div>
   <div class="hero-content">
     <div class="eyebrow" data-fr="Applications iOS" data-en="iOS Applications">iOS Applications</div>
-    <h1 data-fr="<em>Scannez.</em><br>Écoutez.<br>Explorez." data-en="<em>Scan.</em><br>Listen.<br>Explore.">
+    <h1 data-fr="<em>Scannez.</em><br>Ecoutez.<br>Explorez." data-en="<em>Scan.</em><br>Listen.<br>Explore.">
       <em>Scan.</em><br>Listen.<br>Explore.
     </h1>
-    <p data-fr="Des applications mobiles pensées pour votre quotidien — du scan de QR code ultra-rapide aux radios du monde entier, disponibles sur iPhone."
+    <p data-fr="Des applications mobiles pensees pour votre quotidien — du scan de QR code ultra-rapide aux radios du monde entier, disponibles sur iPhone."
        data-en="Mobile apps crafted for your everyday life — from lightning-fast QR scanning to radio stations from around the globe, available on iPhone.">
       Mobile apps crafted for your everyday life — from lightning-fast QR scanning to radio stations from around the globe, available on iPhone.
     </p>
     <div class="hero-btns">
-      <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" class="btn-gold" data-fr="Découvrir nos apps" data-en="Explore our apps">Explore our apps</a>
-      <a href="api/radio-player.html" class="btn-outline" data-fr="🎧 Écouter en direct" data-en="🎧 Listen Live">🎧 Listen Live</a>
+      <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" class="btn-gold" target="_blank" rel="noopener" data-fr="Decouvrir nos apps" data-en="Explore our apps">Explore our apps</a>
+      <a href="https://rmapps7.github.io/rmapps75.github.io/api/radio-player.html" class="btn-outline" data-fr="Ecouter en direct" data-en="Listen Live">&#127911; Listen Live</a>
       <a href="mailto:contact.rmapp@gmail.com" class="btn-outline" data-fr="Nous contacter" data-en="Get in touch">Get in touch</a>
     </div>
+  </div>
+</section>
+
+<!-- ── RADIO SECTION ── -->
+<section class="radio-section" id="radio">
+  <div class="radio-inner">
+    <div class="radio-header">
+      <div class="section-label" data-fr="Reseau mondial" data-en="Global Network">Global Network</div>
+      <h2 class="section-title" data-fr="Notre Reseau Radio <em style='font-style:italic;color:var(--gold)'>Mondial</em>" data-en="Our Global <em style='font-style:italic;color:var(--gold)'>Radio Network</em>">
+        Our Global <em style="font-style:italic;color:var(--gold)">Radio Network</em>
+      </h2>
+      <p style="color:var(--muted);max-width:500px;margin:1rem auto 0;line-height:1.75;font-size:1rem" data-fr="Voyagez a travers le monde grace a nos applications dediees. Musique locale, actualites et podcasts en haute qualite." data-en="Travel the world through our dedicated apps. Local music, news and podcasts in high quality.">
+        Travel the world through our dedicated apps. Local music, news and podcasts in high quality.
+      </p>
+    </div>
+
+    <div class="player-banner">
+      <div class="player-banner-left">
+        <div class="player-banner-icon">&#127911;</div>
+        <div>
+          <h3 data-fr="Ecoutez en direct maintenant" data-en="Listen live right now">Listen live right now</h3>
+          <p data-fr="France · Japon · Suisse · Allemagne" data-en="France · Japan · Switzerland · Germany">France · Japan · Switzerland · Germany</p>
+        </div>
+      </div>
+      <a href="https://rmapps7.github.io/rmapps75.github.io/api/radio-player.html" class="btn-gold-outline" data-fr="Ouvrir le lecteur" data-en="Open Radio Player">&#127911; Open Radio Player</a>
+    </div>
+
+    <div class="radio-grid">
+      <a href="https://apps.apple.com/us/app/radio-switzerland-swiss-fm/id1119092555" class="radio-card">
+        <img src="https://rmapps7.github.io/rmapps75.github.io/radio-suisse.png" alt="Radio Suisse">
+        <h3 data-fr="Radio Suisse" data-en="Radio Switzerland">Radio Switzerland</h3>
+        <p>Swiss FM &amp; Web Radios</p>
+        <span class="radio-badge" data-fr="Obtenir" data-en="Get App">&#127925; Get App</span>
+      </a>
+      <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" class="radio-card">
+        <img src="https://rmapps7.github.io/rmapps75.github.io/radio-canada.png" alt="Radio Canada">
+        <h3>Radio Canada</h3>
+        <p>Canadian Radios</p>
+        <span class="radio-badge">&#127925; Get App</span>
+      </a>
+      <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" class="radio-card">
+        <img src="https://rmapps7.github.io/rmapps75.github.io/radio-maroc.png" alt="Radio Maroc">
+        <h3 data-fr="Radio Maroc" data-en="Radio Morocco">Radio Morocco</h3>
+        <p>&#x631;&#x627;&#x62F;&#x64A;&#x648; &#x627;&#x644;&#x645;&#x63A;&#x631;&#x628;</p>
+        <span class="radio-badge">&#127925; Get App</span>
+      </a>
+      <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" class="radio-card">
+        <img src="https://rmapps7.github.io/rmapps75.github.io/radio-algerie.png" alt="Radio Algerie">
+        <h3 data-fr="Radio Algerie" data-en="Radio Algeria">Radio Algeria</h3>
+        <p>Algerian Radios FM</p>
+        <span class="radio-badge">&#127925; Get App</span>
+      </a>
+      <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" class="radio-card">
+        <img src="https://rmapps7.github.io/rmapps75.github.io/radio-germany.png" alt="Radio Germany">
+        <h3 data-fr="Radio Allemagne" data-en="Radio Germany">Radio Germany</h3>
+        <p>German Radios</p>
+        <span class="radio-badge">&#127925; Get App</span>
+      </a>
+      <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" class="radio-card">
+        <img src="https://rmapps7.github.io/rmapps75.github.io/radio-mexico.png" alt="Radio Mexico">
+        <h3 data-fr="Radio Mexique" data-en="Radio Mexico">Radio Mexico</h3>
+        <p>Radios de Mexico FM</p>
+        <span class="radio-badge">&#127925; Get App</span>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:3rem">
+      <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" class="btn-outline" target="_blank" rel="noopener" data-fr="Voir toutes nos applications" data-en="View all our apps on the App Store">View all our apps on the App Store &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── API SECTION ── -->
+<div class="divider"></div>
+<section class="api-section" id="api">
+  <div class="section-label" data-fr="Developpeurs" data-en="Developers">Developers</div>
+  <h2 class="section-title" data-fr="RM Radio <em style='font-style:italic;color:var(--gold)'>API</em>" data-en="RM Radio <em style='font-style:italic;color:var(--gold)'>API</em>">
+    RM Radio <em style="font-style:italic;color:var(--gold)">API</em>
+  </h2>
+  <p style="color:var(--muted);max-width:560px;line-height:1.75;font-size:1rem;margin-top:0.5rem" data-fr="Le repertoire de stations radio qui alimente toutes nos applications. Gratuit, ouvert, et autorise pour un usage commercial." data-en="The radio station directory powering all RM Radio apps. Free, open, and authorized for commercial use.">
+    The radio station directory powering all RM Radio apps. Free, open, and authorized for commercial use.
+  </p>
+  <div class="api-grid">
+    <a href="https://rmapps7.github.io/rmapps75.github.io/api/index.html" class="api-card">
+      <div class="api-card-icon">&#9889;</div>
+      <h3 data-fr="Documentation API" data-en="API Documentation">API Documentation</h3>
+      <p data-fr="Endpoints, parametres, exemples de reponses et guide d'integration." data-en="Endpoints, parameters, response examples and integration guide.">Endpoints, parameters, response examples and integration guide.</p>
+      <span class="api-link" data-fr="Voir la doc &rarr;" data-en="View docs &rarr;">View docs &rarr;</span>
+    </a>
+    <a href="https://rmapps7.github.io/rmapps75.github.io/api/terms.html" class="api-card">
+      <div class="api-card-icon">&#128196;</div>
+      <h3 data-fr="Conditions d'utilisation" data-en="Terms of Use">Terms of Use</h3>
+      <p data-fr="Licence commerciale, droits des diffuseurs, politique de retrait et mentions legales." data-en="Commercial license, broadcaster rights, takedown policy and legal notices.">Commercial license, broadcaster rights, takedown policy and legal notices.</p>
+      <span class="api-link" data-fr="Lire les CGU &rarr;" data-en="Read terms &rarr;">Read terms &rarr;</span>
+    </a>
+    <a href="https://rmapps7.github.io/rmapps75.github.io/api/broadcasters.html" class="api-card">
+      <div class="api-card-icon">&#127897;</div>
+      <h3 data-fr="Portail Diffuseurs" data-en="Broadcaster Portal">Broadcaster Portal</h3>
+      <p data-fr="Ajoutez, modifiez ou supprimez votre station. Toutes les demandes traitees sous 24h." data-en="Add, update or remove your station. All requests processed within 24 hours.">Add, update or remove your station. All requests processed within 24 hours.</p>
+      <span class="api-link" data-fr="Acceder &rarr;" data-en="Access portal &rarr;">Access portal &rarr;</span>
+    </a>
   </div>
 </section>
 
@@ -342,36 +284,36 @@
 <div class="divider"></div>
 <section class="section" id="qr">
   <div class="section-label" data-fr="Application phare" data-en="Featured App">Featured App</div>
-  <h2 class="section-title" data-fr="QR Scanner — <em style='font-style:italic;color:var(--gold)'>Rapide &amp; Puissant</em>" data-en="QR Scanner — <em style='font-style:italic;color:var(--gold)'>Fast &amp; Powerful</em>">
-    QR Scanner — <em style="font-style:italic;color:var(--gold)">Fast &amp; Powerful</em>
+  <h2 class="section-title" data-fr="QR Scanner &mdash; <em style='font-style:italic;color:var(--gold)'>Rapide &amp; Puissant</em>" data-en="QR Scanner &mdash; <em style='font-style:italic;color:var(--gold)'>Fast &amp; Powerful</em>">
+    QR Scanner &mdash; <em style="font-style:italic;color:var(--gold)">Fast &amp; Powerful</em>
   </h2>
   <div class="qr-grid">
     <div>
       <div class="qr-features">
         <div class="feature-item">
-          <div class="feature-icon">🚀</div>
+          <div class="feature-icon">&#128640;</div>
           <div>
             <div class="feature-title" data-fr="Scan Ultra-Rapide" data-en="Ultra-Fast Scanning">Ultra-Fast Scanning</div>
-            <div class="feature-desc" data-fr="Détection instantanée des QR Codes, codes-barres, EAN-13 et bien plus." data-en="Instant detection of QR codes, barcodes, EAN-13 and much more.">Instant detection of QR codes, barcodes, EAN-13 and much more.</div>
+            <div class="feature-desc" data-fr="Detection instantanee des QR Codes, codes-barres, EAN-13 et bien plus." data-en="Instant detection of QR codes, barcodes, EAN-13 and much more.">Instant detection of QR codes, barcodes, EAN-13 and much more.</div>
           </div>
         </div>
         <div class="feature-item">
-          <div class="feature-icon">🍎</div>
+          <div class="feature-icon">&#127822;</div>
           <div>
             <div class="feature-title" data-fr="Info Nutri-Score" data-en="Nutri-Score Info">Nutri-Score Info</div>
-            <div class="feature-desc" data-fr="Scannez vos produits alimentaires et obtenez instantanément le Nutri-Score et les ingrédients." data-en="Scan food products and instantly get the Nutri-Score and full ingredient details.">Scan food products and instantly get the Nutri-Score and full ingredient details.</div>
+            <div class="feature-desc" data-fr="Scannez vos produits alimentaires et obtenez instantanement le Nutri-Score et les ingredients." data-en="Scan food products and instantly get the Nutri-Score and full ingredient details.">Scan food products and instantly get the Nutri-Score and full ingredient details.</div>
           </div>
         </div>
         <div class="feature-item">
-          <div class="feature-icon">✨</div>
+          <div class="feature-icon">&#10024;</div>
           <div>
-            <div class="feature-title" data-fr="Générateur inclus" data-en="QR Generator Included">QR Generator Included</div>
-            <div class="feature-desc" data-fr="Créez vos propres QR Codes personnalisés et partagez-les en un clic." data-en="Create your own custom QR codes and share them with a single tap.">Create your own custom QR codes and share them with a single tap.</div>
+            <div class="feature-title" data-fr="Generateur inclus" data-en="QR Generator Included">QR Generator Included</div>
+            <div class="feature-desc" data-fr="Creez vos propres QR Codes personnalises et partagez-les en un clic." data-en="Create your own custom QR codes and share them with a single tap.">Create your own custom QR codes and share them with a single tap.</div>
           </div>
         </div>
       </div>
       <div style="margin-top:2.5rem">
-        <a href="https://apps.apple.com/us/app/qr-code-scanner-read-generator/id1320850650" class="btn-gold" data-fr="Télécharger sur l'App Store" data-en="Download on App Store">Download on App Store</a>
+        <a href="https://apps.apple.com/us/app/qr-code-scanner-read-generator/id1320850650" class="btn-gold" target="_blank" rel="noopener" data-fr="Telecharger sur l'App Store" data-en="Download on App Store">Download on App Store</a>
       </div>
     </div>
     <div style="text-align:center">
@@ -381,126 +323,15 @@
   </div>
 </section>
 
-<!-- ── RADIO SECTION ── -->
-<section class="radio-section" id="radio">
-  <div class="radio-inner">
-    <div class="radio-header">
-      <div class="section-label" data-fr="Réseau mondial" data-en="Global Network">Global Network</div>
-      <h2 class="section-title" data-fr="Notre Réseau Radio <em style='font-style:italic;color:var(--gold)'>Mondial</em>" data-en="Our Global <em style='font-style:italic;color:var(--gold)'>Radio Network</em>">
-        Our Global <em style="font-style:italic;color:var(--gold)">Radio Network</em>
-      </h2>
-      <p style="color:var(--muted);max-width:500px;margin:1rem auto 0;line-height:1.75;font-size:1rem" data-fr="Voyagez à travers le monde grâce à nos applications dédiées. Musique locale, actualités et podcasts en haute qualité." data-en="Travel the world through our dedicated apps. Local music, news and podcasts in high quality.">
-        Travel the world through our dedicated apps. Local music, news and podcasts in high quality.
-      </p>
-    </div>
-
-    <!-- LIVE PLAYER BANNER -->
-    <div class="player-banner">
-      <div class="player-banner-left">
-        <div class="player-banner-icon">🎧</div>
-        <div>
-          <h3 data-fr="83 stations en direct — écoutez maintenant" data-en="83 live stations — listen right now">83 live stations — listen right now</h3>
-          <p data-fr="France · Japon · Suisse · Allemagne — filtrez par pays et genre" data-en="France · Japan · Switzerland · Germany — filter by country &amp; genre">France · Japan · Switzerland · Germany — filter by country &amp; genre</p>
-        </div>
-      </div>
-      <a href="api/radio-player.html" class="btn-gold-outline" data-fr="🎧 Ouvrir le lecteur" data-en="🎧 Open Radio Player">🎧 Open Radio Player</a>
-    </div>
-
-    <div class="radio-grid">
-      <a href="https://apps.apple.com/us/app/radio-switzerland-swiss-fm/id1119092555" class="radio-card">
-        <img src="https://rmapps7.github.io/rmapps75.github.io/radio-suisse.png" alt="Radio Suisse">
-        <h3 data-fr="Radio Suisse" data-en="Radio Switzerland">Radio Switzerland</h3>
-        <p>Swiss FM &amp; Web Radios</p>
-        <span class="radio-badge" data-fr="🎵 Obtenir" data-en="🎵 Get App">🎵 Get App</span>
-      </a>
-      <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" class="radio-card">
-        <img src="https://rmapps7.github.io/rmapps75.github.io/radio-canada.png" alt="Radio Canada">
-        <h3>Radio Canada</h3>
-        <p>Canadian Radios</p>
-        <span class="radio-badge" data-fr="🎵 Obtenir" data-en="🎵 Get App">🎵 Get App</span>
-      </a>
-      <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" class="radio-card">
-        <img src="https://rmapps7.github.io/rmapps75.github.io/radio-maroc.png" alt="Radio Maroc">
-        <h3 data-fr="Radio Maroc" data-en="Radio Morocco">Radio Morocco</h3>
-        <p>راديو المغرب</p>
-        <span class="radio-badge" data-fr="🎵 Obtenir" data-en="🎵 Get App">🎵 Get App</span>
-      </a>
-      <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" class="radio-card">
-        <img src="https://rmapps7.github.io/rmapps75.github.io/radio-algerie.png" alt="Radio Algérie">
-        <h3 data-fr="Radio Algérie" data-en="Radio Algeria">Radio Algeria</h3>
-        <p>Algerian Radios FM</p>
-        <span class="radio-badge" data-fr="🎵 Obtenir" data-en="🎵 Get App">🎵 Get App</span>
-      </a>
-      <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" class="radio-card">
-        <img src="https://rmapps7.github.io/rmapps75.github.io/radio-germany.png" alt="Radio Germany">
-        <h3 data-fr="Radio Allemagne" data-en="Radio Germany">Radio Germany</h3>
-        <p>German Radios</p>
-        <span class="radio-badge" data-fr="🎵 Obtenir" data-en="🎵 Get App">🎵 Get App</span>
-      </a>
-      <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" class="radio-card">
-        <img src="https://rmapps7.github.io/rmapps75.github.io/radio-mexico.png" alt="Radio Mexico">
-        <h3 data-fr="Radio Mexique" data-en="Radio Mexico">Radio Mexico</h3>
-        <p>Radios de México FM</p>
-        <span class="radio-badge" data-fr="🎵 Obtenir" data-en="🎵 Get App">🎵 Get App</span>
-      </a>
-    </div>
-    <div style="text-align:center;margin-top:3rem">
-      <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" class="btn-outline" data-fr="Voir toutes nos applications sur l'App Store →" data-en="View all our apps on the App Store →">View all our apps on the App Store →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ── API SECTION ── -->
-<div class="divider"></div>
-<section class="api-section" id="api">
-  <div class="section-label" data-fr="Développeurs" data-en="Developers">Developers</div>
-  <h2 class="section-title" data-fr="RM Radio <em style='font-style:italic;color:var(--gold)'>API</em>" data-en="RM Radio <em style='font-style:italic;color:var(--gold)'>API</em>">
-    RM Radio <em style="font-style:italic;color:var(--gold)">API</em>
-  </h2>
-  <p style="color:var(--muted);max-width:560px;line-height:1.75;font-size:1rem;margin-top:0.5rem" data-fr="Le répertoire de stations radio qui alimente toutes nos applications. Gratuit, ouvert, et autorisé pour un usage commercial." data-en="The radio station directory powering all RM Radio apps. Free, open, and authorized for commercial use.">
-    The radio station directory powering all RM Radio apps. Free, open, and authorized for commercial use.
-  </p>
-
-  <div class="license-box">
-    <h3 data-fr="Licence — Usage libre et commercial" data-en="License — Free &amp; Commercial Use">License — Free &amp; Commercial Use</h3>
-    <ul>
-      <li data-fr="Vous pouvez utiliser cette API dans des logiciels gratuits et commerciaux" data-en="You may use this API in free and non-free (commercial) software">You may use this API in free and non-free (commercial) software</li>
-      <li data-fr="Autorisé dans les applications mobiles sur l'App Store et Google Play" data-en="Authorized in mobile applications on the App Store and Google Play">Authorized in mobile applications on the App Store and Google Play</li>
-      <li data-fr="Les diffuseurs peuvent demander leur retrait à tout moment sous 24h" data-en="Broadcasters can request removal at any time within 24 hours">Broadcasters can request removal at any time within 24 hours</li>
-    </ul>
-  </div>
-
-  <div class="api-grid">
-    <a href="api/index.html" class="api-card">
-      <div class="api-card-icon">⚡</div>
-      <h3 data-fr="Documentation API" data-en="API Documentation">API Documentation</h3>
-      <p data-fr="Endpoints, paramètres, exemples de réponses et guide d'intégration." data-en="Endpoints, parameters, response examples and integration guide.">Endpoints, parameters, response examples and integration guide.</p>
-      <span class="api-link" data-fr="Voir la doc →" data-en="View docs →">View docs →</span>
-    </a>
-    <a href="api/terms.html" class="api-card">
-      <div class="api-card-icon">📄</div>
-      <h3 data-fr="Conditions d'utilisation" data-en="Terms of Use">Terms of Use</h3>
-      <p data-fr="Licence commerciale, droits des diffuseurs, politique de retrait et mentions légales." data-en="Commercial license, broadcaster rights, takedown policy and legal notices.">Commercial license, broadcaster rights, takedown policy and legal notices.</p>
-      <span class="api-link" data-fr="Lire les CGU →" data-en="Read terms →">Read terms →</span>
-    </a>
-    <a href="api/broadcasters.html" class="api-card">
-      <div class="api-card-icon">🎙</div>
-      <h3 data-fr="Portail Diffuseurs" data-en="Broadcaster Portal">Broadcaster Portal</h3>
-      <p data-fr="Ajoutez, modifiez ou supprimez votre station. Toutes les demandes traitées sous 24h." data-en="Add, update or remove your station. All requests processed within 24 hours.">Add, update or remove your station. All requests processed within 24 hours.</p>
-      <span class="api-link" data-fr="Accéder →" data-en="Access portal →">Access portal →</span>
-    </a>
-  </div>
-</section>
-
-<!-- ── CTA ── -->
+<!-- CTA -->
 <section class="cta-section">
   <div class="section-label" style="justify-content:center" data-fr="Contact" data-en="Contact">Contact</div>
-  <h2 data-fr="Des questions ? On est là." data-en="Have questions? We're here.">Have questions? We're here.</h2>
+  <h2 data-fr="Des questions ? On est la." data-en="Have questions? We're here.">Have questions? We're here.</h2>
   <p data-fr="Contactez-nous pour tout support, retour ou collaboration." data-en="Reach out for support, feedback or any collaboration.">Reach out for support, feedback or any collaboration.</p>
-  <a href="mailto:contact.rmapp@gmail.com" class="btn-gold" data-fr="Nous écrire" data-en="Send us a message">Send us a message</a>
+  <a href="mailto:contact.rmapp@gmail.com" class="btn-gold" data-fr="Nous ecrire" data-en="Send us a message">Send us a message</a>
 </section>
 
-<!-- ── FOOTER ── -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
@@ -509,34 +340,34 @@
     </div>
     <div class="footer-col">
       <h4 data-fr="QR Scanner" data-en="QR Scanner">QR Scanner</h4>
-      <a href="https://sites.google.com/view/rmapp-privacypolicy/privacy-policy-qr-code-app" target="_blank" rel="noopener" data-fr="Politique de Confidentialité" data-en="Privacy Policy">Privacy Policy</a>
-      <a href="https://sites.google.com/view/rmapp-privacypolicy/terms-of-use-qr-code" target="_blank" rel="noopener" data-fr="Conditions d'utilisation" data-en="Terms of Use">Terms of Use</a>
-      <a href="https://apps.apple.com/us/app/qr-code-scanner-read-generator/id1320850650" target="_blank" rel="noopener" data-fr="Télécharger sur l'App Store" data-en="Download on App Store">Download on App Store</a>
+      <a href="https://sites.google.com/view/rmapp-privacypolicy/privacy-policy-qr-code-app" target="_blank" rel="noopener">Privacy Policy</a>
+      <a href="https://sites.google.com/view/rmapp-privacypolicy/terms-of-use-qr-code" target="_blank" rel="noopener">Terms of Use</a>
+      <a href="https://apps.apple.com/us/app/qr-code-scanner-read-generator/id1320850650" target="_blank" rel="noopener">Download on App Store</a>
     </div>
     <div class="footer-col">
       <h4 data-fr="Applications Radio" data-en="Radio Apps">Radio Apps</h4>
-      <a href="api/radio-player.html" data-fr="🎧 Lecteur Live" data-en="🎧 Live Player">🎧 Live Player</a>
-      <a href="api/privacy.html" data-fr="Politique de Confidentialité" data-en="Privacy Policy">Privacy Policy</a>
-      <a href="api/terms.html" data-fr="Conditions d'utilisation" data-en="Terms of Use">Terms of Use</a>
-      <a href="api/broadcasters.html" data-fr="Portail Diffuseurs" data-en="Broadcaster Portal">Broadcaster Portal</a>
-      <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" target="_blank" rel="noopener" data-fr="Toutes nos radios" data-en="All Radio Apps">All Radio Apps</a>
+      <a href="https://rmapps7.github.io/rmapps75.github.io/api/radio-player.html">&#127911; Live Player</a>
+      <a href="https://rmapps7.github.io/rmapps75.github.io/api/privacy.html">Privacy Policy</a>
+      <a href="https://rmapps7.github.io/rmapps75.github.io/api/terms.html">Terms of Use</a>
+      <a href="https://rmapps7.github.io/rmapps75.github.io/api/broadcasters.html">Broadcaster Portal</a>
+      <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" target="_blank" rel="noopener">All Radio Apps</a>
     </div>
     <div class="footer-col">
-      <h4 data-fr="Développeurs" data-en="Developers">Developers</h4>
-      <a href="api/index.html" data-fr="Documentation API" data-en="API Documentation">API Documentation</a>
-      <a href="api/terms.html" data-fr="Licence API" data-en="API License">API License</a>
+      <h4>Developers</h4>
+      <a href="https://rmapps7.github.io/rmapps75.github.io/api/index.html">API Documentation</a>
+      <a href="https://rmapps7.github.io/rmapps75.github.io/api/terms.html">API License</a>
     </div>
     <div class="footer-col">
-      <h4 data-fr="Support" data-en="Support">Support</h4>
+      <h4>Support</h4>
       <a href="mailto:contact.rmapp@gmail.com">contact.rmapp@gmail.com</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy" data-fr="© 2026 RM App. Tous droits réservés." data-en="© 2026 RM App. All rights reserved.">© 2026 RM App. All rights reserved.</span>
+    <span class="footer-copy">&copy; 2026 RM App. All rights reserved.</span>
     <div class="footer-bottom-links">
       <a href="https://apps.apple.com/us/developer/sebastien-rousseau/id876053519" target="_blank" rel="noopener">App Store</a>
-      <a href="api/radio-player.html">Listen Live</a>
-      <a href="api/index.html">API</a>
+      <a href="https://rmapps7.github.io/rmapps75.github.io/api/radio-player.html">Listen Live</a>
+      <a href="https://rmapps7.github.io/rmapps75.github.io/api/index.html">API</a>
       <a href="mailto:contact.rmapp@gmail.com">Contact</a>
     </div>
   </div>
@@ -544,10 +375,10 @@
 
 <script>
   function setLang(lang) {
-    document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+    document.querySelectorAll('[data-' + lang + ']').forEach(function(el) {
       el.innerHTML = el.getAttribute('data-' + lang);
     });
-    document.querySelectorAll('.lang-btn').forEach(btn => {
+    document.querySelectorAll('.lang-btn').forEach(function(btn) {
       btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
     });
     document.documentElement.lang = lang;
