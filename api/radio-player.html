@@ -4,19 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RM Radio — Live Player</title>
-<meta name="description" content="Listen to 83 radio stations from France, Japan, Switzerland and Germany.">
+<meta name="description" content="Listen to radio stations from France, Japan, Switzerland and Germany.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:#fafaf7; --bg2:#f3f1eb; --dark:#18181f;
-    --gold:#b8892e; --gold2:#d4a84c;
-    --text:#18181f; --muted:#7a7068;
-    --card:#ffffff; --border:rgba(184,137,46,0.18);
-    --shadow:0 2px 24px rgba(24,24,31,0.07);
+    --bg:#fafaf7;--dark:#18181f;--gold:#b8892e;--gold2:#d4a84c;
+    --text:#18181f;--muted:#7a7068;--card:#ffffff;--border:rgba(184,137,46,0.18);
     --player-h:80px;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
   body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;padding-bottom:calc(var(--player-h) + 1rem);}
 
   nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.3rem 3rem;background:rgba(250,250,247,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
@@ -35,8 +31,9 @@
   .page-header p{color:var(--muted);font-size:1rem;max-width:480px;margin:0 auto;line-height:1.75;position:relative;z-index:1;}
 
   .filters-bar{position:sticky;top:72px;z-index:90;background:rgba(250,250,247,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0.9rem 3rem;}
-  .filters-inner{max-width:1160px;margin:0 auto;display:flex;gap:1rem;align-items:center;flex-wrap:wrap;}
-  .filter-label{font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);}
+  .filters-inner{max-width:1160px;margin:0 auto;display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap;}
+  .filter-label{font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-right:0.2rem;}
+  .filter-sep{width:1px;height:20px;background:var(--border);margin:0 0.4rem;}
   .filter-chip{padding:0.38rem 1rem;border-radius:20px;font-size:0.78rem;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all 0.22s;letter-spacing:0.04em;font-family:'DM Sans',sans-serif;font-weight:400;}
   .filter-chip:hover{border-color:var(--gold);color:var(--gold);}
   .filter-chip.active{background:var(--gold);border-color:var(--gold);color:#fff;font-weight:500;}
@@ -44,12 +41,7 @@
   .search-wrap input{border:none;background:none;outline:none;font-family:'DM Sans',sans-serif;font-size:0.85rem;color:var(--text);width:180px;}
   .search-wrap input::placeholder{color:var(--muted);}
 
-  .stats-bar{max-width:1160px;margin:2rem auto 0;padding:0 3rem;display:flex;gap:2.5rem;}
-  .stat{display:flex;flex-direction:column;gap:0.15rem;}
-  .stat-val{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--dark);}
-  .stat-lbl{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
-
-  .stations-section{max-width:1160px;margin:0 auto;padding:2rem 3rem 4rem;}
+  .stations-section{max-width:1160px;margin:2rem auto 0;padding:0 3rem 4rem;}
   .country-block{margin-bottom:3rem;}
   .country-heading{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;padding-bottom:0.9rem;border-bottom:1px solid var(--border);}
   .country-flag{font-size:1.8rem;}
@@ -79,7 +71,6 @@
   @keyframes eq{from{transform:scaleY(0.4)}to{transform:scaleY(1)}}
 
   .empty{text-align:center;padding:5rem 2rem;color:var(--muted);}
-  .empty .icon{font-size:3rem;margin-bottom:1rem;opacity:0.4;}
 
   .sticky-player{position:fixed;bottom:0;left:0;right:0;z-index:200;height:var(--player-h);background:var(--dark);border-top:1px solid rgba(184,137,46,0.3);display:flex;align-items:center;gap:1.5rem;padding:0 3rem;transform:translateY(100%);transition:transform 0.35s cubic-bezier(0.16,1,0.3,1);}
   .sticky-player.visible{transform:translateY(0);}
@@ -112,13 +103,10 @@
     .search-wrap{margin-left:0;width:100%;}
     .search-wrap input{width:100%;}
     .stations-section{padding:1.5rem 1.5rem 4rem;}
-    .stats-bar{padding:0 1.5rem;}
     .sticky-player{padding:0 1.5rem;gap:1rem;}
     .p-vol{display:none;}
   }
-  @media(max-width:480px){
-    .stations-grid{grid-template-columns:1fr 1fr;}
-  }
+  @media(max-width:480px){.stations-grid{grid-template-columns:1fr 1fr;}}
 </style>
 </head>
 <body>
@@ -136,7 +124,7 @@
 <div class="page-header">
   <div class="eyebrow">Live Radio</div>
   <h1>RM Radio <em>Player</em></h1>
-  <p>83 stations across 4 countries. Click any card to start listening instantly.</p>
+  <p>Click any card to start listening instantly.</p>
 </div>
 
 <div class="filters-bar">
@@ -147,7 +135,8 @@
     <button class="filter-chip" data-type="country" data-val="jp">&#127471;&#127477; Japan</button>
     <button class="filter-chip" data-type="country" data-val="ch">&#127464;&#127469; Switzerland</button>
     <button class="filter-chip" data-type="country" data-val="de">&#127465;&#127466; Germany</button>
-    <span class="filter-label" style="margin-left:0.5rem">Genre</span>
+    <div class="filter-sep"></div>
+    <span class="filter-label">Genre</span>
     <button class="filter-chip active" data-type="genre" data-val="all">All</button>
     <button class="filter-chip" data-type="genre" data-val="news">News</button>
     <button class="filter-chip" data-type="genre" data-val="music">Music</button>
@@ -156,18 +145,11 @@
     <button class="filter-chip" data-type="genre" data-val="classical">Classical</button>
     <button class="filter-chip" data-type="genre" data-val="talk">Talk</button>
     <button class="filter-chip" data-type="genre" data-val="pop">Pop</button>
-    <button class="filter-chip" data-type="genre" data-val="public">&#127963; Public</button>
     <div class="search-wrap">
       <span>&#128269;</span>
       <input type="text" id="search-input" placeholder="Search stations...">
     </div>
   </div>
-</div>
-
-
-  <div class="stat"><span class="stat-val">4</span><span class="stat-lbl">Countries</span></div>
-  <div class="stat"><span class="stat-val">2</span><span class="stat-lbl">Authorizations</span></div>
-  <div class="stat"><span class="stat-val">Free</span><span class="stat-lbl">Always</span></div>
 </div>
 
 <div class="stations-section" id="stations-container"></div>
@@ -190,7 +172,7 @@
 </div>
 
 <div class="page-footer">
-  RM Radio API &mdash; <a href="index.html">Documentation</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="broadcasters.html">Broadcaster Portal</a>
+  RM Radio &mdash; <a href="index.html">Documentation</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="broadcasters.html">Broadcaster Portal</a>
 </div>
 
 <audio id="audio" preload="none"></audio>
@@ -199,61 +181,49 @@
 var STATIONS = {
   fr: {
     name: "France",
+    flag: "\uD83C\uDDEB\uD83C\uDDF7",
     list: [
-      {n:"France Inter",       g:"news",     pub:true,  url:"https://icecast.radiofrance.fr/franceinter-midfi.mp3"},
-      {n:"France Info",        g:"news",     pub:true,  url:"https://icecast.radiofrance.fr/franceinfo-midfi.mp3"},
-      {n:"France Culture",     g:"culture",  pub:true,  url:"https://icecast.radiofrance.fr/franceculture-midfi.mp3"},
-      {n:"France Musique",     g:"classical",pub:true,  url:"https://icecast.radiofrance.fr/francemusique-midfi.mp3"},
-      {n:"Mouv'",              g:"pop",      pub:true,  url:"https://icecast.radiofrance.fr/mouv-midfi.mp3"},
-      {n:"France Bleu Paris",  g:"music",    pub:true,  url:"https://icecast.radiofrance.fr/francebleuidf-midfi.mp3"},
-      {n:"France Bleu Provence",g:"music",   pub:true,  url:"https://icecast.radiofrance.fr/francebleuprovence-midfi.mp3"},
-      {n:"France Bleu Normandie",g:"music",  pub:true,  url:"https://icecast.radiofrance.fr/francebluenormandie-midfi.mp3"},
-      {n:"FIP",                g:"music",    pub:true,  url:"https://icecast.radiofrance.fr/fip-midfi.mp3"},
-      {n:"FIP Rock",           g:"music",    pub:true,  url:"https://icecast.radiofrance.fr/fiprock-midfi.mp3"},
-      {n:"FIP Jazz",           g:"jazz",     pub:true,  url:"https://icecast.radiofrance.fr/fipjazz-midfi.mp3"},
-      {n:"FIP Groove",         g:"music",    pub:true,  url:"https://icecast.radiofrance.fr/fipgroove-midfi.mp3"},
-      {n:"FIP Metal",          g:"music",    pub:true,  url:"https://icecast.radiofrance.fr/fipmetal-midfi.mp3"},
-      {n:"FIP Reggae",         g:"music",    pub:true,  url:"https://icecast.radiofrance.fr/fipreggae-midfi.mp3"},
-      {n:"FIP Electro",        g:"music",    pub:true,  url:"https://icecast.radiofrance.fr/fipelectro-midfi.mp3"},
-      {n:"FIP World",          g:"music",    pub:true,  url:"https://icecast.radiofrance.fr/fipworld-midfi.mp3"},
-      {n:"Canal B",            g:"music",    auth:true, url:"https://stream.canalb.fr/canalb-128.mp3"},
-      {n:"HotmixRadio",        g:"pop",      auth:true, url:"https://streaming.hotmixradio.fm/hotmixradio-128.mp3"},
-      {n:"Radio Nova",         g:"music",               url:"https://novazz.ice.infomaniak.ch/novazz-128.mp3"},
-      {n:"Radio Classique",    g:"classical",            url:"https://radioclassique.ice.infomaniak.ch/radioclassique-128.mp3"},
-      {n:"Jazz Radio",         g:"jazz",                 url:"https://jazzradio.ice.infomaniak.ch/jazzradio-128.mp3"},
-      {n:"TSF Jazz",           g:"jazz",                 url:"https://tsfjazz.ice.infomaniak.ch/tsfjazz-128.mp3"},
-      {n:"Beur FM",            g:"talk",                 url:"https://beurfm.ice.infomaniak.ch/beurfm-128.mp3"},
-      {n:"Radio Orient",       g:"music",                url:"https://broadcast.infomaniak.net/radioorient-high.mp3"},
-      {n:"RFI Monde",          g:"news",     pub:true,  url:"https://rfihttp.ice.infomaniak.ch/rfimonde-96.mp3"}
+      {n:"France Inter",        g:"news",     pub:true,  url:"https://icecast.radiofrance.fr/franceinter-midfi.mp3"},
+      {n:"France Info",         g:"news",     pub:true,  url:"https://icecast.radiofrance.fr/franceinfo-midfi.mp3"},
+      {n:"France Culture",      g:"culture",  pub:true,  url:"https://icecast.radiofrance.fr/franceculture-midfi.mp3"},
+      {n:"France Musique",      g:"classical",pub:true,  url:"https://icecast.radiofrance.fr/francemusique-midfi.mp3"},
+      {n:"Mouv'",               g:"pop",      pub:true,  url:"https://icecast.radiofrance.fr/mouv-midfi.mp3"},
+      {n:"France Bleu Paris",   g:"music",    pub:true,  url:"https://icecast.radiofrance.fr/francebleuidf-midfi.mp3"},
+      {n:"France Bleu Provence",g:"music",    pub:true,  url:"https://icecast.radiofrance.fr/francebleuprovence-midfi.mp3"},
+      {n:"FIP",                 g:"music",    pub:true,  url:"https://icecast.radiofrance.fr/fip-midfi.mp3"},
+      {n:"FIP Rock",            g:"music",    pub:true,  url:"https://icecast.radiofrance.fr/fiprock-midfi.mp3"},
+      {n:"FIP Jazz",            g:"jazz",     pub:true,  url:"https://icecast.radiofrance.fr/fipjazz-midfi.mp3"},
+      {n:"FIP Groove",          g:"music",    pub:true,  url:"https://icecast.radiofrance.fr/fipgroove-midfi.mp3"},
+      {n:"FIP Metal",           g:"music",    pub:true,  url:"https://icecast.radiofrance.fr/fipmetal-midfi.mp3"},
+      {n:"FIP Reggae",          g:"music",    pub:true,  url:"https://icecast.radiofrance.fr/fipreggae-midfi.mp3"},
+      {n:"FIP Electro",         g:"music",    pub:true,  url:"https://icecast.radiofrance.fr/fipelectro-midfi.mp3"},
+      {n:"FIP World",           g:"music",    pub:true,  url:"https://icecast.radiofrance.fr/fipworld-midfi.mp3"},
+      {n:"Radio Nova",          g:"music",               url:"https://novazz.ice.infomaniak.ch/novazz-128.mp3"},
+      {n:"Radio Classique",     g:"classical",            url:"https://radioclassique.ice.infomaniak.ch/radioclassique-128.mp3"},
+      {n:"Jazz Radio",          g:"jazz",                 url:"https://jazzradio.ice.infomaniak.ch/jazzradio-128.mp3"},
+      {n:"TSF Jazz",            g:"jazz",                 url:"https://tsfjazz.ice.infomaniak.ch/tsfjazz-128.mp3"},
+      {n:"RFI Monde",           g:"news",     pub:true,  url:"https://rfihttp.ice.infomaniak.ch/rfimonde-96.mp3"}
     ]
   },
   jp: {
     name: "Japan",
+    flag: "\uD83C\uDDEF\uD83C\uDDF5",
     list: [
-      {n:"NHK World Radio Japan", g:"news",  pub:true, url:"https://nhkworld.cdn.nimg.jp/nhkworld/nhkworldtv/audio/nhkworld_audio_aac128.m3u8"},
-      {n:"Listen.moe J-Pop",      g:"pop",             url:"https://listen.moe/stream"},
-      {n:"Listen.moe K-Pop",      g:"pop",             url:"https://listen.moe/kpop/stream"},
-      {n:"Gensokyo Radio",        g:"music",           url:"https://stream.gensokyoradio.net/1"},
-      {n:"J-Pop Powerplay",       g:"pop",             url:"https://jenny.torontocast.com:8016/stream"},
-      {n:"Jazz Sakura",           g:"jazz",            url:"https://cast1.torontocast.com:2010/stream"},
-      {n:"Nightwave Plaza",       g:"music",           url:"https://radio.plaza.one/mp3"},
-      {n:"Shonan Beach FM",       g:"music",           url:"https://p1223.ice.infomaniak.ch/p1223-sbfm.mp3"},
-      {n:"A&G+",                  g:"pop",             url:"https://mtist.as.smartstream.ne.jp/30009/livestream/index.m3u8"},
-      {n:"Friends Forever",       g:"pop",             url:"https://mtist.as.smartstream.ne.jp/30010/livestream/index.m3u8"},
-      {n:"BOX Japan City Pop",    g:"music",           url:"https://jenny.torontocast.com:8038/stream"},
-      {n:"J-Jazz",                g:"jazz",            url:"https://cast1.torontocast.com:2030/stream"},
-      {n:"Tokyo FM",              g:"music",           url:"https://mtist.as.smartstream.ne.jp/30012/livestream/index.m3u8"},
-      {n:"J-Wave 81.3",           g:"pop",             url:"https://mtist.as.smartstream.ne.jp/30013/livestream/index.m3u8"},
-      {n:"Nack5",                 g:"music",           url:"https://mtist.as.smartstream.ne.jp/30014/livestream/index.m3u8"},
-      {n:"Bay FM",                g:"pop",             url:"https://mtist.as.smartstream.ne.jp/30015/livestream/index.m3u8"},
-      {n:"InterFM897",            g:"talk",            url:"https://mtist.as.smartstream.ne.jp/30016/livestream/index.m3u8"},
-      {n:"Radio NEO",             g:"music",           url:"https://mtist.as.smartstream.ne.jp/30017/livestream/index.m3u8"},
-      {n:"Ottava",                g:"classical",       url:"https://ottava.webstream.jp/ottava/podcast/podcast.m3u8"},
-      {n:"FM Kahoku",             g:"music",           url:"https://fmkahoku.webstream.jp/fmkahoku/podcast/podcast.m3u8"}
+      {n:"NHK World Radio Japan",g:"news",  pub:true, url:"https://nhkworld.cdn.nimg.jp/nhkworld/nhkworldtv/audio/nhkworld_audio_aac128.m3u8"},
+      {n:"Listen.moe J-Pop",     g:"pop",             url:"https://listen.moe/stream"},
+      {n:"Listen.moe K-Pop",     g:"pop",             url:"https://listen.moe/kpop/stream"},
+      {n:"Gensokyo Radio",       g:"music",           url:"https://stream.gensokyoradio.net/1"},
+      {n:"J-Pop Powerplay",      g:"pop",             url:"https://jenny.torontocast.com:8016/stream"},
+      {n:"Jazz Sakura",          g:"jazz",            url:"https://cast1.torontocast.com:2010/stream"},
+      {n:"Nightwave Plaza",      g:"music",           url:"https://radio.plaza.one/mp3"},
+      {n:"BOX Japan City Pop",   g:"music",           url:"https://jenny.torontocast.com:8038/stream"},
+      {n:"J-Jazz",               g:"jazz",            url:"https://cast1.torontocast.com:2030/stream"},
+      {n:"Ottava",               g:"classical",       url:"https://ottava.webstream.jp/ottava/podcast/podcast.m3u8"}
     ]
   },
   ch: {
     name: "Switzerland",
+    flag: "\uD83C\uDDE8\uD83C\uDDED",
     list: [
       {n:"RTS La Premiere",    g:"news",     pub:true, url:"https://stream.srg-ssr.ch/m/la-1ere/mp3_128"},
       {n:"RTS Couleur 3",      g:"pop",      pub:true, url:"https://stream.srg-ssr.ch/m/couleur3/mp3_128"},
@@ -263,20 +233,18 @@ var STATIONS = {
       {n:"SRF 2 Kultur",       g:"culture",  pub:true, url:"https://stream.srg-ssr.ch/m/drs2/mp3_128"},
       {n:"SRF 3",              g:"pop",      pub:true, url:"https://stream.srg-ssr.ch/m/drs3/mp3_128"},
       {n:"SRF Virus",          g:"music",    pub:true, url:"https://stream.srg-ssr.ch/m/drsvirus/mp3_128"},
-      {n:"SRF Musikwelle",     g:"music",    pub:true, url:"https://stream.srg-ssr.ch/m/drsmw/mp3_128"},
       {n:"RSI Rete Uno",       g:"news",     pub:true, url:"https://stream.srg-ssr.ch/m/reteuno/mp3_128"},
       {n:"RSI Rete Due",       g:"culture",  pub:true, url:"https://stream.srg-ssr.ch/m/retedue/mp3_128"},
       {n:"RSI Rete Tre",       g:"pop",      pub:true, url:"https://stream.srg-ssr.ch/m/retetre/mp3_128"},
       {n:"RTR",                g:"talk",     pub:true, url:"https://stream.srg-ssr.ch/m/rtr/mp3_128"},
       {n:"Radio Swiss Pop",    g:"pop",      pub:true, url:"https://stream.srg-ssr.ch/m/rsp/mp3_128"},
       {n:"Radio Swiss Classic",g:"classical",pub:true, url:"https://stream.srg-ssr.ch/m/rsc_de/mp3_128"},
-      {n:"Radio Swiss Jazz",   g:"jazz",     pub:true, url:"https://stream.srg-ssr.ch/m/rsj/mp3_128"},
-      {n:"Kanal K",            g:"music",              url:"https://stream.kanalK.ch/kanalK-128.mp3"},
-      {n:"Radio 3FACH",        g:"music",              url:"https://stream.3fach.ch/3fach-128.mp3"}
+      {n:"Radio Swiss Jazz",   g:"jazz",     pub:true, url:"https://stream.srg-ssr.ch/m/rsj/mp3_128"}
     ]
   },
   de: {
     name: "Germany",
+    flag: "\uD83C\uDDE9\uD83C\uDDEA",
     list: [
       {n:"Deutschlandfunk",   g:"news",     pub:true, url:"https://st01.sslstream.dlf.de/dlf/01/128/mp3/stream.mp3"},
       {n:"DLF Kultur",        g:"culture",  pub:true, url:"https://st02.sslstream.dlf.de/dlf/02/128/mp3/stream.mp3"},
@@ -285,7 +253,6 @@ var STATIONS = {
       {n:"WDR 2",             g:"pop",      pub:true, url:"https://wdr-wdr2-aachenundregion.icecast.wdr.de/wdr/wdr2/aachenundregion/mp3/128/stream.mp3"},
       {n:"WDR 3",             g:"classical",pub:true, url:"https://wdr-wdr3-live.icecast.wdr.de/wdr/wdr3/live/mp3/128/stream.mp3"},
       {n:"WDR 5",             g:"talk",     pub:true, url:"https://wdr-wdr5-live.icecast.wdr.de/wdr/wdr5/live/mp3/128/stream.mp3"},
-      {n:"NDR 1 Welle Nord",  g:"news",     pub:true, url:"https://ndr-ndr1wellenord-kiel.icecast.ndr.de/ndr/ndr1wellenord/kiel/mp3/128/stream.mp3"},
       {n:"NDR 2",             g:"pop",      pub:true, url:"https://ndr-ndr2-live.icecast.ndr.de/ndr/ndr2/live/mp3/128/stream.mp3"},
       {n:"NDR Kultur",        g:"culture",  pub:true, url:"https://ndr-ndrkultur-live.icecast.ndr.de/ndr/ndrkultur/live/mp3/128/stream.mp3"},
       {n:"SWR 1 BW",          g:"pop",      pub:true, url:"https://liveradio.swr.de/sw282p3/swr1bw/play.mp3"},
@@ -294,15 +261,12 @@ var STATIONS = {
       {n:"Bayern 1",          g:"pop",      pub:true, url:"https://dispatcher.rndfnk.com/br/br1/live/mp3/low"},
       {n:"Bayern 2",          g:"culture",  pub:true, url:"https://dispatcher.rndfnk.com/br/br2/live/mp3/low"},
       {n:"Bayern 3",          g:"pop",      pub:true, url:"https://dispatcher.rndfnk.com/br/br3/live/mp3/low"},
-      {n:"HR 1",              g:"pop",      pub:true, url:"https://dispatcher.rndfnk.com/hr/hr1/live/mp3/low"},
-      {n:"HR 2 Kultur",       g:"culture",  pub:true, url:"https://dispatcher.rndfnk.com/hr/hr2/live/mp3/low"},
       {n:"MDR Kultur",        g:"culture",  pub:true, url:"https://dispatcher.rndfnk.com/mdr/mdrkultur/live/mp3/low"},
       {n:"RBB Radio Eins",    g:"talk",     pub:true, url:"https://dispatcher.rndfnk.com/rbb/radioeins/live/mp3/low"}
     ]
   }
 };
 
-var FLAGS = {fr:"\uD83C\uDDEB\uD83C\uDDF7", jp:"\uD83C\uDDEF\uD83C\uDDF5", ch:"\uD83C\uDDE8\uD83C\uDDED", de:"\uD83C\uDDE9\uD83C\uDDEA"};
 var ORDER = ["fr","jp","ch","de"];
 var selCountry = "all";
 var selGenre = "all";
@@ -339,8 +303,7 @@ function render() {
     for (var i = 0; i < grp.list.length; i++) {
       var s = grp.list[i];
       if (selGenre !== "all") {
-        if (selGenre === "public" && !s.pub) continue;
-        if (selGenre !== "public" && s.g !== selGenre) continue;
+        if (s.g !== selGenre) continue;
       }
       if (searchQ && s.n.toLowerCase().indexOf(searchQ) === -1) continue;
       filtered.push(s);
@@ -353,7 +316,7 @@ function render() {
 
     var heading = document.createElement("div");
     heading.className = "country-heading";
-    heading.innerHTML = '<span class="country-flag">' + FLAGS[code] + '</span>' +
+    heading.innerHTML = '<span class="country-flag">' + grp.flag + '</span>' +
       '<span class="country-name">' + grp.name + '</span>' +
       '<span class="country-count">' + filtered.length + ' station' + (filtered.length > 1 ? 's' : '') + '</span>';
     block.appendChild(heading);
@@ -362,19 +325,17 @@ function render() {
     grid.className = "stations-grid";
 
     for (var j = 0; j < filtered.length; j++) {
-      (function(station, countryName) {
+      (function(station, countryName, countryFlag) {
         var card = document.createElement("div");
         card.className = "station-card";
         card.setAttribute("tabindex", "0");
         card.setAttribute("role", "button");
         card.setAttribute("aria-label", "Play " + station.n);
-
-        var cardHTML = '<div class="card-top">' +
+        card.innerHTML = '<div class="card-top">' +
           '<div class="station-name">' + station.n + '</div>' +
           '<button class="play-btn" aria-label="Play">&#9654;</button>' +
           '</div>' +
           '<div class="station-tags">' + makeTags(station) + '</div>';
-        card.innerHTML = cardHTML;
 
         var playBtn = card.querySelector(".play-btn");
 
@@ -382,7 +343,7 @@ function render() {
           if (activeCard && activeCard !== card) {
             activeCard.classList.remove("playing");
             var prevBtn = activeCard.querySelector(".play-btn");
-            if (prevBtn) { prevBtn.innerHTML = "&#9654;"; }
+            if (prevBtn) prevBtn.innerHTML = "&#9654;";
           }
           activeCard = card;
           card.classList.add("playing");
@@ -391,11 +352,10 @@ function render() {
           audio.play().catch(function() {});
           playing = true;
           document.getElementById("p-name").textContent = station.n;
-          document.getElementById("p-sub").textContent = FLAGS[code] + " " + countryName;
+          document.getElementById("p-sub").textContent = countryFlag + " " + countryName;
           stickyPlayer.classList.add("visible");
           var pp = document.getElementById("p-play");
           pp.innerHTML = "&#9646;&#9646;";
-          pp.style.paddingLeft = "0";
         }
 
         function toggle() {
@@ -403,9 +363,7 @@ function render() {
             audio.pause();
             playing = false;
             playBtn.innerHTML = "&#9654;";
-            var pp = document.getElementById("p-play");
-            pp.innerHTML = "&#9654;";
-            pp.style.paddingLeft = "2px";
+            document.getElementById("p-play").innerHTML = "&#9654;";
           } else {
             activate();
           }
@@ -417,7 +375,7 @@ function render() {
         });
         playBtn.addEventListener("click", function(e) { e.stopPropagation(); toggle(); });
         grid.appendChild(card);
-      })(filtered[j], grp.name);
+      })(filtered[j], grp.name, grp.flag);
     }
 
     block.appendChild(grid);
@@ -425,7 +383,7 @@ function render() {
   }
 
   if (!total) {
-    container.innerHTML = '<div class="empty"><div class="icon">&#128251;</div><p>No stations match your filters.</p></div>';
+    container.innerHTML = '<div class="empty"><p>No stations match your filters.</p></div>';
   }
 }
 
@@ -433,7 +391,9 @@ document.querySelectorAll(".filter-chip").forEach(function(btn) {
   btn.addEventListener("click", function() {
     var type = btn.getAttribute("data-type");
     var val = btn.getAttribute("data-val");
-    document.querySelectorAll('.filter-chip[data-type="' + type + '"]').forEach(function(b) { b.classList.remove("active"); });
+    document.querySelectorAll('.filter-chip[data-type="' + type + '"]').forEach(function(b) {
+      b.classList.remove("active");
+    });
     btn.classList.add("active");
     if (type === "country") selCountry = val;
     if (type === "genre") selGenre = val;
@@ -452,14 +412,12 @@ document.getElementById("p-play").addEventListener("click", function() {
     audio.pause();
     playing = false;
     pp.innerHTML = "&#9654;";
-    pp.style.paddingLeft = "2px";
-    if (activeCard) { activeCard.querySelector(".play-btn").innerHTML = "&#9654;"; }
+    if (activeCard) activeCard.querySelector(".play-btn").innerHTML = "&#9654;";
   } else if (audio.src) {
     audio.play().catch(function() {});
     playing = true;
     pp.innerHTML = "&#9646;&#9646;";
-    pp.style.paddingLeft = "0";
-    if (activeCard) { activeCard.querySelector(".play-btn").innerHTML = makeEQ(); }
+    if (activeCard) activeCard.querySelector(".play-btn").innerHTML = makeEQ();
   }
 });
 
