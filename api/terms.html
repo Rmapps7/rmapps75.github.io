@@ -3,217 +3,256 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terms of Use — RM Radio API</title>
+<title>Terms of Use — RMApp Radio API</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg:#fafaf7; --bg2:#f3f1eb; --dark:#18181f;
-    --gold:#b8892e; --gold2:#d4a84c;
-    --text:#18181f; --muted:#7a7068;
-    --card:#ffffff; --border:rgba(184,137,46,0.18);
-    --shadow:0 2px 24px rgba(24,24,31,0.07);
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior:smooth; }
-  body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-weight:300; line-height:1.8; }
+ :root {
+ --bg:#fafaf7; --bg2:#f3f1eb; --dark:#18181f;
+ --gold:#b8892e; --gold2:#d4a84c;
+ --text:#18181f; --muted:#7a7068;
+ --card:#ffffff; --border:rgba(184,137,46,0.18);
+ }
+ * { margin:0; padding:0; box-sizing:border-box; }
+ html { scroll-behavior:smooth; }
+ body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-weight:300; line-height:1.8; }
 
-  nav { position:sticky; top:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:1.1rem 3rem; background:rgba(250,250,247,0.92); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
-  .logo { font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:700; color:var(--dark); text-decoration:none; letter-spacing:0.03em; }
-  .logo span { color:var(--gold); }
-  nav ul { display:flex; gap:2rem; list-style:none; }
-  nav a { color:var(--muted); text-decoration:none; font-size:0.8rem; letter-spacing:0.08em; text-transform:uppercase; transition:color 0.25s; }
-  nav a:hover { color:var(--gold); }
+ nav { position:sticky; top:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:1.1rem 3rem; background:rgba(250,250,247,0.92); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); }
+ .logo { font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:700; color:var(--dark); text-decoration:none; letter-spacing:0.03em; }
+ .logo span { color:var(--gold); }
+ nav ul { display:flex; gap:2rem; list-style:none; }
+ nav a { color:var(--muted); text-decoration:none; font-size:0.8rem; letter-spacing:0.08em; text-transform:uppercase; transition:color 0.25s; }
+ nav a:hover { color:var(--gold); }
 
-  .header { max-width:800px; margin:0 auto; padding:5rem 3rem 3rem; border-bottom:1px solid var(--border); }
-  .badge { display:inline-block; font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,137,46,0.3); padding:0.25rem 0.9rem; border-radius:20px; margin-bottom:1.5rem; }
-  h1 { font-family:'Playfair Display',serif; font-size:3rem; font-weight:900; color:var(--dark); letter-spacing:-0.02em; margin-bottom:0.75rem; }
-  .meta { font-size:0.78rem; color:var(--muted); letter-spacing:0.06em; }
+ .header { max-width:800px; margin:0 auto; padding:5rem 3rem 3rem; border-bottom:1px solid var(--border); }
+ .badge { display:inline-block; font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,137,46,0.3); padding:0.25rem 0.9rem; border-radius:20px; margin-bottom:1.5rem; }
+ h1 { font-family:'Playfair Display',serif; font-size:3rem; font-weight:900; color:var(--dark); letter-spacing:-0.02em; margin-bottom:0.75rem; }
+ .meta { font-size:0.78rem; color:var(--muted); letter-spacing:0.06em; }
 
-  .content { max-width:800px; margin:0 auto; padding:4rem 3rem 6rem; }
+ .content { max-width:800px; margin:0 auto; padding:4rem 3rem 6rem; }
 
-  /* KEY LICENSE BOX */
-  .key-box {
-    background:rgba(184,137,46,0.07);
-    border:2px solid rgba(184,137,46,0.3);
-    border-radius:12px;
-    padding:2rem 2.5rem;
-    margin-bottom:3rem;
-  }
-  .key-box .kl { font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
-  .key-box h2 { font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:700; color:var(--dark); margin-bottom:1rem; }
-  .key-box ul { list-style:none; display:flex; flex-direction:column; gap:0.55rem; }
-  .key-box li { display:flex; gap:0.75rem; font-size:0.95rem; color:var(--muted); }
-  .key-box li::before { content:'✓'; color:var(--gold); font-weight:700; flex-shrink:0; }
+ /* KEY LICENSE BOX */
+ .key-box {
+ background:rgba(184,137,46,0.07);
+ border:2px solid rgba(184,137,46,0.3);
+ border-radius:12px;
+ padding:2rem 2.5rem;
+ margin-bottom:3rem;
+ }
+ .key-box .kl { font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+ .key-box h2 { font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:700; color:var(--dark); margin-bottom:1rem; }
+ .key-box ul { list-style:none; display:flex; flex-direction:column; gap:0.55rem; }
+ .key-box li { display:flex; gap:0.75rem; font-size:0.95rem; color:var(--muted); }
+ .key-box li::before { content:'✓'; color:var(--gold); font-weight:700; flex-shrink:0; }
 
-  .section { margin-bottom:3rem; padding-bottom:3rem; border-bottom:1px solid var(--border); }
-  .section:last-child { border-bottom:none; }
-  .section-num { font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:0.6rem; }
-  h2 { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:var(--dark); margin-bottom:1rem; line-height:1.2; }
-  h3 { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; color:var(--dark); margin:1.5rem 0 0.5rem; }
-  p { color:var(--muted); font-size:0.92rem; margin-bottom:0.9rem; font-weight:300; }
-  p strong { color:var(--text); font-weight:500; }
-  p em { color:var(--gold); }
-  a { color:var(--gold); }
-  ul.list { list-style:none; margin:0.75rem 0 1rem; display:flex; flex-direction:column; gap:0.45rem; }
-  ul.list li { display:flex; gap:0.75rem; color:var(--muted); font-size:0.92rem; font-weight:300; }
-  ul.list li::before { content:'—'; color:var(--border); flex-shrink:0; }
+ /* PLATFORM BOX — new, most important for Apple */
+ .platform-box {
+ background:rgba(184,137,46,0.04);
+ border:2px solid rgba(184,137,46,0.25);
+ border-radius:12px;
+ padding:2rem 2.5rem;
+ margin:2rem 0;
+ }
+ .platform-box .kl { font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+ .platform-box h3 { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:700; color:var(--dark); margin-bottom:1rem; }
+ .platform-box p { color:var(--muted); font-size:0.92rem; margin-bottom:0.75rem; font-weight:300; }
+ .platform-box p strong { color:var(--text); font-weight:500; }
+ .platform-box ul { list-style:none; display:flex; flex-direction:column; gap:0.45rem; margin-top:0.75rem; }
+ .platform-box li { display:flex; gap:0.75rem; color:var(--muted); font-size:0.92rem; }
+ .platform-box li::before { content:'—'; color:rgba(184,137,46,0.4); flex-shrink:0; }
 
-  .highlight { background:var(--bg2); border-left:3px solid var(--gold); padding:1.2rem 1.5rem; margin:1.25rem 0; border-radius:0 8px 8px 0; }
-  .highlight p { color:var(--text); margin:0; }
+ .section { margin-bottom:3rem; padding-bottom:3rem; border-bottom:1px solid var(--border); }
+ .section:last-child { border-bottom:none; }
+ .section-num { font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:0.6rem; }
+ h2 { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:var(--dark); margin-bottom:1rem; line-height:1.2; }
+ h3 { font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:700; color:var(--dark); margin:1.5rem 0 0.5rem; }
+ p { color:var(--muted); font-size:0.92rem; margin-bottom:0.9rem; font-weight:300; }
+ p strong { color:var(--text); font-weight:500; }
+ p em { color:var(--gold); }
+ a { color:var(--gold); }
+ ul.list { list-style:none; margin:0.75rem 0 1rem; display:flex; flex-direction:column; gap:0.45rem; }
+ ul.list li { display:flex; gap:0.75rem; color:var(--muted); font-size:0.92rem; font-weight:300; }
+ ul.list li::before { content:'—'; color:var(--border); flex-shrink:0; }
 
-  footer { background:var(--dark); color:rgba(255,255,255,0.45); padding:2.5rem 3rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
-  footer a { color:rgba(255,255,255,0.45); text-decoration:none; font-size:0.8rem; transition:color 0.25s; }
-  footer a:hover { color:var(--gold2); }
-  .footer-links { display:flex; gap:1.5rem; }
-  .footer-copy { font-size:0.78rem; color:rgba(255,255,255,0.25); }
+ .highlight { background:var(--bg2); border-left:3px solid var(--gold); padding:1.2rem 1.5rem; margin:1.25rem 0; border-radius:0 8px 8px 0; }
+ .highlight p { color:var(--text); margin:0; }
+
+ footer { background:var(--dark); color:rgba(255,255,255,0.45); padding:2.5rem 3rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+ footer a { color:rgba(255,255,255,0.45); text-decoration:none; font-size:0.8rem; transition:color 0.25s; }
+ footer a:hover { color:var(--gold2); }
+ .footer-links { display:flex; gap:1.5rem; flex-wrap:wrap; }
+ .footer-copy { font-size:0.78rem; color:rgba(255,255,255,0.25); }
+
+ @media(max-width:768px) { nav { padding:0.9rem 1.2rem; } nav ul { display:none; } .header, .content { padding-left:1.5rem; padding-right:1.5rem; } footer { padding:2rem 1.5rem; flex-direction:column; } }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="../index.html" class="logo">RM <span>App</span></a>
-  <ul>
-    <li><a href="index.html">API</a></li>
-    <li><a href="terms.html">Terms</a></li>
-    <li><a href="privacy.html">Privacy</a></li>
-    <li><a href="broadcasters.html">Broadcasters</a></li>
-    <li><a href="../index.html">← Back</a></li>
-  </ul>
+ <a href="/" class="logo">RM<span>App</span></a>
+ <ul>
+ 
+ <li><a href="/api/terms.html">Terms</a></li>
+ <li><a href="/api/privacy.html">Privacy</a></li>
+ <li><a href="/api/broadcasters.html">Broadcasters</a></li>
+ <li><a href="/">← Back</a></li>
+ </ul>
 </nav>
 
 <div class="header">
-  <div class="badge">LEGAL DOCUMENT — RM RADIO API</div>
-  <h1>Terms of Use</h1>
-  <div class="meta">LAST UPDATED: APRIL 5, 2026 · RM APP · SEBASTIEN ROUSSEAU</div>
+ <div class="badge">LEGAL DOCUMENT — RM RADIO API</div>
+ <h1>Terms of Use</h1>
+ <div class="meta">LAST UPDATED: APRIL 14, 2026 · RMAPP</div>
 </div>
 
 <div class="content">
 
-  <!-- THE CRITICAL BOX FOR APPLE -->
-  <div class="key-box">
-    <div class="kl">✦ API License — Core freedoms</div>
-    <h2>This API may be used in free and non-free (commercial) software</h2>
-    <ul>
-      <li>You may use this API in <strong>free and non-free (commercial) software</strong></li>
-      <li>You may use it in <strong>mobile applications on the Apple App Store and Google Play</strong></li>
-      <li>You may use it in <strong>any commercial product or service</strong>, including paid apps and apps with advertising</li>
-      <li>You may <strong>redistribute station directory data</strong> retrieved via this API</li>
-      <li>Broadcasters may <strong>request removal at any time</strong> via our Broadcaster Portal within 24 hours</li>
-    </ul>
-  </div>
+ 
 
-  <div class="section">
-    <div class="section-num">§ 1</div>
-    <h2>The Service</h2>
-    <p>Radios France and all RM Radio apps are the digital equivalent of a radio receiver. The Service consists of an index of radio stations designed to simplify finding radio programming from broadcast or radio sources, whether available through any software applications made available for mobile devices or computer systems.</p>
-    <p><strong>RM App is not a broadcaster</strong> and its directory service just redirects users to specific content providers in accordance with their publicly available services. RM App is an intermediary which connects (via embedded hyperlinks) users to radios broadcasting over the Internet. RM App does not own any of the brands it lists or claim any rights in the content that listeners may access.</p>
-    <div class="highlight">
-      <p><strong>RM App does not host, store, copy, or retransmit any audio content.</strong> The App functions as a specialized technical player (User-Agent) that facilitates a direct connection between the user's device and the broadcaster's public URL.</p>
-    </div>
-    <p>The RM Radio API operates as a <strong>radio station directory and hyperlink service</strong>. All stream URLs point directly to the broadcasters' own servers or their authorized CDN infrastructure.</p>
-  </div>
+ <!-- SECTION 2 — API LICENSE -->
+ <div class="section">
+ <div class="section-num">§ 2</div>
+ <h2>API License Grant — Commercial and Non-Commercial Use</h2>
 
-  <div class="section">
-    <div class="section-num">§ 2</div>
-    <h2>API License Grant — Commercial and Non-Commercial Use</h2>
-    <div class="highlight">
-      <p><strong>The RM Radio API is completely free and open.</strong> This API may be used in free and non-free software. This license explicitly covers commercial applications, mobile applications distributed through app stores including the Apple App Store and Google Play, web services, and any other platform or device.</p>
-    </div>
-    <p>RM App hereby grants Developers a <strong>non-exclusive, worldwide, royalty-free, perpetual license</strong> to:</p>
-    <ul class="list">
-      <li>Access and query the RM Radio API endpoints</li>
-      <li>Retrieve, display, and redistribute Station Data within applications</li>
-      <li>Use Station Data in commercial applications and paid services</li>
-      <li>Integrate the RM Radio API into mobile applications distributed via any app store</li>
-      <li>Use Station Data in applications that charge users a fee or display advertising</li>
-    </ul>
-    <p>The phrase <em>"free and non-free software"</em> explicitly covers all commercial applications, regardless of revenue model, pricing, or distribution method.</p>
-  </div>
+ <div class="highlight">
+ <p><strong>The RMApp Radio API is completely free and open.</strong> This API may be used in free and non-free software. This license explicitly covers commercial applications, mobile applications distributed through app stores including the Apple App Store and Google Play, web services, and any other platform or device.</p>
+ </div>
 
-  <div class="section">
-    <div class="section-num">§ 3</div>
-    <h2>Content Ownership and Attribution</h2>
-    <p>All audio streams, logos, and related media accessible through the app are the intellectual property of their respective radio station owners, broadcasters, or licensors. All radio streams referenced in this Service are publicly available sources provided by the respective broadcasters on their own servers or authorized CDN infrastructure.</p>
-    <p>We do not claim ownership of any radio content and do not host, store, copy, or retransmit any streams. The app provides a user-friendly directory and player to access streams already made publicly available by the broadcasters themselves.</p>
-    <p>Broadcasters are responsible for ensuring they have the necessary rights to distribute their content. RM App does not verify ownership of stream rights. Stations may be removed upon request by their respective owners or in case of valid copyright concerns.</p>
-    <p>RM App does not modify, alter, or edit the audio content provided by broadcasters. We do not insert additional audio advertisements into the streams or overlay any audio content.</p>
-  </div>
+ <p>RM App hereby grants Developers a <strong>non-exclusive, worldwide, royalty-free, perpetual license</strong> to:</p>
+ <ul class="list">
+ <li>Access and query the RMApp Radio API endpoints</li>
+ <li>Retrieve, display, and redistribute Station Data within applications</li>
+ <li>Use Station Data in commercial applications and paid services</li>
+ <li>Integrate the RMApp Radio API into mobile applications distributed via any app store</li>
+ <li>Use Station Data in applications that charge users a fee or display advertising</li>
+ </ul>
 
-  <div class="section">
-    <div class="section-num">§ 4</div>
-    <h2>Content Removal Requests &amp; Broadcaster Rights</h2>
-    <p>We respect the intellectual property rights of all broadcasters and content providers. Any broadcaster whose station is listed in the directory may at any time request removal, update their information, or claim their station.</p>
-    <p>If you are a radio station or content owner and would like your station to be removed or modified, please contact us at: <a href="mailto:contact.rmapp@gmail.com">contact.rmapp@gmail.com</a> or use our <a href="broadcasters.html">Broadcaster Portal</a>.</p>
-    <p>Please include in your request: the station name, a link or reference to the content, proof of ownership, and the action you would like us to take.</p>
-    <p><strong>We will process all valid removal requests within 24 hours.</strong></p>
-  </div>
+ <p>The phrase <em>"free and non-free software"</em> explicitly covers all commercial applications, regardless of revenue model, pricing, or distribution method.</p>
+ </div>
 
-  <div class="section">
-    <div class="section-num">§ 5</div>
-    <h2>Using the Service</h2>
-    <p>The app and API are provided for your personal and commercial use, subject to these terms. You agree that you will not use the Service in any unlawful manner and that you will not attempt to gain unauthorized access to it.</p>
-    <p>Developers using the RM Radio API agree to:</p>
-    <ul class="list">
-      <li>Not use the API to host, cache, or rebroadcast audio content</li>
-      <li>Honor and implement broadcaster takedown requests within 30 days of notification</li>
-      <li>Not represent their application as an official application of any specific broadcaster</li>
-    </ul>
-  </div>
+ <!-- SECTION 3 — BROADCASTER RIGHTS & CONSENT -->
+ <div class="section">
+ <div class="section-num">§ 3</div>
+ <h2>Broadcaster Rights, Consent &amp; Station Indexing</h2>
 
-  <div class="section">
-    <div class="section-num">§ 6</div>
-    <h2>Third Party Content</h2>
-    <p>"Third Party Content" contemplates any broadcast radio programs or other audio content that RM App gives you the ability to listen to, and any links or access to websites and resources on the Internet.</p>
-    <p>Third Party Content may be copyrighted and protected. You acknowledge that Third Party Content may be the copyrighted material of the third party that supplies it. The Service gives you the ability to listen to and access Third Party Content over which RM App exercises no editorial or programming control. <strong>The Service acts as a passive pass-through infrastructure.</strong></p>
-    <p>Due to copyright protection mechanisms, it is strictly forbidden to extract, remove, record, download, or otherwise change content or by any means make any attempts thereto.</p>
-    <ul class="list">
-      <li>The Service does not guarantee access to any particular Third Party Content</li>
-      <li>Third Party Content is not under RM App's control and the Service is not responsible for it</li>
-      <li>Third Party Content providers may change or delete content or schedules at any time</li>
-    </ul>
-  </div>
+ <p>The RMApp Radio platform provides broadcasters with full control over their presence in the directory. By submitting a station to the RMApp Radio directory, a broadcaster grants RMApp a non-exclusive, royalty-free license to list and link their publicly available streams within the RMApp Radio platform and associated mobile applications.</p>
 
-  <div class="section">
-    <div class="section-num">§ 7</div>
-    <h2>Disclaimer and Limitation of Liability</h2>
-    <p>The app is provided "as is" and "as available." RM App is not affiliated with, endorsed by, or sponsored by any of the radio stations or broadcasters listed within the App. We do not guarantee the accuracy, availability, or reliability of the content streamed through third-party radio stations.</p>
-    <p>RM App shall not be liable for any direct, indirect, incidental, special, or consequential damages resulting from your use of, or inability to use, the Service.</p>
-  </div>
+ <p>RM App has not concealed anything about its platform model from Broadcasters, Podcasters, or Users. The platform's directory model, indexing process, and takedown procedures are fully documented and publicly accessible.</p>
 
-  <div class="section">
-    <div class="section-num">§ 8</div>
-    <h2>Notice for Apple Users</h2>
-    <p>Since the RM Radio apps are available on the Apple App Store, you acknowledge that this Agreement is between you and Sébastien Rousseau only, not with Apple, and Apple is not responsible for the Application or the content thereof.</p>
-    <ul class="list">
-      <li>Apple has no obligation to furnish maintenance and support services for the Application</li>
-      <li>Apple is not responsible for addressing any product liability claims</li>
-      <li>Apple is not responsible for any claim that the Application fails to conform to any applicable legal or regulatory requirement</li>
-      <li>Apple is not responsible for any third-party intellectual property infringement claims</li>
-    </ul>
-  </div>
+ <p>Any broadcaster whose station appears in the RMApp Radio directory may at any time:</p>
+ <ul class="list">
+ <li>Request immediate removal of their station — processed within 24 hours, no questions asked</li>
+ <li>Claim and verify ownership of their station via the Broadcaster Portal</li>
+ <li>Update their station information, stream URL, logo, or genre</li>
+ <li>Opt their station into or out of specific categories or regional apps</li>
+ </ul>
 
-  <div class="section">
-    <div class="section-num">§ 9</div>
-    <h2>Contact</h2>
-    <p>If you have any questions about these Terms of Use, or wish to make a claim, please contact us at:</p>
-    <ul class="list">
-      <li>Email: <a href="mailto:contact.rmapp@gmail.com">contact.rmapp@gmail.com</a></li>
-      <li>Takedown requests: <a href="mailto:contact.rmapp@gmail.com">contact.rmapp@gmail.com</a></li>
-      <li>Broadcaster Portal: <a href="broadcasters.html">rmapps7.github.io/rmapps75.github.io/api/broadcasters.html</a></li>
-    </ul>
-  </div>
+ <p><strong>Takedown requests are processed within 24 hours</strong> of receipt, via the <a href="/api/broadcasters.html">Broadcaster Portal</a> or by emailing <a href="mailto:contact.rmapp@gmail.com">contact.rmapp@gmail.com</a>. Upon a valid request, the station is immediately removed from all API responses and RMApp Radio apps.</p>
+
+ <h3>Official Public Broadcaster APIs</h3>
+ <p>The following stations are sourced from official public broadcaster APIs, which are publicly documented and freely accessible:</p>
+ <ul class="list">
+ <li><strong>Radio France</strong> (France) — official streams via icecast.radiofrance.fr, a public broadcaster funded by the French government</li>
+ <li><strong>SRG SSR</strong> (Switzerland) — official API via developer.srgssr.ch, Switzerland's national public broadcaster</li>
+ <li><strong>ARD</strong> (Germany) — official API via api.ardmediathek.de, Germany's public broadcasting network</li>
+ <li><strong>NHK World</strong> (Japan) — official stream via nhkworld.jp, Japan's public international broadcaster</li>
+ </ul>
+ </div>
+
+ <!-- SECTION 4 — CONTENT OWNERSHIP -->
+ <div class="section">
+ <div class="section-num">§ 4</div>
+ <h2>Content Ownership and Attribution</h2>
+
+ <p>All audio streams, logos, station names, and related media accessible through the RMApp Radio platform are the intellectual property of their respective radio station owners, broadcasters, or licensors. All radio streams referenced in this Service are publicly available sources provided by the respective broadcasters on their own servers or authorized CDN infrastructure.</p>
+
+ <p>RM App does not claim ownership of any radio content and does not host, store, copy, or retransmit any streams. The platform provides a directory and player to access streams already made publicly available by the broadcasters themselves.</p>
+
+ <p>RM App does not modify, alter, or edit the audio content provided by broadcasters. We do not insert additional audio advertisements into the streams or overlay any audio content. <strong>The Service acts as a passive pass-through infrastructure.</strong></p>
+ </div>
+
+ <!-- SECTION 5 — USING THE SERVICE -->
+ <div class="section">
+ <div class="section-num">§ 5</div>
+ <h2>Using the Service</h2>
+
+ <p>The RMApp Radio platform and API are provided for personal and commercial use, subject to these terms. You agree that you will not use the Service in any unlawful manner.</p>
+
+ <p>Developers using the RMApp Radio API agree to:</p>
+ <ul class="list">
+ <li>Not use the API to host, cache, or rebroadcast audio content</li>
+ <li>Honor and implement broadcaster takedown requests within 30 days of notification by RMApp</li>
+ <li>Not represent their application as an official application of any specific broadcaster</li>
+ <li>Not misrepresent the RMApp Radio API as a broadcaster authorization or endorsement</li>
+ </ul>
+
+ <p>Due to copyright protection mechanisms, it is strictly forbidden to extract, remove, record, download, or otherwise copy content accessed via this Service.</p>
+ </div>
+
+ <!-- SECTION 6 — THIRD PARTY CONTENT -->
+ <div class="section">
+ <div class="section-num">§ 6</div>
+ <h2>Third Party Content</h2>
+
+ <p>"Third Party Content" includes any broadcast radio programs or other audio content that RMApp gives you the ability to listen to, and any links or access to websites and resources on the Internet.</p>
+
+ <p>Third Party Content may be copyrighted and protected. The Service gives you the ability to listen to and access Third Party Content over which RMApp exercises no editorial or programming control. The Service acts as a passive pass-through infrastructure. RMApp is not responsible for the nature of Third Party Content.</p>
+
+ <ul class="list">
+ <li>The Service does not guarantee access to any particular Third Party Content</li>
+ <li>Third Party Content is not under RMApp's control and the Service is not responsible for it</li>
+ <li>Third Party Content providers may change or delete content or schedules at any time</li>
+ </ul>
+ </div>
+
+ <!-- SECTION 7 — DISCLAIMER -->
+ <div class="section">
+ <div class="section-num">§ 7</div>
+ <h2>Disclaimer and Limitation of Liability</h2>
+
+ <p>The app is provided "as is" and "as available." RMApp is not affiliated with, endorsed by, or sponsored by any of the radio stations or broadcasters listed within the App. We do not guarantee the accuracy, availability, or reliability of the content streamed through third-party radio stations.</p>
+
+ <p>RM App shall not be liable for any direct, indirect, incidental, special, or consequential damages resulting from your use of, or inability to use, the Service.</p>
+ </div>
+
+ <!-- SECTION 8 — APPLE -->
+ <div class="section">
+ <div class="section-num">§ 8</div>
+ <h2>Notice for Apple Users</h2>
+
+ <p>Since the RMApp Radio apps are available on the Apple App Store, you acknowledge that this Agreement is between you and only, not with Apple, and Apple is not responsible for the Application or the content thereof.</p>
+
+ <ul class="list">
+ <li>Apple has no obligation to furnish maintenance and support services for the Application</li>
+ <li>Apple is not responsible for addressing any product liability claims</li>
+ <li>Apple is not responsible for any claim that the Application fails to conform to any applicable legal or regulatory requirement</li>
+ <li>Apple is not responsible for any third-party intellectual property infringement claims</li>
+ </ul>
+ </div>
+
+ <!-- SECTION 9 — CONTACT -->
+ <div class="section">
+ <div class="section-num">§ 9</div>
+ <h2>Contact</h2>
+
+ <p>If you have any questions about these Terms of Use, or wish to make a claim or takedown request:</p>
+ <ul class="list">
+ <li>General: <a href="mailto:contact.rmapp@gmail.com">contact.rmapp@gmail.com</a></li>
+ <li>Broadcaster Portal: <a href="/api/broadcasters.html">rmapp.site/api/broadcasters.html</a></li>
+ <li>Takedown requests: <a href="mailto:contact.rmapp@gmail.com">contact.rmapp@gmail.com</a> — processed within 24 hours</li>
+ </ul>
+ </div>
 
 </div>
 
 <footer>
-  <span class="footer-copy">© 2026 RM App · Sébastien Rousseau</span>
-  <div class="footer-links">
-    <a href="../index.html">Home</a>
-    <a href="index.html">API</a>
-    <a href="privacy.html">Privacy Policy</a>
-    <a href="broadcasters.html">Broadcasters</a>
-    <a href="mailto:contact.rmapp@gmail.com">contact.rmapp@gmail.com</a>
-  </div>
+ <span class="footer-copy">© 2026 RMApp</span>
+ <div class="footer-links">
+ <a href="/">Home</a>
+ <a href="/api/">API</a>
+ <a href="/api/privacy.html">Privacy Policy</a>
+ <a href="/api/broadcasters.html">Broadcasters</a>
+ <a href="mailto:contact.rmapp@gmail.com">contact.rmapp@gmail.com</a>
+ </div>
 </footer>
 
 </body>
